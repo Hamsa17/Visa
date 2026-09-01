@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_app_module">
+  <sys_app_module action="INSERT_OR_UPDATE">
+    <sys_id>4c39c42fceda4545b5a50c31068bd610</sys_id>
+    <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
+    <sys_update_name>sys_app_module_4c39c42fceda4545b5a50c31068bd610</sys_update_name>
+    <active>true</active>
+    <application>628651cdf7a042839e9eb302a4e47ce4</application>
+    <hint>View all immigration cases</hint>
+    <link_type>LIST</link_type>
+    <name>x_2023506_german_1_imm_case</name>
+    <order>100</order>
+    <title>All Cases</title>
+  </sys_app_module>
+</record_update>

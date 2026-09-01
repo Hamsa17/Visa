@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_app_module">
+  <sys_app_module action="INSERT_OR_UPDATE">
+    <sys_id>7fd7b9a0c6824dbc95e394ad47c5bc27</sys_id>
+    <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
+    <sys_update_name>sys_app_module_7fd7b9a0c6824dbc95e394ad47c5bc27</sys_update_name>
+    <active>true</active>
+    <application>628651cdf7a042839e9eb302a4e47ce4</application>
+    <filter>active=true</filter>
+    <hint>View active cases currently in review</hint>
+    <link_type>LIST</link_type>
+    <name>x_2023506_german_1_imm_case</name>
+    <order>300</order>
+    <title>In Review</title>
+  </sys_app_module>
+</record_update>

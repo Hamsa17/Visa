@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+  <sys_choice_set action="INSERT_OR_UPDATE" field="u_visa_category" table="x_2023506_german_1_imm_case" version="3">
+    <sys_choice_set action="INSERT_OR_UPDATE">
+      <sys_id>24aba1f9262048179019c7a1a95967d6</sys_id>
+      <element>u_visa_category</element>
+      <name>x_2023506_german_1_imm_case</name>
+      <sys_class_name>sys_choice_set</sys_class_name>
+      <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
+      <sys_package display_value="x_2023506_german_1" source="e218557183cb4390c53aad30ceaad33a">e218557183cb4390c53aad30ceaad33a</sys_package>
+      <sys_update_name>sys_choice_x_2023506_german_1_imm_case_u_visa_category</sys_update_name>
+      <sys_name>u_visa_category</sys_name>
+    </sys_choice_set>
+    <sys_choice action="INSERT_OR_UPDATE">
+      <sys_id>bd58b8ad526c4acd86313ecfca65420d</sys_id>
+      <name>x_2023506_german_1_imm_case</name>
+      <element>u_visa_category</element>
+      <label>EU Blue Card</label>
+      <value>eu_blue_card</value>
+      <sequence>1</sequence>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE">
+      <sys_id>bfcc4da7a6144fa38e7c884dfa562711</sys_id>
+      <name>x_2023506_german_1_imm_case</name>
+      <element>u_visa_category</element>
+      <label>Skilled Worker</label>
+      <value>skilled_worker</value>
+      <sequence>2</sequence>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE">
+      <sys_id>d9c6713436e74e6e8b019a09476f6c8a</sys_id>
+      <name>x_2023506_german_1_imm_case</name>
+      <element>u_visa_category</element>
+      <label>IT Specialist</label>
+      <value>it_specialist</value>
+      <sequence>3</sequence>
+      <language>en</language>
+    </sys_choice>
+  </sys_choice_set>
+</record_update>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="question_choice">
+  <question_choice action="INSERT_OR_UPDATE">
+    <sys_id>25eaca1a86cc4997b7dfecd6c56b3276</sys_id>
+    <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
+    <sys_update_name>question_choice_25eaca1a86cc4997b7dfecd6c56b3276</sys_update_name>
+    <inactive>false</inactive>
+    <order>1</order>
+    <question cat_item="c060c1fc6bff45999d63f2364a3497d1" name="visa_category" variable_set="NULL">9790cfa8341a449ea1339dff2f7e6548</question>
+    <text>EU Blue Card</text>
+    <value>eu_blue_card</value>
+  </question_choice>
+</record_update>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+  <sys_choice_set action="INSERT_OR_UPDATE" field="u_document_name" table="x_2023506_german_1_case_doc" version="3">
+    <sys_choice_set action="INSERT_OR_UPDATE">
+      <sys_id>66ab601c30334e3dae4c05dc2a75d608</sys_id>
+      <element>u_document_name</element>
+      <name>x_2023506_german_1_case_doc</name>
+      <sys_class_name>sys_choice_set</sys_class_name>
+      <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
+      <sys_package display_value="x_2023506_german_1" source="e218557183cb4390c53aad30ceaad33a">e218557183cb4390c53aad30ceaad33a</sys_package>
+      <sys_update_name>sys_choice_x_2023506_german_1_case_doc_u_document_name</sys_update_name>
+      <sys_name>u_document_name</sys_name>
+    </sys_choice_set>
+    <sys_choice action="INSERT_OR_UPDATE">
+      <sys_id>f8d3677350604086b1219f705e87293f</sys_id>
+      <name>x_2023506_german_1_case_doc</name>
+      <element>u_document_name</element>
+      <label>Passport</label>
+      <value>passport</value>
+      <sequence>1</sequence>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE">
+      <sys_id>3478a3680ce14258a508cea21c9c97f4</sys_id>
+      <name>x_2023506_german_1_case_doc</name>
+      <element>u_document_name</element>
+      <label>Degree Certificate</label>
+      <value>degree_certificate</value>
+      <sequence>2</sequence>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE">
+      <sys_id>1fd7d5c7150c4972adfebbf0834316ee</sys_id>
+      <name>x_2023506_german_1_case_doc</name>
+      <element>u_document_name</element>
+      <label>Power of Attorney</label>
+      <value>power_of_attorney</value>
+      <sequence>3</sequence>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE">
+      <sys_id>95231c84b4a341aa983041e8d944bca2</sys_id>
+      <name>x_2023506_german_1_case_doc</name>
+      <element>u_document_name</element>
+      <label>Job Contract</label>
+      <value>job_contract</value>
+      <sequence>4</sequence>
+      <language>en</language>
+    </sys_choice>
+  </sys_choice_set>
+</record_update>

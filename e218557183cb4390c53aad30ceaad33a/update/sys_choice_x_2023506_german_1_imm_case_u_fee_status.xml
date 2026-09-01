@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+  <sys_choice_set action="INSERT_OR_UPDATE" field="u_fee_status" table="x_2023506_german_1_imm_case" version="3">
+    <sys_choice_set action="INSERT_OR_UPDATE">
+      <sys_id>884fe713a6b74b928a817f6d1de90758</sys_id>
+      <element>u_fee_status</element>
+      <name>x_2023506_german_1_imm_case</name>
+      <sys_class_name>sys_choice_set</sys_class_name>
+      <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
+      <sys_package display_value="x_2023506_german_1" source="e218557183cb4390c53aad30ceaad33a">e218557183cb4390c53aad30ceaad33a</sys_package>
+      <sys_update_name>sys_choice_x_2023506_german_1_imm_case_u_fee_status</sys_update_name>
+      <sys_name>u_fee_status</sys_name>
+    </sys_choice_set>
+    <sys_choice action="INSERT_OR_UPDATE">
+      <sys_id>b9754d074b8b4930991147f67be7bddb</sys_id>
+      <name>x_2023506_german_1_imm_case</name>
+      <element>u_fee_status</element>
+      <label>Unpaid</label>
+      <value>unpaid</value>
+      <sequence>1</sequence>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE">
+      <sys_id>0eee89432cfc42af9a13df13a08879ca</sys_id>
+      <name>x_2023506_german_1_imm_case</name>
+      <element>u_fee_status</element>
+      <label>Paid</label>
+      <value>paid</value>
+      <sequence>2</sequence>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE">
+      <sys_id>71669044ac03406c81851651ae64f022</sys_id>
+      <name>x_2023506_german_1_imm_case</name>
+      <element>u_fee_status</element>
+      <label>Waived</label>
+      <value>waived</value>
+      <sequence>3</sequence>
+      <language>en</language>
+    </sys_choice>
+  </sys_choice_set>
+</record_update>

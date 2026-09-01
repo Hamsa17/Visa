@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_app_module">
+  <sys_app_module action="INSERT_OR_UPDATE">
+    <sys_id>11c9581a0f654a429afc33b340c42a0c</sys_id>
+    <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
+    <sys_update_name>sys_app_module_11c9581a0f654a429afc33b340c42a0c</sys_update_name>
+    <active>true</active>
+    <application>628651cdf7a042839e9eb302a4e47ce4</application>
+    <hint>Create a new immigration case</hint>
+    <link_type>NEW</link_type>
+    <name>x_2023506_german_1_imm_case</name>
+    <order>200</order>
+    <title>New Case</title>
+  </sys_app_module>
+</record_update>

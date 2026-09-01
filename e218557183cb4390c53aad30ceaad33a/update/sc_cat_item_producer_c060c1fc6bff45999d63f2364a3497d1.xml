@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item_producer">
+  <sc_cat_item_producer action="INSERT_OR_UPDATE">
+    <sys_id>c060c1fc6bff45999d63f2364a3497d1</sys_id>
+    <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
+    <sys_update_name>sc_cat_item_producer_c060c1fc6bff45999d63f2364a3497d1</sys_update_name>
+    <access_type>restricted</access_type>
+    <active>true</active>
+    <allow_edit>false</allow_edit>
+    <availability>on_desktop</availability>
+    <can_cancel>false</can_cancel>
+    <category>e15706fc0a0a0aa7007fc21e1ab70c2f</category>
+    <checked_out/>
+    <description><![CDATA[Use this form to submit a new Germany §81a Visa Fast-Track request. An Immigration Case will be created with associated document tracking records.]]></description>
+    <hide_sp>false</hide_sp>
+    <icon/>
+    <image/>
+    <make_item_non_conversational>false</make_item_non_conversational>
+    <mandatory_attachment>false</mandatory_attachment>
+    <meta/>
+    <mobile_picture/>
+    <mobile_picture_type>use_desktop_picture</mobile_picture_type>
+    <model/>
+    <name>Submit Visa Fast-Track Request</name>
+    <no_attachment_v2>false</no_attachment_v2>
+    <no_cart_v2>false</no_cart_v2>
+    <no_delivery_time_v2>false</no_delivery_time_v2>
+    <no_quantity_v2>false</no_quantity_v2>
+    <no_save_as_draft>false</no_save_as_draft>
+    <no_search>false</no_search>
+    <no_wishlist_v2>false</no_wishlist_v2>
+    <order>0</order>
+    <owner/>
+    <picture/>
+    <post_insert_script><![CDATA[(function executeProducerScript(current, producer, cat_item) {
+    // Create 4 initial Case Document child records linked to this case
+    var documentTypes = [
+        'passport',
+        'degree_certificate',
+        'power_of_attorney',
+        'job_contract'
+    ];
+
+    for (var i = 0; i < documentTypes.length; i++) {
+        var doc = new GlideRecord('x_2023506_german_1_case_doc');
+        doc.initialize();
+        doc.u_case = current.sys_id;
+        doc.u_document_name = documentTypes[i];
+        doc.u_status = 'pending';
+        doc.insert();
+    }
+})(current, producer, cat_item);
+]]></post_insert_script>
+    <redirect_url>generated_record</redirect_url>
+    <roles/>
+    <save_options/>
+    <save_script>/**
+* This script is executed at every step save in Catalog Builder. 
+* This script is executed before `Script` is executed.
+* `current` Is the GlideRecord produced by Record Producer. 
+* To access the variables, use `producer.var1` where var1 is the name of the variable
+* To access the Record Producer use `cat_item`
+*/</save_script>
+    <sc_catalogs>e0d08b13c3330100c8b837659bba8fb4</sc_catalogs>
+    <script><![CDATA[(function executeProducerScript(current, producer) {
+    // Set default state to Open (1)
+    current.state = 1;
+    // Set priority to Moderate (3)
+    current.priority = 3;
+    // Set fee defaults
+    current.u_fee_amount = 411.00;
+    current.u_fee_status = 'unpaid';
+    // Build short_description from candidate name
+    current.short_description = 'Fast-Track Case: ' + producer.candidate_name;
+})(current, producer);
+]]></script>
+    <short_description>Submit a §81a fast-track immigration case for a prospective international hire.</short_description>
+    <show_variable_help_on_load>false</show_variable_help_on_load>
+    <start_closed>false</start_closed>
+    <state/>
+    <table_name>x_2023506_german_1_imm_case</table_name>
+    <taxonomy_topic/>
+    <type>item</type>
+    <use_sc_layout>true</use_sc_layout>
+    <version>1</version>
+    <view/>
+    <visible_bundle>true</visible_bundle>
+    <visible_guide>true</visible_guide>
+    <visible_standalone>true</visible_standalone>
+  </sc_cat_item_producer>
+</record_update>

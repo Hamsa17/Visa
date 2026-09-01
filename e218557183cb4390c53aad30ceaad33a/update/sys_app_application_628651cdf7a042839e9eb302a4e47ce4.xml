@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_app_application">
+  <sys_app_application action="INSERT_OR_UPDATE">
+    <sys_id>628651cdf7a042839e9eb302a4e47ce4</sys_id>
+    <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
+    <sys_update_name>sys_app_application_628651cdf7a042839e9eb302a4e47ce4</sys_update_name>
+    <active>true</active>
+    <category/>
+    <description>Application menu for Germany Visa Fast-Track case management.</description>
+    <device_type>browser</device_type>
+    <hint>Manage §81a fast-track immigration cases</hint>
+    <name/>
+    <order>100</order>
+    <roles/>
+    <title>Germany Visa Fast-Track</title>
+  </sys_app_application>
+</record_update>

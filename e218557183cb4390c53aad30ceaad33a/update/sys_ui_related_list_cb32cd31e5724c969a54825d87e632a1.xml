@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_related_list">
+  <sys_ui_related_list action="INSERT_OR_UPDATE">
+    <sys_id>cb32cd31e5724c969a54825d87e632a1</sys_id>
+    <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
+    <sys_update_name>sys_ui_related_list_cb32cd31e5724c969a54825d87e632a1</sys_update_name>
+    <name>x_2023506_german_1_imm_case</name>
+    <view>Default view</view>
+  </sys_ui_related_list>
+</record_update>
