@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_report">
+  <sys_report action="INSERT_OR_UPDATE">
+    <sys_id>e3903749c5f14b608b37d3e39dde234f</sys_id>
+    <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
+    <sys_update_name>sys_report_e3903749c5f14b608b37d3e39dde234f</sys_update_name>
+    <aggregate>SUM</aggregate>
+    <field>u_fee_amount</field>
+    <group>u_fee_status</group>
+    <is_real_time>true</is_real_time>
+    <table>x_2023506_german_1_imm_case</table>
+    <title>Municipal Fee Recovery Status</title>
+    <type>bar</type>
+  </sys_report>
+</record_update>
