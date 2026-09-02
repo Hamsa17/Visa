@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+  <sp_widget action="INSERT_OR_UPDATE">
+    <sys_id>b2bc9c9eb8c145f8bc6ca3cc66737d11</sys_id>
+    <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
+    <sys_update_name>sp_widget_b2bc9c9eb8c145f8bc6ca3cc66737d11</sys_update_name>
+    <category>custom</category>
+    <client_script><![CDATA[api.controller = function () {
+  var c = this;
+  c.loading = false;
+
+  c.getStatusClass = function (status) {
+    if (status === 'verified') return 'label-success';
+    if (status === 'rejected') return 'label-danger';
+    return 'label-warning';
+  };
+
+  c.getStateClass = function () {
+    var state = c.data.state;
+    if (state === '1') return 'label-info';
+    if (state === '2') return 'label-warning';
+    if (state === '3') return 'label-primary';
+    if (state >= '6') return 'label-success';
+    return 'label-default';
+  };
+
+  c.getProgressClass = function () {
+    var p = c.data.progress;
+    if (p >= 80) return 'progress-bar-success';
+    if (p >= 40) return 'progress-bar-info';
+    return 'progress-bar-warning';
+  };
+};
+]]></client_script>
+    <controller_as>c</controller_as>
+    <css><![CDATA[/* Progress milestone icons */
+.gvft-progress-icon {
+  font-size: 20px;
+  display: block;
+  margin-bottom: 4px;
+  color: $text-muted;
+}
+.gvft-progress-label {
+  font-size: $font-size-small;
+  margin: 0;
+}
+]]></css>
+    <data_table>sp_instance</data_table>
+    <demo_data/>
+    <description/>
+    <docs/>
+    <field_list/>
+    <has_preview>false</has_preview>
+    <id>gvft_status_widget</id>
+    <internal>false</internal>
+    <link>function link(scope, element, attrs, controller) {
+}</link>
+    <name>GVFT Status Widget</name>
+    <option_schema/>
+    <public>false</public>
+    <roles/>
+    <script><![CDATA[(function () {
+  data.caseFound = false;
+  data.errorMsg = '';
+  data.caseNumber = '';
+  data.candidateName = '';
+  data.candidateEmail = '';
+  data.visaCategory = '';
+  data.targetCity = '';
+  data.state = '';
+  data.stateDisplay = '';
+  data.feeStatus = '';
+  data.feeAmount = '';
+  data.createdOn = '';
+  data.documents = [];
+  data.progress = 0;
+
+  try {
+    var caseNum = $sp.getParameter('case');
+    if (!caseNum) {
+      data.errorMsg = 'No case number provided.';
+      return;
+    }
+
+    var gr = new GlideRecord('x_2023506_german_1_imm_case');
+    gr.addQuery('number', caseNum);
+    gr.setLimit(1);
+    gr.query();
+
+    if (gr.next()) {
+      data.caseFound = true;
+      data.caseNumber = gr.getValue('number') + '';
+      data.caseSysId = gr.getUniqueValue() + '';
+      data.candidateName = gr.getValue('u_candidate_name') + '';
+      data.candidateEmail = gr.getValue('u_candidate_email') + '';
+      data.visaCategory = gr.getDisplayValue('u_visa_category') + '';
+      data.targetCity = gr.getValue('u_target_city') + '';
+      data.state = gr.getValue('state') + '';
+      data.stateDisplay = gr.getDisplayValue('state') + '';
+      data.feeStatus = gr.getDisplayValue('u_fee_status') + '';
+      data.feeAmount = gr.getValue('u_fee_amount') + '';
+      data.createdOn = gr.getDisplayValue('sys_created_on') + '';
+
+      // Query case documents
+      var docGr = new GlideRecord('x_2023506_german_1_case_doc');
+      docGr.addQuery('u_case', gr.getUniqueValue());
+      docGr.setLimit(20);
+      docGr.query();
+
+      var verifiedCount = 0;
+      var totalDocs = 0;
+      while (docGr.next()) {
+        totalDocs++;
+        var status = docGr.getValue('u_status') + '';
+        if (status === 'verified') {
+          verifiedCount++;
+        }
+        data.documents.push({
+          sys_id: docGr.getUniqueValue() + '',
+          name: docGr.getDisplayValue('u_document_name') + '',
+          status: status,
+          statusDisplay: docGr.getDisplayValue('u_status') + '',
+          reviewNotes: docGr.getValue('u_review_notes') + ''
+        });
+      }
+
+      // Calculate progress
+      var stateVal = parseInt(data.state, 10) || 1;
+      var stateProgress = 0;
+      if (stateVal === 1) stateProgress = 10;
+      else if (stateVal === 2) stateProgress = 40;
+      else if (stateVal === 3) stateProgress = 70;
+      else if (stateVal >= 6) stateProgress = 100;
+
+      var docProgress = 0;
+      if (totalDocs > 0) {
+        docProgress = Math.round((verifiedCount / totalDocs) * 50);
+      }
+
+      data.progress = Math.min(stateProgress + docProgress, 100);
+
+    } else {
+      data.errorMsg = 'Case "' + caseNum + '" not found.';
+    }
+  } catch (e) {
+    gs.error('gvft_status_widget error: ' + e.message);
+    data.errorMsg = 'An error occurred loading case details.';
+  }
+})();
+]]></script>
+    <servicenow>false</servicenow>
+    <template><![CDATA[<div>
+  <!-- Error state -->
+  <div class="alert alert-danger" ng-if="c.data.errorMsg" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign"></span>
+    <strong>Error!</strong> {{c.data.errorMsg}}
+  </div>
+
+  <div ng-if="c.data.caseFound">
+    <!-- Success header -->
+    <div class="alert alert-success" role="alert">
+      <span class="glyphicon glyphicon-ok-circle"></span>
+      <strong>Application Submitted!</strong> Your immigration case <strong>{{c.data.caseNumber}}</strong> has been created successfully.
+    </div>
+
+    <!-- Case Overview Panel -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <span class="glyphicon glyphicon-briefcase"></span>
+          Case Overview
+          <span class="label pull-right" ng-class="c.getStateClass()">{{c.data.stateDisplay}}</span>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6 col-xs-12">
+            <dl class="dl-horizontal">
+              <dt>Case Number</dt>
+              <dd><strong>{{c.data.caseNumber}}</strong></dd>
+              <dt>Candidate</dt>
+              <dd>{{c.data.candidateName}}</dd>
+              <dt>Email</dt>
+              <dd>{{c.data.candidateEmail}}</dd>
+            </dl>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <dl class="dl-horizontal">
+              <dt>Visa Category</dt>
+              <dd>{{c.data.visaCategory}}</dd>
+              <dt>Target City</dt>
+              <dd>{{c.data.targetCity}}</dd>
+              <dt>Submitted</dt>
+              <dd>{{c.data.createdOn}}</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress Panel -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <span class="glyphicon glyphicon-tasks"></span>
+          Processing Progress
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="progress">
+          <div class="progress-bar" ng-class="c.getProgressClass()"
+               role="progressbar"
+               aria-valuenow="{{c.data.progress}}" aria-valuemin="0" aria-valuemax="100"
+               ng-style="{'width': c.data.progress + '%'}">
+            {{c.data.progress}}%
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-xs-3">
+            <span class="glyphicon glyphicon-file gvft-progress-icon"
+                  ng-class="{'text-success': c.data.progress >= 10}"></span>
+            <p class="text-muted gvft-progress-label">Submitted</p>
+          </div>
+          <div class="col-xs-3">
+            <span class="glyphicon glyphicon-search gvft-progress-icon"
+                  ng-class="{'text-success': c.data.progress >= 40}"></span>
+            <p class="text-muted gvft-progress-label">Under Review</p>
+          </div>
+          <div class="col-xs-3">
+            <span class="glyphicon glyphicon-check gvft-progress-icon"
+                  ng-class="{'text-success': c.data.progress >= 70}"></span>
+            <p class="text-muted gvft-progress-label">Approved</p>
+          </div>
+          <div class="col-xs-3">
+            <span class="glyphicon glyphicon-ok-circle gvft-progress-icon"
+                  ng-class="{'text-success': c.data.progress >= 100}"></span>
+            <p class="text-muted gvft-progress-label">Complete</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documents Panel -->
+    <div class="panel panel-default" ng-if="c.data.documents.length > 0">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <span class="glyphicon glyphicon-folder-open"></span>
+          Document Verification Status
+        </h3>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Document</th>
+            <th>Status</th>
+            <th>Review Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="doc in c.data.documents track by doc.sys_id">
+            <td>
+              <span class="glyphicon glyphicon-file"></span>
+              {{doc.name}}
+            </td>
+            <td>
+              <span class="label" ng-class="c.getStatusClass(doc.status)">{{doc.statusDisplay}}</span>
+            </td>
+            <td class="text-muted">{{doc.reviewNotes || '—'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Fee & Next Steps -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <span class="glyphicon glyphicon-info-sign"></span>
+          Fee &amp; Next Steps
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-4 col-xs-12">
+            <p class="text-muted">Processing Fee</p>
+            <h4>€{{c.data.feeAmount}}</h4>
+            <span class="label" ng-class="c.data.feeStatus === 'Paid' ? 'label-success' : 'label-warning'">
+              {{c.data.feeStatus}}
+            </span>
+          </div>
+          <div class="col-md-8 col-xs-12">
+            <div class="alert alert-info" role="alert">
+              <span class="glyphicon glyphicon-info-sign"></span>
+              <strong>What happens next?</strong>
+              <ul>
+                <li>Our team will review your uploaded documents within 2–3 business days.</li>
+                <li>You will receive email updates at <strong>{{c.data.candidateEmail}}</strong>.</li>
+                <li>Bookmark this page to check your application status anytime.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+]]></template>
+  </sp_widget>
+</record_update>

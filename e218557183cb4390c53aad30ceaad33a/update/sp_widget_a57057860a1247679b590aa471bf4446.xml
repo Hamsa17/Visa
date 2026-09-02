@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+  <sp_widget action="INSERT_OR_UPDATE">
+    <sys_id>a57057860a1247679b590aa471bf4446</sys_id>
+    <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
+    <sys_update_name>sp_widget_a57057860a1247679b590aa471bf4446</sys_update_name>
+    <category>custom</category>
+    <client_script><![CDATA[api.controller = function ($scope, $http, $window) {
+  var c = this;
+
+  c.step = 1;
+  c.submitting = false;
+  c.errors = {};
+  c._currentKey = '';
+
+  c.form = {
+    u_candidate_name: '',
+    u_candidate_email: '',
+    u_date_of_birth: '',
+    u_nationality: '',
+    u_passport_number: '',
+    u_target_city: '',
+    u_visa_category: '',
+    u_annual_salary: ''
+  };
+
+  c.files = {};
+
+  c.uploadSlots = [
+    { key: 'passport', label: 'Passport Photo Page' },
+    { key: 'degree_certificate', label: 'Degree Certificate' },
+    { key: 'job_contract', label: 'Job Contract' },
+    { key: 'power_of_attorney', label: 'Vollmacht (Power of Attorney) PDF' }
+  ];
+
+  c.steps = [
+    { number: 1, label: 'Personal Details' },
+    { number: 2, label: 'Relocation & Employment' },
+    { number: 3, label: 'Document Uploads' }
+  ];
+
+  c.handleFile = function (fileKey, fileList) {
+    if (fileList && fileList.length > 0) {
+      c.files[fileKey] = fileList[0];
+    }
+  };
+
+  c.validateStep = function (step) {
+    c.errors = {};
+    var valid = true;
+
+    if (step === 1) {
+      if (!c.form.u_candidate_name) { c.errors.u_candidate_name = 'Name is required'; valid = false; }
+      if (!c.form.u_candidate_email) { c.errors.u_candidate_email = 'Email is required'; valid = false; }
+      if (!c.form.u_date_of_birth) { c.errors.u_date_of_birth = 'Date of birth is required'; valid = false; }
+      if (!c.form.u_nationality) { c.errors.u_nationality = 'Nationality is required'; valid = false; }
+      if (!c.form.u_passport_number) { c.errors.u_passport_number = 'Passport number is required'; valid = false; }
+    } else if (step === 2) {
+      if (!c.form.u_target_city) { c.errors.u_target_city = 'Target city is required'; valid = false; }
+      if (!c.form.u_visa_category) { c.errors.u_visa_category = 'Visa category is required'; valid = false; }
+      if (!c.form.u_annual_salary) { c.errors.u_annual_salary = 'Annual salary is required'; valid = false; }
+    }
+
+    return valid;
+  };
+
+  c.nextStep = function () {
+    if (c.validateStep(c.step)) {
+      c.step++;
+    }
+  };
+
+  c.prevStep = function () {
+    c.errors = {};
+    if (c.step > 1) {
+      c.step--;
+    }
+  };
+
+  c.submit = function () {
+    if (c.submitting) return;
+    c.submitting = true;
+    c.errors = {};
+    c.data.errorMsg = '';
+
+    c.server.get({
+      action: 'submit',
+      u_candidate_name: c.form.u_candidate_name,
+      u_candidate_email: c.form.u_candidate_email,
+      u_date_of_birth: c.form.u_date_of_birth,
+      u_nationality: c.form.u_nationality,
+      u_passport_number: c.form.u_passport_number,
+      u_target_city: c.form.u_target_city,
+      u_visa_category: c.form.u_visa_category,
+      u_annual_salary: c.form.u_annual_salary
+    }).then(function (r) {
+      if (r.data.success) {
+        var caseSysId = r.data.caseSysId;
+        var caseNumber = r.data.caseNumber;
+        var uploadPromises = [];
+        var docNames = [];
+
+        c.uploadSlots.forEach(function (slot) {
+          var file = c.files[slot.key];
+          if (file) {
+            docNames.push(slot.key);
+            var fd = new FormData();
+            fd.append('table_name', 'x_2023506_german_1_imm_case');
+            fd.append('table_sys_id', caseSysId);
+            fd.append('uploadFile', file, file.name);
+            uploadPromises.push(
+              $http.post('/api/now/attachment/upload', fd, {
+                headers: { 'Content-Type': undefined },
+                transformRequest: angular.identity
+              })
+            );
+          }
+        });
+
+        var afterUploads = function () {
+          if (docNames.length > 0) {
+            c.server.get({
+              action: 'create_docs',
+              caseSysId: caseSysId,
+              docNames: docNames
+            }).then(function () {
+              $window.location.href = '?id=gvft_status&case=' + caseNumber;
+            }, function () {
+              $window.location.href = '?id=gvft_status&case=' + caseNumber;
+            });
+          } else {
+            $window.location.href = '?id=gvft_status&case=' + caseNumber;
+          }
+        };
+
+        if (uploadPromises.length > 0) {
+          Promise.all(uploadPromises).then(function () {
+            $scope.$apply(function () {
+              afterUploads();
+            });
+          }).catch(function () {
+            $scope.$apply(function () {
+              afterUploads();
+            });
+          });
+        } else {
+          afterUploads();
+        }
+      } else {
+        c.data.errorMsg = r.data.errorMsg || 'Submission failed.';
+        c.submitting = false;
+      }
+    }, function () {
+      c.data.errorMsg = 'A server error occurred. Please try again.';
+      c.submitting = false;
+    });
+  };
+};
+]]></client_script>
+    <controller_as>c</controller_as>
+    <css><![CDATA[/* Step Indicator */
+.gvft-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 32px;
+  padding: 24px 0;
+  border-bottom: 1px solid $border-tertiary;
+}
+.gvft-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+.gvft-step-active,
+.gvft-step-done {
+  opacity: 1;
+}
+.gvft-step-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: $background-tertiary;
+  color: $text-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-base;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+.gvft-step-active .gvft-step-circle {
+  background: $brand-primary;
+  color: $btn-primary-color;
+}
+.gvft-step-done .gvft-step-circle {
+  background: $brand-success;
+  color: $btn-primary-color;
+}
+.gvft-step-label {
+  font-size: $font-size-small;
+  font-weight: 500;
+  color: $text-muted;
+}
+.gvft-step-active .gvft-step-label {
+  color: $text-color;
+  font-weight: 600;
+}
+
+/* Form Inputs */
+.sp-input {
+  height: $input-height-base;
+  border: 1px solid $border-tertiary;
+  border-radius: $border-radius-base;
+  padding: 0 12px;
+  font-size: $font-size-base;
+  color: $text-color;
+  background: $background-primary;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+  &:focus {
+    border-color: $brand-primary;
+    box-shadow: 0 0 0 3px rgba($brand-primary, 0.15);
+    outline: none;
+  }
+}
+.has-error .sp-input {
+  border-color: $brand-danger;
+}
+
+/* Select */
+.sp-select-wrapper {
+  position: relative;
+}
+.sp-select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 36px;
+  height: $input-height-base;
+  border-radius: $border-radius-base;
+  cursor: pointer;
+}
+.sp-select-chevron {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $text-muted;
+  pointer-events: none;
+  font-size: 12px;
+}
+
+/* Upload Zone */
+.gvft-upload-zone {
+  border: 2px dashed $border-secondary;
+  border-radius: $border-radius-large;
+  padding: 24px 16px;
+  text-align: center;
+  background: $background-secondary;
+  position: relative;
+  transition: border-color 0.2s, background 0.2s;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &:hover {
+    border-color: $brand-primary;
+    background: rgba($brand-primary, 0.03);
+  }
+}
+.gvft-upload-icon {
+  font-size: 32px;
+  color: $brand-primary;
+  margin-bottom: 8px;
+  opacity: 0.6;
+}
+.gvft-upload-text {
+  font-size: $font-size-small;
+  margin: 0;
+}
+.gvft-file-input {
+  display: none;
+}
+.gvft-file-input-real {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Buttons */
+.sp-btn-primary,
+.sp-btn-secondary {
+  height: 44px;
+  padding: 0 20px;
+  border-radius: $border-radius-base;
+  font-size: $font-size-base;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.15s, box-shadow 0.15s;
+  cursor: pointer;
+  border: none;
+}
+.sp-btn-primary {
+  background: $brand-primary;
+  color: $btn-primary-color;
+  &:hover:not(:disabled) {
+    background: $brand-primary-dark;
+    box-shadow: 0 2px 8px rgba($brand-primary, 0.3);
+    color: $btn-primary-color;
+  }
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+.sp-btn-secondary {
+  background: $background-primary;
+  border: 1px solid $border-tertiary;
+  color: $text-color;
+  &:hover {
+    background: $background-secondary;
+  }
+}
+.sp-btn-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+@keyframes sp-spin {
+  to { transform: rotate(360deg); }
+}
+.sp-spin {
+  animation: sp-spin 0.8s linear infinite;
+}
+]]></css>
+    <data_table>sp_instance</data_table>
+    <demo_data/>
+    <description/>
+    <docs/>
+    <field_list/>
+    <has_preview>false</has_preview>
+    <id>gvft_intake_form_widget</id>
+    <internal>false</internal>
+    <link>function link(scope, element, attrs, controller) {
+}</link>
+    <name>GVFT Intake Form Widget</name>
+    <option_schema/>
+    <public>false</public>
+    <roles/>
+    <script><![CDATA[(function () {
+  data.step = 1;
+  data.success = false;
+  data.errorMsg = '';
+  data.caseNumber = '';
+  data.caseSysId = '';
+  data.visaCategories = [
+    { label: 'EU Blue Card', value: 'eu_blue_card' },
+    { label: 'Skilled Worker Visa', value: 'skilled_worker' }
+  ];
+
+  try {
+    if (input && input.action === 'submit') {
+      var gr = new GlideRecord('x_2023506_german_1_imm_case');
+      gr.initialize();
+      gr.setValue('u_candidate_name', input.u_candidate_name || '');
+      gr.setValue('u_candidate_email', input.u_candidate_email || '');
+      gr.setValue('u_date_of_birth', input.u_date_of_birth || '');
+      gr.setValue('u_nationality', input.u_nationality || '');
+      gr.setValue('u_passport_number', input.u_passport_number || '');
+      gr.setValue('u_target_city', input.u_target_city || '');
+      gr.setValue('u_visa_category', input.u_visa_category || '');
+      gr.setValue('u_annual_salary', input.u_annual_salary || '');
+      gr.setValue('state', '1');
+      gr.setValue('u_fee_status', 'unpaid');
+      gr.setValue('u_fee_amount', '411');
+      var id = gr.insert();
+      if (id) {
+        data.success = true;
+        data.caseSysId = id + '';
+        data.caseNumber = gr.getValue('number') + '';
+      } else {
+        data.errorMsg = 'Failed to create immigration case.';
+      }
+      return;
+    }
+
+    if (input && input.action === 'create_docs') {
+      var docNames = input.docNames || [];
+      data.docsCreated = 0;
+      for (var i = 0; i < docNames.length; i++) {
+        var doc = new GlideRecord('x_2023506_german_1_case_doc');
+        doc.initialize();
+        doc.setValue('u_case', input.caseSysId);
+        doc.setValue('u_document_name', docNames[i]);
+        doc.setValue('u_status', 'pending');
+        var docId = doc.insert();
+        if (docId) {
+          data.docsCreated++;
+        }
+      }
+      data.success = true;
+      return;
+    }
+  } catch (e) {
+    gs.error('gvft_intake_form_widget error: ' + e.message);
+    data.errorMsg = 'An unexpected error occurred. Please try again.';
+  }
+})();
+]]></script>
+    <servicenow>false</servicenow>
+    <template><![CDATA[<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <span class="glyphicon glyphicon-plane"></span>
+      Germany Visa Fast-Track Application
+    </h3>
+  </div>
+  <div class="panel-body">
+
+    <!-- Step Indicator -->
+    <div class="gvft-steps">
+      <div class="gvft-step" ng-repeat="s in c.steps track by s.number"
+           ng-class="{'gvft-step-active': c.step === s.number, 'gvft-step-done': c.step > s.number}">
+        <div class="gvft-step-circle">
+          <span ng-if="c.step <= s.number">{{s.number}}</span>
+          <span class="glyphicon glyphicon-ok" ng-if="c.step > s.number"></span>
+        </div>
+        <span class="gvft-step-label">{{s.label}}</span>
+      </div>
+    </div>
+
+    <!-- Error Alert -->
+    <div class="alert alert-danger" ng-if="c.data.errorMsg" role="alert">
+      <span class="glyphicon glyphicon-exclamation-sign"></span>
+      <strong>Error!</strong> {{c.data.errorMsg}}
+    </div>
+
+    <!-- Step 1: Personal Details -->
+    <div ng-if="c.step === 1">
+      <h4>Step 1: Personal Details</h4>
+      <p class="text-muted">Please provide your personal information as shown on your passport.</p>
+      <div class="row">
+        <div class="col-md-6 col-xs-12">
+          <div class="form-group" ng-class="{'has-error': c.errors.u_candidate_name}">
+            <label class="control-label" for="u_candidate_name">Full Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control sp-input" id="u_candidate_name"
+                   ng-model="c.form.u_candidate_name" placeholder="Enter your full name" />
+            <span class="help-block text-danger" ng-if="c.errors.u_candidate_name">{{c.errors.u_candidate_name}}</span>
+          </div>
+        </div>
+        <div class="col-md-6 col-xs-12">
+          <div class="form-group" ng-class="{'has-error': c.errors.u_candidate_email}">
+            <label class="control-label" for="u_candidate_email">Email <span class="text-danger">*</span></label>
+            <input type="email" class="form-control sp-input" id="u_candidate_email"
+                   ng-model="c.form.u_candidate_email" placeholder="you@example.com" />
+            <span class="help-block text-danger" ng-if="c.errors.u_candidate_email">{{c.errors.u_candidate_email}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-xs-12">
+          <div class="form-group" ng-class="{'has-error': c.errors.u_date_of_birth}">
+            <label class="control-label" for="u_date_of_birth">Date of Birth <span class="text-danger">*</span></label>
+            <input type="date" class="form-control sp-input" id="u_date_of_birth"
+                   ng-model="c.form.u_date_of_birth" />
+            <span class="help-block text-danger" ng-if="c.errors.u_date_of_birth">{{c.errors.u_date_of_birth}}</span>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+          <div class="form-group" ng-class="{'has-error': c.errors.u_nationality}">
+            <label class="control-label" for="u_nationality">Nationality <span class="text-danger">*</span></label>
+            <input type="text" class="form-control sp-input" id="u_nationality"
+                   ng-model="c.form.u_nationality" placeholder="e.g. Indian" />
+            <span class="help-block text-danger" ng-if="c.errors.u_nationality">{{c.errors.u_nationality}}</span>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-12">
+          <div class="form-group" ng-class="{'has-error': c.errors.u_passport_number}">
+            <label class="control-label" for="u_passport_number">Passport Number <span class="text-danger">*</span></label>
+            <input type="text" class="form-control sp-input" id="u_passport_number"
+                   ng-model="c.form.u_passport_number" placeholder="e.g. AB1234567" />
+            <span class="help-block text-danger" ng-if="c.errors.u_passport_number">{{c.errors.u_passport_number}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Relocation & Employment -->
+    <div ng-if="c.step === 2">
+      <h4>Step 2: Relocation &amp; Employment</h4>
+      <p class="text-muted">Provide details about your intended work and location in Germany.</p>
+      <div class="row">
+        <div class="col-md-6 col-xs-12">
+          <div class="form-group" ng-class="{'has-error': c.errors.u_target_city}">
+            <label class="control-label" for="u_target_city">Target City <span class="text-danger">*</span></label>
+            <input type="text" class="form-control sp-input" id="u_target_city"
+                   ng-model="c.form.u_target_city" placeholder="e.g. Berlin, Munich" />
+            <span class="help-block text-danger" ng-if="c.errors.u_target_city">{{c.errors.u_target_city}}</span>
+          </div>
+        </div>
+        <div class="col-md-6 col-xs-12">
+          <div class="form-group" ng-class="{'has-error': c.errors.u_visa_category}">
+            <label class="control-label" for="u_visa_category">Visa Category <span class="text-danger">*</span></label>
+            <div class="sp-select-wrapper">
+              <select class="form-control sp-select" id="u_visa_category"
+                      ng-model="c.form.u_visa_category"
+                      ng-options="cat.value as cat.label for cat in c.data.visaCategories">
+                <option value="">— Select Visa Category —</option>
+              </select>
+              <span class="sp-select-chevron glyphicon glyphicon-chevron-down"></span>
+            </div>
+            <span class="help-block text-danger" ng-if="c.errors.u_visa_category">{{c.errors.u_visa_category}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-xs-12">
+          <div class="form-group" ng-class="{'has-error': c.errors.u_annual_salary}">
+            <label class="control-label" for="u_annual_salary">Annual Salary (EUR) <span class="text-danger">*</span></label>
+            <input type="number" class="form-control sp-input" id="u_annual_salary"
+                   ng-model="c.form.u_annual_salary" placeholder="e.g. 55000" />
+            <span class="help-block text-danger" ng-if="c.errors.u_annual_salary">{{c.errors.u_annual_salary}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Document Uploads -->
+    <div ng-if="c.step === 3">
+      <h4>Step 3: Document Uploads</h4>
+      <p class="text-muted">Upload the required documents. Accepted formats: PDF, JPG, PNG (max 10 MB each).</p>
+      <div class="row">
+        <div class="col-md-6 col-xs-12" ng-repeat="doc in c.uploadSlots track by doc.key">
+          <div class="form-group">
+            <label class="control-label" for="file_{{doc.key}}">{{doc.label}}</label>
+            <div class="gvft-upload-zone">
+              <span class="glyphicon glyphicon-cloud-upload gvft-upload-icon" ng-if="!c.files[doc.key]"></span>
+              <span class="glyphicon glyphicon-file gvft-upload-icon" ng-if="c.files[doc.key]"></span>
+              <input type="file" class="gvft-file-input-real" id="file_{{doc.key}}"
+                     accept=".pdf,.jpg,.jpeg,.png"
+                     onchange="angular.element(this).scope().$apply(function(s){ s.c.handleFile(s.c._currentKey, this.files); }.bind(this))" 
+                     onfocus="angular.element(this).scope().c._currentKey = this.id.replace('file_','')" />
+              <p class="text-muted gvft-upload-text" ng-if="!c.files[doc.key]">Click to choose file</p>
+              <p class="gvft-upload-text" ng-if="c.files[doc.key]">
+                <strong>{{c.files[doc.key].name}}</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="sp-btn-group">
+      <button type="button" class="btn btn-default sp-btn-secondary"
+              ng-if="c.step > 1" ng-click="c.prevStep()" ng-disabled="c.submitting">
+        <span class="glyphicon glyphicon-chevron-left"></span> Back
+      </button>
+      <button type="button" class="btn btn-primary sp-btn-primary"
+              ng-if="c.step < 3" ng-click="c.nextStep()">
+        Next <span class="glyphicon glyphicon-chevron-right"></span>
+      </button>
+      <button type="button" class="btn btn-primary sp-btn-primary"
+              ng-if="c.step === 3" ng-click="c.submit()" ng-disabled="c.submitting">
+        <span class="glyphicon glyphicon-ok" ng-if="!c.submitting"></span>
+        <span class="glyphicon glyphicon-refresh" ng-if="c.submitting" ng-class="{'sp-spin': c.submitting}"></span>
+        {{c.submitting ? 'Submitting...' : 'Submit Application'}}
+      </button>
+    </div>
+
+  </div>
+</div>
+]]></template>
+  </sp_widget>
+</record_update>
