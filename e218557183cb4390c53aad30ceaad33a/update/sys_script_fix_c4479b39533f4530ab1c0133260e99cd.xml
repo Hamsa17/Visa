@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_fix">
+  <sys_script_fix action="INSERT_OR_UPDATE" apply_defaults="true">
+    <sys_id>c4479b39533f4530ab1c0133260e99cd</sys_id>
+    <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
+    <sys_update_name>sys_script_fix_c4479b39533f4530ab1c0133260e99cd</sys_update_name>
+    <description>One-time migration: converts all legacy string values (passport, degree_certificate, etc.) in u_document_name to canonical numeric choice values (1, 2, 3, 4).</description>
+    <name>Migrate u_document_name to numeric choice values</name>
+    <script>(function() {
+    var TABLE = 'x_2023506_german_1_case_doc';
+    var FIELD = 'u_document_name';
+
+    // Map all known legacy values -&gt; canonical numeric value
+    var VALUE_MAP = {
+        'passport':           '1',
+        'Passport':           '1',
+        'passport_photo':     '2',
+        'Passport Photo':     '2',
+        'power_of_attorney':  '2',
+        'Power of Attorney':  '2',
+        'job_contract':       '3',
+        'Job Contract':       '3',
+        'degree_certificate': '4',
+        'Degree Certificate': '4'
+    };
+
+    var VALID_VALUES = { '1': true, '2': true, '3': true, '4': true };
+
+    var gr = new GlideRecord(TABLE);
+    gr.addActiveQuery();
+    gr.query();
+
+    var updated = 0;
+    var skipped = 0;
+    var total = 0;
+
+    while (gr.next()) {
+        total++;
+        var currentVal = gr.getValue(FIELD) + '';
+
+        // Already a valid numeric value — skip
+        if (VALID_VALUES[currentVal]) {
+            skipped++;
+            continue;
+        }
+
+        // Look up in migration map
+        var newVal = VALUE_MAP[currentVal];
+        if (newVal) {
+            gr.setValue(FIELD, newVal);
+            gr.setWorkflow(false); // skip business rules during migration
+            gr.update();
+            updated++;
+        } else {
+            // Unknown value — log and skip
+            gs.warn('Fix Script: Unknown u_document_name value "' + currentVal + '" on record ' + gr.getUniqueValue());
+            skipped++;
+        }
+    }
+
+    gs.info('Fix Script Complete: ' + total + ' records processed, ' + updated + ' updated, ' + skipped + ' skipped/valid.');
+})();</script>
+  </sys_script_fix>
+</record_update>

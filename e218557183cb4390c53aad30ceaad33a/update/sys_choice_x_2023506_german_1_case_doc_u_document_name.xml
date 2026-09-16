@@ -1,49 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-  <sys_choice_set action="INSERT_OR_UPDATE" field="u_document_name" table="x_2023506_german_1_case_doc" version="3">
-    <sys_choice_set action="INSERT_OR_UPDATE">
+  <sys_choice_set action="INSERT_OR_UPDATE" apply_defaults="true" field="u_document_name" table="x_2023506_german_1_case_doc" version="3">
+    <sys_choice_set action="INSERT_OR_UPDATE" apply_defaults="true">
       <sys_id>66ab601c30334e3dae4c05dc2a75d608</sys_id>
       <element>u_document_name</element>
+      <sys_update_name>sys_choice_x_2023506_german_1_case_doc_u_document_name</sys_update_name>
       <name>x_2023506_german_1_case_doc</name>
       <sys_class_name>sys_choice_set</sys_class_name>
       <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
       <sys_package display_value="x_2023506_german_1" source="e218557183cb4390c53aad30ceaad33a">e218557183cb4390c53aad30ceaad33a</sys_package>
-      <sys_update_name>sys_choice_x_2023506_german_1_case_doc_u_document_name</sys_update_name>
       <sys_name>u_document_name</sys_name>
     </sys_choice_set>
-    <sys_choice action="INSERT_OR_UPDATE">
-      <sys_id>f8d3677350604086b1219f705e87293f</sys_id>
+    <sys_choice action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>51b42c11255a4358ab98926d55156186</sys_id>
       <name>x_2023506_german_1_case_doc</name>
       <element>u_document_name</element>
       <label>Passport</label>
-      <value>passport</value>
+      <value>1</value>
       <sequence>1</sequence>
+      <inactive>false</inactive>
+      <inactive_on_update>false</inactive_on_update>
       <language>en</language>
     </sys_choice>
-    <sys_choice action="INSERT_OR_UPDATE">
-      <sys_id>3478a3680ce14258a508cea21c9c97f4</sys_id>
+    <sys_choice action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>20321d87e09247b08552d00fd7e1160e</sys_id>
       <name>x_2023506_german_1_case_doc</name>
       <element>u_document_name</element>
-      <label>Degree Certificate</label>
-      <value>degree_certificate</value>
+      <label>Passport Photo</label>
+      <value>2</value>
       <sequence>2</sequence>
+      <inactive>false</inactive>
+      <inactive_on_update>false</inactive_on_update>
       <language>en</language>
     </sys_choice>
-    <sys_choice action="INSERT_OR_UPDATE">
-      <sys_id>1fd7d5c7150c4972adfebbf0834316ee</sys_id>
-      <name>x_2023506_german_1_case_doc</name>
-      <element>u_document_name</element>
-      <label>Power of Attorney</label>
-      <value>power_of_attorney</value>
-      <sequence>3</sequence>
-      <language>en</language>
-    </sys_choice>
-    <sys_choice action="INSERT_OR_UPDATE">
-      <sys_id>95231c84b4a341aa983041e8d944bca2</sys_id>
+    <sys_choice action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>54a035e5fba84a7cb21b72638bee3540</sys_id>
       <name>x_2023506_german_1_case_doc</name>
       <element>u_document_name</element>
       <label>Job Contract</label>
-      <value>job_contract</value>
+      <value>3</value>
+      <sequence>3</sequence>
+      <inactive>false</inactive>
+      <inactive_on_update>false</inactive_on_update>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>bf152da40e234380b01512eb0dd66dcf</sys_id>
+      <name>x_2023506_german_1_case_doc</name>
+      <element>u_document_name</element>
+      <label>Degree Certificate</label>
+      <value>4</value>
       <sequence>4</sequence>
+      <inactive>false</inactive>
+      <inactive_on_update>false</inactive_on_update>
       <language>en</language>
     </sys_choice>
   </sys_choice_set>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item_producer">
-  <sc_cat_item_producer action="INSERT_OR_UPDATE">
+  <sc_cat_item_producer action="INSERT_OR_UPDATE" apply_defaults="true">
     <sys_id>c060c1fc6bff45999d63f2364a3497d1</sys_id>
     <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
     <sys_update_name>sc_cat_item_producer_c060c1fc6bff45999d63f2364a3497d1</sys_update_name>
@@ -32,13 +32,9 @@
     <owner/>
     <picture/>
     <post_insert_script><![CDATA[(function executeProducerScript(current, producer, cat_item) {
-    // Create 4 initial Case Document child records linked to this case
-    var documentTypes = [
-        'passport',
-        'degree_certificate',
-        'power_of_attorney',
-        'job_contract'
-    ];
+    // Create 4 initial Case Document child records linked to this case.
+    // Values align with sys_choice: '1'=Passport, '2'=Passport Photo, '3'=Job Contract, '4'=Degree Certificate
+    var documentTypes = ['1', '2', '3', '4'];
 
     for (var i = 0; i < documentTypes.length; i++) {
         var doc = new GlideRecord('x_2023506_german_1_case_doc');
