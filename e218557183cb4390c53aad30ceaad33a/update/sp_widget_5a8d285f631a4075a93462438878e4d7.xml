@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+  <sp_widget action="INSERT_OR_UPDATE" apply_defaults="true">
+    <sys_id>5a8d285f631a4075a93462438878e4d7</sys_id>
+    <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
+    <sys_update_name>sp_widget_5a8d285f631a4075a93462438878e4d7</sys_update_name>
+    <category>custom</category>
+    <client_script><![CDATA[api.controller = function($scope) {
+    var c = this;
+    c.rating = 0;
+    c.feedback = '';
+    c.needsHelp = false;
+    c.submitting = false;
+    c.hoverRating = 0;
+    c.errorMsg = null;
+
+    c.setRating = function(val) {
+        c.rating = val;
+    };
+
+    c.setHover = function(val) {
+        c.hoverRating = val;
+    };
+
+    c.clearHover = function() {
+        c.hoverRating = 0;
+    };
+
+    c.submit = function() {
+        if (c.rating === 0) {
+            c.errorMsg = 'Please select a sentiment rating (1-5).';
+            return;
+        }
+        c.submitting = true;
+        c.errorMsg = null;
+
+        c.data.action = 'submit_checkin';
+        c.data.rating = c.rating;
+        c.data.feedback = c.feedback;
+        c.data.needsHelp = c.needsHelp;
+
+        c.server.update().then(function() {
+            c.submitting = false;
+            c.data.action = null;
+        }, function() {
+            c.submitting = false;
+            c.errorMsg = 'Submission failed. Please try again.';
+            c.data.action = null;
+        });
+    };
+};
+]]></client_script>
+    <controller_as>c</controller_as>
+    <css><![CDATA[.retention-checkin-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 15px;
+  background-color: $background-primary;
+}
+
+.checkin-card {
+  max-width: 680px;
+  width: 100%;
+  border-radius: $border-radius-large;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  background: $background-secondary;
+}
+
+.checkin-header {
+  background-color: $brand-primary-dark;
+  color: #fff;
+  padding: 28px 32px;
+  text-align: center;
+}
+
+.checkin-header i {
+  margin-bottom: 8px;
+  opacity: 0.85;
+}
+
+.checkin-header h2 {
+  margin: 8px 0 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+
+.checkin-body {
+  padding: 32px;
+}
+
+/* Candidate Info Bar */
+.candidate-info {
+  display: flex;
+  justify-content: space-around;
+  padding: 16px;
+  margin-bottom: 24px;
+  border-radius: $border-radius-base;
+  background: $background-tertiary;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: $text-color;
+  font-weight: 500;
+}
+
+.info-item i {
+  color: $brand-info;
+}
+
+/* Section Titles */
+.section-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: $text-color;
+  margin-bottom: 12px;
+}
+
+.section-title i {
+  color: $brand-info;
+  margin-right: 6px;
+}
+
+/* Questions */
+.questions-section {
+  margin-bottom: 28px;
+  padding: 20px;
+  border-radius: $border-radius-base;
+  border-left: 4px solid $brand-info;
+  background: $background-tertiary;
+}
+
+.question-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.question-list li {
+  padding: 8px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: $text-color;
+  font-size: 14px;
+}
+
+.question-list li i {
+  color: $brand-info;
+  margin-top: 3px;
+  font-size: 11px;
+}
+
+/* Star Rating */
+.rating-section {
+  margin-bottom: 28px;
+}
+
+.star-rating {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 0;
+}
+
+.star {
+  cursor: pointer;
+  color: $border-secondary;
+  transition: color 0.2s ease, transform 0.15s ease;
+}
+
+.star:hover,
+.star.active {
+  color: $brand-warning;
+}
+
+.star:hover {
+  transform: scale(1.15);
+}
+
+.rating-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: $font-size-small;
+  color: $text-muted;
+  padding: 0 20px;
+}
+
+/* Feedback */
+.feedback-section {
+  margin-bottom: 24px;
+}
+
+.feedback-textarea {
+  resize: vertical;
+  min-height: 100px;
+  border: 1px solid $border-primary;
+  border-radius: $border-radius-base;
+  padding: 12px;
+  font-size: $font-size-base;
+  color: $text-color;
+  background: $background-primary;
+}
+
+.feedback-textarea:focus {
+  border-color: $brand-info;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.15);
+}
+
+/* HR Support Toggle */
+.hr-support-section {
+  margin-bottom: 24px;
+  padding: 16px;
+  border-radius: $border-radius-base;
+  background: $background-tertiary;
+}
+
+.hr-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  margin: 0;
+  font-weight: 500;
+  color: $text-color;
+}
+
+.hr-toggle input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: $brand-info;
+}
+
+.toggle-label i {
+  color: $brand-warning;
+  margin-right: 4px;
+}
+
+/* Submit Button */
+.submit-section {
+  margin-top: 8px;
+}
+
+.submit-btn {
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: $border-radius-base;
+  border: none;
+  background-color: $brand-info;
+  color: #fff;
+  transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background-color: $brand-primary;
+}
+
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Success State */
+.success-icon {
+  margin: 20px 0 16px;
+}
+
+.success-icon i {
+  color: $brand-success;
+}
+
+.thank-you-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: $text-color;
+  margin-bottom: 12px;
+}
+
+.thank-you-message {
+  font-size: 15px;
+  color: $text-secondary;
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Error Text */
+.error-text {
+  color: $brand-danger;
+  font-size: 15px;
+  margin: 20px 0;
+}
+
+/* Alert Overrides */
+.alert-danger {
+  border-radius: $border-radius-base;
+  margin-bottom: 20px;
+}
+
+.alert-danger i {
+  margin-right: 6px;
+}
+]]></css>
+    <data_table>sp_instance</data_table>
+    <demo_data/>
+    <description/>
+    <docs/>
+    <field_list/>
+    <has_preview>false</has_preview>
+    <id>gvft_retention_pulse_checkin</id>
+    <internal>false</internal>
+    <link>function link(scope, element, attrs, controller) {
+}</link>
+    <name>Retention Pulse Check-In</name>
+    <option_schema/>
+    <public>false</public>
+    <roles/>
+    <script><![CDATA[(function() {
+    data.submitted = false;
+    data.candidateName = '';
+    data.caseNumber = '';
+    data.milestone = '';
+    data.milestoneLabel = '';
+    data.questions = [];
+    data.thankYouMessage = '';
+    data.errorMessage = '';
+
+    // Handle check-in submission
+    if (input && input.action === 'submit_checkin') {
+        try {
+            var submitId = $sp.getParameter('sys_id');
+            if (!submitId) {
+                data.errorMessage = 'Missing check-in identifier.';
+                return;
+            }
+
+            var submitGr = new GlideRecord('x_2023506_german_1_ret_chkin');
+            if (!submitGr.get(submitId)) {
+                data.errorMessage = 'Check-in record not found.';
+                return;
+            }
+
+            submitGr.setValue('u_sentiment_score', input.rating);
+            submitGr.setValue('u_settling_feedback', input.feedback || '');
+            submitGr.setValue('u_needs_intervention', input.needsHelp ? true : false);
+            submitGr.setValue('u_status', 'completed');
+            submitGr.setValue('u_completed_at', new GlideDateTime().toString());
+            submitGr.update();
+
+            data.submitted = true;
+            data.thankYouMessage = 'Thank you for completing your check-in! Your feedback helps us ensure a smooth transition to life in Germany.';
+
+            // Reload candidate info for the thank-you screen
+            var thankCaseGr = new GlideRecord('x_2023506_german_1_ret_case');
+            if (thankCaseGr.get(submitGr.getValue('u_retention_case'))) {
+                data.candidateName = thankCaseGr.getValue('u_candidate_name') || '';
+            }
+        } catch (e) {
+            data.errorMessage = 'An error occurred while submitting. Please try again.';
+        }
+        return;
+    }
+
+    // Initial load: get check-in details
+    var sysId = $sp.getParameter('sys_id');
+    if (!sysId) {
+        data.errorMessage = 'No check-in ID provided. Please use the link from your invitation email.';
+        return;
+    }
+
+    var gr = new GlideRecord('x_2023506_german_1_ret_chkin');
+    if (!gr.get(sysId)) {
+        data.errorMessage = 'Check-in record not found.';
+        return;
+    }
+
+    // Check if already completed
+    if (gr.getValue('u_status') === 'completed') {
+        data.submitted = true;
+        data.thankYouMessage = 'You have already completed this check-in. Thank you for your feedback!';
+        var completedCase = new GlideRecord('x_2023506_german_1_ret_case');
+        if (completedCase.get(gr.getValue('u_retention_case'))) {
+            data.candidateName = completedCase.getValue('u_candidate_name') || '';
+        }
+        return;
+    }
+
+    data.milestone = gr.getValue('u_milestone') || '';
+    data.milestoneLabel = gr.getDisplayValue('u_milestone') || '';
+
+    // Get parent Retention Case
+    var caseGr = new GlideRecord('x_2023506_german_1_ret_case');
+    if (caseGr.get(gr.getValue('u_retention_case'))) {
+        data.candidateName = caseGr.getValue('u_candidate_name') || '';
+        data.caseNumber = caseGr.getDisplayValue('sys_id') || '';
+    }
+
+    // Milestone-specific questions
+    var milestoneQuestions = {
+        '30_days': [
+            'Have you completed your Anmeldung (city registration)?',
+            'How is your initial settling-in experience?',
+            'Have you opened a German bank account?'
+        ],
+        '60_days': [
+            'How are your language/communication skills developing?',
+            'Is your workplace integration going well?',
+            'Any issues with health insurance or tax setup?'
+        ],
+        '90_days': [
+            'How is your probation period going?',
+            'Are you satisfied with your job responsibilities?',
+            'Have you built a local support network?'
+        ],
+        '150_days': [
+            'Do you feel established in Germany?',
+            'Any remaining bureaucratic issues?',
+            'Would you recommend this relocation experience?'
+        ]
+    };
+
+    data.questions = milestoneQuestions[data.milestone] || [];
+})();
+]]></script>
+    <servicenow>false</servicenow>
+    <template><![CDATA[<div class="retention-checkin-wrapper">
+  <!-- Error State -->
+  <div ng-if="c.data.errorMessage" class="checkin-card">
+    <div class="checkin-header">
+      <i class="fa fa-exclamation-triangle fa-2x"></i>
+      <h2>Check-In Unavailable</h2>
+    </div>
+    <div class="checkin-body text-center">
+      <p class="error-text">{{c.data.errorMessage}}</p>
+    </div>
+  </div>
+
+  <!-- Thank You / Submitted State -->
+  <div ng-if="c.data.submitted && !c.data.errorMessage" class="checkin-card">
+    <div class="checkin-header">
+      <i class="fa fa-building"></i>
+      <h2>Retention Pulse Check-In</h2>
+    </div>
+    <div class="checkin-body text-center">
+      <div class="success-icon">
+        <i class="fa fa-check-circle fa-4x"></i>
+      </div>
+      <h3 class="thank-you-title" ng-if="c.data.candidateName">Thank you, {{c.data.candidateName}}!</h3>
+      <p class="thank-you-message">{{c.data.thankYouMessage}}</p>
+    </div>
+  </div>
+
+  <!-- Check-In Survey Form -->
+  <div ng-if="!c.data.submitted && !c.data.errorMessage" class="checkin-card">
+    <div class="checkin-header">
+      <i class="fa fa-building"></i>
+      <h2>Retention Pulse Check-In</h2>
+    </div>
+
+    <div class="checkin-body">
+      <!-- Candidate Info Bar -->
+      <div class="candidate-info">
+        <div class="info-item">
+          <i class="fa fa-user"></i>
+          <span>{{c.data.candidateName}}</span>
+        </div>
+        <div class="info-item">
+          <i class="fa fa-calendar"></i>
+          <span>{{c.data.milestoneLabel}} Check-In</span>
+        </div>
+      </div>
+
+      <!-- Milestone Questions -->
+      <div class="questions-section" ng-if="c.data.questions.length > 0">
+        <h4 class="section-title">
+          <i class="fa fa-clipboard"></i> Please reflect on these topics:
+        </h4>
+        <ul class="question-list">
+          <li ng-repeat="q in c.data.questions track by $index">
+            <i class="fa fa-chevron-right"></i>
+            <span>{{q}}</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Sentiment Rating -->
+      <div class="rating-section">
+        <h4 class="section-title">
+          <i class="fa fa-smile-o"></i> How are you feeling overall? <span class="text-danger">*</span>
+        </h4>
+        <div class="star-rating">
+          <span ng-repeat="star in [1,2,3,4,5] track by $index"
+                class="star"
+                ng-class="{'active': star <= (c.hoverRating || c.rating)}"
+                ng-click="c.setRating(star)"
+                ng-mouseenter="c.setHover(star)"
+                ng-mouseleave="c.clearHover()"
+                role="button"
+                tabindex="0"
+                aria-label="Rate {{star}} out of 5">
+            <i class="fa fa-star fa-2x"></i>
+          </span>
+        </div>
+        <div class="rating-labels">
+          <span>Very Unhappy</span>
+          <span>Very Happy</span>
+        </div>
+      </div>
+
+      <!-- Feedback Textarea -->
+      <div class="feedback-section">
+        <h4 class="section-title">
+          <i class="fa fa-comment"></i> Share your experience
+        </h4>
+        <textarea class="form-control feedback-textarea"
+                  ng-model="c.feedback"
+                  rows="4"
+                  placeholder="Tell us how things are going — your housing, workplace, bureaucracy, social life..."></textarea>
+      </div>
+
+      <!-- HR Support Toggle -->
+      <div class="hr-support-section">
+        <label class="hr-toggle">
+          <input type="checkbox" ng-model="c.needsHelp" />
+          <span class="toggle-label">
+            <i class="fa fa-life-ring"></i>
+            I need HR support or assistance
+          </span>
+        </label>
+      </div>
+
+      <!-- Error Message -->
+      <div class="alert alert-danger" ng-if="c.errorMsg">
+        <i class="fa fa-exclamation-circle"></i> {{c.errorMsg}}
+      </div>
+
+      <!-- Submit Button -->
+      <div class="submit-section">
+        <button type="button" class="btn btn-primary btn-lg btn-block submit-btn"
+                ng-click="c.submit()"
+                ng-disabled="c.submitting">
+          <span ng-if="!c.submitting">
+            <i class="fa fa-paper-plane"></i> Submit Check-In
+          </span>
+          <span ng-if="c.submitting">
+            <i class="fa fa-spinner fa-spin"></i> Submitting...
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+]]></template>
+  </sp_widget>
+</record_update>

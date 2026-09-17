@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_action">
+  <sys_ui_action action="INSERT_OR_UPDATE" apply_defaults="true">
+    <sys_id>c2219a5419e54d199fe0f336849e4da4</sys_id>
+    <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
+    <sys_update_name>sys_ui_action_c2219a5419e54d199fe0f336849e4da4</sys_update_name>
+    <action_name>simulate_day30_checkin</action_name>
+    <active>true</active>
+    <client>false</client>
+    <client_script_v2/>
+    <comments/>
+    <condition>!current.isNewRecord()</condition>
+    <form_action>true</form_action>
+    <form_button>true</form_button>
+    <form_button_v2>false</form_button_v2>
+    <form_context_menu>false</form_context_menu>
+    <form_link>false</form_link>
+    <form_menu_button_v2>false</form_menu_button_v2>
+    <form_style>primary</form_style>
+    <format_for_configurable_workspace>false</format_for_configurable_workspace>
+    <hint/>
+    <isolate_script>false</isolate_script>
+    <list_action>false</list_action>
+    <list_banner_button>false</list_banner_button>
+    <list_button>false</list_button>
+    <list_choice>false</list_choice>
+    <list_context_menu>false</list_context_menu>
+    <list_link>false</list_link>
+    <list_save_with_form_button>false</list_save_with_form_button>
+    <list_style/>
+    <messages/>
+    <name>Simulate Day 30 Check-In (Demo)</name>
+    <onclick/>
+    <order>100</order>
+    <script><![CDATA[(function() {
+    var checkin = new GlideRecord('x_2023506_german_1_ret_chkin');
+    checkin.addQuery('u_retention_case', current.getUniqueValue());
+    checkin.addQuery('u_milestone', '30_days');
+    checkin.setLimit(1);
+    checkin.query();
+
+    if (checkin.next()) {
+        checkin.setValue('u_status', 'sent');
+        var today = new GlideDateTime();
+        checkin.setValue('u_due_date', today.getLocalDate().toString());
+        checkin.update();
+        gs.addInfoMessage('Day 30 check-in activated. Survey invitation is now available.');
+    } else {
+        gs.addWarningMessage('No Day 30 check-in record found for this Retention Case.');
+    }
+
+    action.setRedirectURL(current);
+})();]]></script>
+    <show_form_icon_only>false</show_form_icon_only>
+    <show_insert>true</show_insert>
+    <show_list_icon_only>false</show_list_icon_only>
+    <show_multiple_update>false</show_multiple_update>
+    <show_query>false</show_query>
+    <show_update>true</show_update>
+    <sys_name>Simulate Day 30 Check-In (Demo)</sys_name>
+    <sys_overrides/>
+    <table>x_2023506_german_1_ret_case</table>
+    <ui11_compatible>false</ui11_compatible>
+    <ui16_compatible>false</ui16_compatible>
+  </sys_ui_action>
+</record_update>

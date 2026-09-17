@@ -54,5 +54,49 @@
       <inactive_on_update>false</inactive_on_update>
       <language>en</language>
     </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>47e8bb30fa904f179f862829e42676bb</sys_id>
+      <name>x_2023506_german_1_case_doc</name>
+      <element>u_document_name</element>
+      <label>Passport</label>
+      <value>Passport</value>
+      <sequence>1</sequence>
+      <inactive>false</inactive>
+      <inactive_on_update>false</inactive_on_update>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>3c315c382330486a82489e82be7234a2</sys_id>
+      <name>x_2023506_german_1_case_doc</name>
+      <element>u_document_name</element>
+      <label>Passport Photo</label>
+      <value>Passport Photo</value>
+      <sequence>2</sequence>
+      <inactive>false</inactive>
+      <inactive_on_update>false</inactive_on_update>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>f966f5e9a534414d8632bb4a1ab1e376</sys_id>
+      <name>x_2023506_german_1_case_doc</name>
+      <element>u_document_name</element>
+      <label>Job Contract</label>
+      <value>Job Contract</value>
+      <sequence>3</sequence>
+      <inactive>false</inactive>
+      <inactive_on_update>false</inactive_on_update>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>a549c0d5176940bd903d34ebb49164d4</sys_id>
+      <name>x_2023506_german_1_case_doc</name>
+      <element>u_document_name</element>
+      <label>Degree Certificate</label>
+      <value>Degree Certificate</value>
+      <sequence>4</sequence>
+      <inactive>false</inactive>
+      <inactive_on_update>false</inactive_on_update>
+      <language>en</language>
+    </sys_choice>
   </sys_choice_set>
 </record_update>

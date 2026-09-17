@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+  <sys_choice_set action="INSERT_OR_UPDATE" apply_defaults="true" field="u_retention_status" table="x_2023506_german_1_ret_case" version="3">
+    <sys_choice_set action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>72ead741dcc24c3389431f17fbb5d5fa</sys_id>
+      <element>u_retention_status</element>
+      <sys_update_name>sys_choice_x_2023506_german_1_ret_case_u_retention_status</sys_update_name>
+      <name>x_2023506_german_1_ret_case</name>
+      <sys_class_name>sys_choice_set</sys_class_name>
+      <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
+      <sys_package display_value="x_2023506_german_1" source="e218557183cb4390c53aad30ceaad33a">e218557183cb4390c53aad30ceaad33a</sys_package>
+      <sys_name>u_retention_status</sys_name>
+    </sys_choice_set>
+    <sys_choice action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>8ac873958f1b4c88bdf8accdaf39c7fa</sys_id>
+      <name>x_2023506_german_1_ret_case</name>
+      <element>u_retention_status</element>
+      <label>Active</label>
+      <value>active</value>
+      <sequence>1</sequence>
+      <inactive>false</inactive>
+      <inactive_on_update>false</inactive_on_update>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>3701e981a0274cc9836b6a393bb6848a</sys_id>
+      <name>x_2023506_german_1_ret_case</name>
+      <element>u_retention_status</element>
+      <label>Needs Attention</label>
+      <value>needs_attention</value>
+      <sequence>2</sequence>
+      <inactive>false</inactive>
+      <inactive_on_update>false</inactive_on_update>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>7d99fa90ab0942b3bb1117f4095d2aa9</sys_id>
+      <name>x_2023506_german_1_ret_case</name>
+      <element>u_retention_status</element>
+      <label>Critical Risk</label>
+      <value>critical_risk</value>
+      <sequence>3</sequence>
+      <inactive>false</inactive>
+      <inactive_on_update>false</inactive_on_update>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>fc836f48526e48329c95b2f437451a4f</sys_id>
+      <name>x_2023506_german_1_ret_case</name>
+      <element>u_retention_status</element>
+      <label>Completed</label>
+      <value>completed</value>
+      <sequence>4</sequence>
+      <inactive>false</inactive>
+      <inactive_on_update>false</inactive_on_update>
+      <language>en</language>
+    </sys_choice>
+  </sys_choice_set>
+</record_update>
