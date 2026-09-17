@@ -21,7 +21,7 @@
     <filter_condition>stateVALCHANGES^state=3</filter_condition>
     <is_rest>false</is_rest>
     <message/>
-    <name>Validate Document Completion Before Close</name>
+    <name>Validate Document Completion Before Clos</name>
     <order>100</order>
     <priority>100</priority>
     <rest_method/>
@@ -42,7 +42,7 @@
     }
 })(current, previous);
 ]]></script>
-    <sys_name>Validate Document Completion Before Close</sys_name>
+    <sys_name>Validate Document Completion Before Clos</sys_name>
     <sys_policy/>
     <template/>
     <when>before</when>

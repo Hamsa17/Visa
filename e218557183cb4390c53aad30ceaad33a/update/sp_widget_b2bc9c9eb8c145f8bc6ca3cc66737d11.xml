@@ -7,18 +7,96 @@
     <client_script><![CDATA[api.controller = function($scope, $interval) {
   var c = this;
 
-  // Poll server every 20 seconds to catch real-time state advancements
+  // Track upload state per document
+  c.uploadingDoc = null;
+  c.uploadSuccess = null;
+  c.uploadError = null;
+
+  // File selection for a specific rejected document
+  c.triggerFileSelect = function(doc) {
+    // Reset messages
+    c.uploadSuccess = null;
+    c.uploadError = null;
+    // Programmatically click the hidden file input for this doc
+    var fileInput = document.getElementById('reupload-' + doc.sys_id);
+    if (fileInput) {
+      fileInput.click();
+    }
+  };
+
+  // Handle file selection and upload
+  c.handleFileChange = function(doc, files) {
+    if (!files || files.length === 0) return;
+    var file = files[0];
+
+    // Validate file type
+    var allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'];
+    if (allowedTypes.indexOf(file.type) === -1) {
+      c.uploadError = 'Invalid file type. Please upload a PDF or image file.';
+      $scope.$apply();
+      return;
+    }
+
+    // Validate file size (max 10MB)
+    if (file.size > 10 * 1024 * 1024) {
+      c.uploadError = 'File too large. Maximum size is 10MB.';
+      $scope.$apply();
+      return;
+    }
+
+    c.uploadingDoc = doc.sys_id;
+    $scope.$apply();
+
+    // Read file as base64
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var base64 = e.target.result.split(',')[1]; // Remove data:...;base64, prefix
+      
+      c.server.get({
+        action: 'reupload_document',
+        docSysId: doc.sys_id,
+        fileName: file.name,
+        fileType: file.type,
+        base64: base64
+      }).then(function(response) {
+        c.uploadingDoc = null;
+        if (response.data.reuploadResult === 'success') {
+          c.uploadSuccess = response.data.reuploadMessage || 'Document re-uploaded successfully.';
+          c.uploadError = null;
+          // Refresh the entire data object
+          c.data = response.data;
+        } else {
+          c.uploadError = response.data.reuploadMessage || 'Upload failed. Please try again.';
+          c.uploadSuccess = null;
+        }
+      }, function() {
+        c.uploadingDoc = null;
+        c.uploadError = 'Network error. Please try again.';
+      });
+    };
+    reader.onerror = function() {
+      c.uploadingDoc = null;
+      c.uploadError = 'Could not read file. Please try again.';
+      $scope.$apply();
+    };
+    reader.readAsDataURL(file);
+  };
+
+  // Auto-refresh polling (keep existing)
   if (c.data && c.data.hasRecord) {
     var timer = $interval(function() {
-      c.data.action = 'refreshStatus';
-      c.server.update();
+      if (!c.uploadingDoc) { // Don't refresh during upload
+        c.server.get({ action: 'refreshStatus' }).then(function(response) {
+          if (!c.uploadingDoc) { // Double-check still not uploading
+            c.data = response.data;
+          }
+        });
+      }
     }, 20000);
-
-    $scope.$on('$destroy', function() {
-      $interval.cancel(timer);
-    });
+    $scope.$on('$destroy', function() { $interval.cancel(timer); });
   }
-};]]></client_script>
+};
+]]></client_script>
     <controller_as>c</controller_as>
     <css><![CDATA[.gvft-status-container {
   background-color: #1e4587;
@@ -312,6 +390,12 @@
   border: 1px solid rgba(253, 224, 71, 0.3);
 }
 
+.status-uploaded {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
 .status-rejected {
   background: rgba(248, 113, 113, 0.15);
   color: #f87171;
@@ -322,7 +406,75 @@
   font-size: 13px;
   color: #cbd5e1;
   font-style: italic;
-}]]></css>
+}
+
+/* ═══════════════════════════════════════════════════════
+   Re-upload Action Styles
+   ═══════════════════════════════════════════════════════ */
+.reupload-btn {
+  background: rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.reupload-btn:hover {
+  background: rgba(56, 189, 248, 0.35);
+  color: #ffffff;
+}
+.reupload-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.upload-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(56, 189, 248, 0.3);
+  border-top-color: #38bdf8;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.action-cell {
+  text-align: center;
+  vertical-align: middle;
+}
+.upload-alert {
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.upload-alert-success {
+  background: rgba(74, 222, 128, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+.upload-alert-error {
+  background: rgba(248, 113, 113, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+.file-input-hidden {
+  display: none;
+}
+.action-check {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+}
+]]></css>
     <data_table>sp_instance</data_table>
     <demo_data/>
     <description/>
@@ -341,87 +493,95 @@
   var caseTable = 'x_2023506_german_1_imm_case';
   var docTable  = 'x_2023506_german_1_case_doc';
 
-  // Fallback map for u_document_name: numeric value -> human label
-  // Used when getDisplayValue returns raw value or empty
+  // ── DOC_NAME_MAP fallback for getDisplayValue quirks ──
   var DOC_NAME_MAP = {
-    '1': 'Passport',
-    '2': 'Passport Photo',
-    '3': 'Job Contract',
-    '4': 'Degree Certificate',
-    'passport': 'Passport',
-    'Passport': 'Passport',
-    'degree_certificate': 'Degree Certificate',
-    'Degree Certificate': 'Degree Certificate',
-    'power_of_attorney': 'Power of Attorney',
-    'Power of Attorney': 'Power of Attorney',
-    'job_contract': 'Job Contract',
-    'Job Contract': 'Job Contract',
-    'Passport Photo': 'Passport Photo'
+      '1': 'Passport', '2': 'Passport Photo', '3': 'Job Contract', '4': 'Degree Certificate',
+      'passport': 'Passport', 'Passport': 'Passport',
+      'degree_certificate': 'Degree Certificate', 'Degree Certificate': 'Degree Certificate',
+      'power_of_attorney': 'Power of Attorney', 'Power of Attorney': 'Power of Attorney',
+      'job_contract': 'Job Contract', 'Job Contract': 'Job Contract',
+      'Passport Photo': 'Passport Photo'
   };
 
-  // Resolve document name with fallback
-  function resolveDocName(grDoc) {
-    var displayVal = grDoc.getDisplayValue('u_document_name') + '';
-    var rawVal     = grDoc.getValue('u_document_name') + '';
-
-    // If getDisplayValue returned something different from raw, trust it
-    if (displayVal && displayVal !== rawVal && displayVal.length > 0) {
-      return displayVal.trim();
-    }
-    // Otherwise look up in fallback map
-    if (DOC_NAME_MAP[rawVal]) {
-      return DOC_NAME_MAP[rawVal];
-    }
-    if (DOC_NAME_MAP[displayVal]) {
-      return DOC_NAME_MAP[displayVal];
-    }
-    // Last resort: return whatever we have
-    return displayVal.trim() || rawVal.trim() || 'Required Document';
+  function resolveDocName(gr) {
+      var display = gr.getDisplayValue('u_document_name');
+      if (display && display.toString().trim() !== '' && !/^\d+$/.test(display.toString().trim())) {
+          return display.toString().trim();
+      }
+      var raw = gr.getValue('u_document_name');
+      if (raw && DOC_NAME_MAP[raw.toString().trim()]) {
+          return DOC_NAME_MAP[raw.toString().trim()];
+      }
+      if (display && display.toString().trim()) {
+          return display.toString().trim();
+      }
+      return 'Required Document';
   }
 
+  // ── Handle document re-upload action ──
+  if (input && input.action === 'reupload_document') {
+      data.reuploadResult = 'pending';
+      try {
+          var docGr = new GlideRecord(docTable);
+          if (docGr.get(input.docSysId)) {
+              // Attach new file using GlideSysAttachment
+              var sa = new GlideSysAttachment();
+              var mimeType = input.fileType || 'application/pdf';
+              sa.writeBase64(docGr, input.fileName, mimeType, input.base64);
+
+              // Also attach to parent case
+              var parentCaseSysId = docGr.getValue('u_case');
+              if (parentCaseSysId) {
+                  var caseGr = new GlideRecord(caseTable);
+                  if (caseGr.get(parentCaseSysId)) {
+                      sa.writeBase64(caseGr, input.fileName, mimeType, input.base64);
+                  }
+              }
+
+              // Reset status and notes
+              docGr.setValue('u_status', 'uploaded');
+              docGr.setValue('u_review_notes', 'Re-uploaded by candidate. Pending caseworker re-verification.');
+              docGr.update();
+
+              data.reuploadResult = 'success';
+              data.reuploadMessage = 'Document re-uploaded successfully. Pending re-verification.';
+          } else {
+              data.reuploadResult = 'error';
+              data.reuploadMessage = 'Document record not found.';
+          }
+      } catch (ex) {
+          data.reuploadResult = 'error';
+          data.reuploadMessage = 'Upload failed: ' + ex.message;
+      }
+      // Don't return — fall through to reload the document matrix so the UI refreshes
+  }
+
+  // ── Case Lookup Chain ──
   var sysId = $sp.getParameter('sys_id');
-  var caseNum = $sp.getParameter('case');
   var grCase = new GlideRecord(caseTable);
   var found = false;
 
-  // Try sys_id first
+  // 1. Try by sys_id parameter
   if (sysId && grCase.get(sysId)) {
     found = true;
   }
 
-  // Try case number
-  if (!found && caseNum) {
-    grCase = new GlideRecord(caseTable);
-    grCase.addQuery('number', caseNum);
-    grCase.setLimit(1);
-    grCase.query();
-    if (grCase.next()) {
-      found = true;
-    }
-  }
-
-  // Fallback: latest case by email
+  // 2. Try by logged-in user's email
   if (!found) {
-    var userId = gs.getUserID();
-    if (userId) {
-      var userGr = new GlideRecord('sys_user');
-      if (userGr.get(userId)) {
-        var userEmail = userGr.getValue('email') + '';
-        if (userEmail) {
-          grCase = new GlideRecord(caseTable);
-          grCase.addQuery('u_candidate_email', userEmail);
-          grCase.orderByDesc('sys_created_on');
-          grCase.setLimit(1);
-          grCase.query();
-          if (grCase.next()) {
-            found = true;
-          }
-        }
+    var userEmail = gs.getUser().getEmail();
+    if (userEmail) {
+      grCase = new GlideRecord(caseTable);
+      grCase.addQuery('u_candidate_email', userEmail);
+      grCase.orderByDesc('sys_created_on');
+      grCase.setLimit(1);
+      grCase.query();
+      if (grCase.next()) {
+        found = true;
       }
     }
   }
 
-  // Last fallback: most recent case
+  // 3. Fallback: latest case
   if (!found) {
     grCase = new GlideRecord(caseTable);
     grCase.orderByDesc('sys_created_on');
@@ -435,47 +595,55 @@
   if (found && grCase.isValidRecord()) {
     data.hasRecord = true;
     data.sysId = grCase.getUniqueValue();
-    data.number = grCase.getValue('number') + '';
-    data.candidateName = (grCase.getValue('u_candidate_name') || 'Applicant') + '';
-    data.city = (grCase.getValue('u_target_city') || 'Germany') + '';
-    data.category = (grCase.getDisplayValue('u_visa_category') || 'EU Blue Card') + '';
-    data.state = (grCase.getDisplayValue('state') || 'Open') + '';
-    data.feeStatus = (grCase.getDisplayValue('u_fee_status') || 'Pending') + '';
-    data.approvalNumber = (grCase.getValue('u_approval_number') || '') + '';
-    data.passportNumber = (grCase.getValue('u_passport_number') || '') + '';
+    data.number = grCase.getValue('number');
+    data.candidateName = grCase.getValue('u_candidate_name') || 'Applicant';
+    data.city = grCase.getValue('u_target_city') || 'Germany';
+    data.category = grCase.getValue('u_visa_category') || 'EU Blue Card';
+    data.state = grCase.getDisplayValue('state') || 'Open';
+    data.feeStatus = grCase.getValue('u_fee_status') || 'Pending';
+    data.clearanceId = grCase.getValue('u_vorabzustimmung_id');
+    data.passportNumber = grCase.getValue('u_passport_number');
 
-    var stateVal = (grCase.getValue('state') || '1') + '';
-    data.stateKey = data.state.toLowerCase().replace(/\s+/g, '_');
+    var stateVal = (grCase.getValue('state') || '').toString();
+    data.stateKey = (data.state || '').toLowerCase().replace(/\s+/g, '_');
 
-    // Progress calculation based on task state
-    if (stateVal === '3') {
+    // Percentage Calculation:
+    // State 3 (Closed Complete) or 11 (Pre-Approved) -> 100%
+    // State 10 (Government Review) -> 80%
+    // State 9 (Document Check) -> 50%
+    // State 1 (Open) / Default -> 25%
+    if (stateVal === '11') {
       data.percent = 100;
       data.stageIndex = 4;
-    } else if (stateVal === '2') {
-      data.percent = 60;
+    } else if (stateVal === '10') {
+      data.percent = 80;
+      data.stageIndex = 3;
+    } else if (stateVal === '9') {
+      data.percent = 50;
       data.stageIndex = 2;
     } else {
       data.percent = 25;
       data.stageIndex = 1;
     }
 
-    // Load Document Verification Matrix
+    // ── Load Document Matrix ──
     data.documents = [];
     var grDoc = new GlideRecord(docTable);
     grDoc.addQuery('u_case', data.sysId);
-    grDoc.orderBy('u_document_name');
-    grDoc.setLimit(20);
+    grDoc.orderBy('sys_created_on');
     grDoc.query();
 
     while (grDoc.next()) {
-      var docStatusDisplay = (grDoc.getDisplayValue('u_status') || 'Pending') + '';
-      var docStatusRaw = (grDoc.getValue('u_status') || 'pending') + '';
+      var docStatusDisplay = grDoc.getDisplayValue('u_status') || 'Submitted';
+      var docStatusRaw = (grDoc.getValue('u_status') || 'submitted').toLowerCase();
+      var docLabel = resolveDocName(grDoc);
 
       data.documents.push({
-        name: resolveDocName(grDoc),
-        status: docStatusDisplay.trim(),
-        statusKey: docStatusRaw.toLowerCase().replace(/\s+/g, '_'),
-        notes: (grDoc.getValue('u_review_notes') || '') + ''
+        sys_id: grDoc.getUniqueValue(),
+        name: docLabel.toString().trim() || 'Required Document',
+        status: docStatusDisplay.toString(),
+        statusKey: docStatusRaw.replace(/\s+/g, '_'),
+        notes: (grDoc.getValue('u_review_notes') || 'Pending initial caseworker verification').toString()
       });
     }
 
@@ -588,37 +756,71 @@
     </div>
 
     <!-- Document Verification Matrix -->
-    <!-- Document Verification Matrix -->
-<div class="checklist-card">
-  <h3 class="checklist-title"><i class="fa fa-shield"></i> Document Verification Matrix</h3>
-  <table class="table custom-table">
-    <thead>
-      <tr>
-        <th style="width: 35%;">Required Document</th>
-        <th style="width: 25%;">Verification Status</th>
-        <th style="width: 40%;">Caseworker Review Notes</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="doc in c.data.documents">
-        <td><strong>{{doc.name}}</strong></td>
-        <td>
-          <span class="label-status status-{{doc.statusKey}}">
-            <i class="fa fa-check" ng-if="doc.statusKey == 'verified' || doc.statusKey == 'approved'"></i>
-            <i class="fa fa-clock-o" ng-if="doc.statusKey == 'submitted' || doc.statusKey == 'pending'"></i>
-            <i class="fa fa-times" ng-if="doc.statusKey == 'rejected'"></i>
-            {{doc.status}}
-          </span>
-        </td>
-        <td class="review-notes-cell">
-          {{doc.notes}}
-        </td>
-      </tr>
-      <tr ng-if="c.data.documents.length == 0">
-        <td colspan="3" class="text-muted text-center">No document records found for this case.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>]]></template>
+    <div class="checklist-card">
+      <h3 class="checklist-title"><i class="fa fa-shield"></i> Document Verification Matrix</h3>
+
+      <!-- Upload Success/Error Alerts -->
+      <div ng-if="c.uploadSuccess" class="upload-alert upload-alert-success">
+        <i class="fa fa-check-circle"></i> {{c.uploadSuccess}}
+      </div>
+      <div ng-if="c.uploadError" class="upload-alert upload-alert-error">
+        <i class="fa fa-exclamation-circle"></i> {{c.uploadError}}
+      </div>
+
+      <table class="table custom-table">
+        <thead>
+          <tr>
+            <th style="width: 28%;">Required Document</th>
+            <th style="width: 18%;">Verification Status</th>
+            <th style="width: 34%;">Caseworker Review Notes</th>
+            <th style="width: 20%;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="doc in c.data.documents track by doc.sys_id">
+            <td><strong>{{doc.name}}</strong></td>
+            <td>
+              <span class="label-status status-{{doc.statusKey}}">
+                <i class="fa fa-check" ng-if="doc.statusKey == 'verified' || doc.statusKey == 'approved'"></i>
+                <i class="fa fa-clock-o" ng-if="doc.statusKey == 'submitted' || doc.statusKey == 'pending'"></i>
+                <i class="fa fa-upload" ng-if="doc.statusKey == 'uploaded'"></i>
+                <i class="fa fa-times" ng-if="doc.statusKey == 'rejected'"></i>
+                {{doc.status}}
+              </span>
+            </td>
+            <td class="review-notes-cell">
+              {{doc.notes}}
+            </td>
+            <td class="action-cell">
+              <!-- Re-upload button for rejected documents -->
+              <button ng-if="doc.statusKey == 'rejected' && c.uploadingDoc != doc.sys_id"
+                      class="reupload-btn"
+                      ng-click="c.triggerFileSelect(doc)">
+                <i class="fa fa-upload"></i> Re-upload
+              </button>
+              <!-- Loading spinner during upload -->
+              <span ng-if="c.uploadingDoc == doc.sys_id">
+                <span class="upload-spinner"></span> Uploading…
+              </span>
+              <!-- Dash for non-rejected documents -->
+              <span ng-if="doc.statusKey != 'rejected' && c.uploadingDoc != doc.sys_id" class="action-check">—</span>
+              <!-- Hidden file input per rejected doc -->
+              <input ng-if="doc.statusKey == 'rejected'"
+                     type="file"
+                     class="file-input-hidden"
+                     id="reupload-{{doc.sys_id}}"
+                     accept=".pdf,.jpg,.jpeg,.png"
+                     onchange="angular.element(this).scope().c.handleFileChange(angular.element(this).scope().doc, this.files)" />
+            </td>
+          </tr>
+          <tr ng-if="c.data.documents.length == 0">
+            <td colspan="4" class="text-muted text-center">No document records found for this case.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+]]></template>
   </sp_widget>
 </record_update>
