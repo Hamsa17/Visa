@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_fix">
-  <sys_script_fix action="INSERT_OR_UPDATE" apply_defaults="true">
-    <sys_id>c4479b39533f4530ab1c0133260e99cd</sys_id>
-    <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
-    <sys_update_name>sys_script_fix_c4479b39533f4530ab1c0133260e99cd</sys_update_name>
-    <description>One-time migration: converts all legacy string values (passport, degree_certificate, etc.) in u_document_name to canonical numeric choice values (1, 2, 3, 4).</description>
-    <name>Migrate u_document_name to numeric choice values</name>
-    <script>(function() {
+    <sys_script_fix action="INSERT_OR_UPDATE">
+        <before>false</before>
+        <description>One-time migration: converts all legacy string values (passport, degree_certificate, etc.) in u_document_name to canonical numeric choice values (1, 2, 3, 4).</description>
+        <name>Migrate u_document_name to numeric choic</name>
+        <record_for_rollback>false</record_for_rollback>
+        <script><![CDATA[(function() {
     var TABLE = 'x_2023506_german_1_case_doc';
     var FIELD = 'u_document_name';
 
-    // Map all known legacy values -&gt; canonical numeric value
+    // Map all known legacy values -> canonical numeric value
     var VALUE_MAP = {
         'passport':           '1',
         'Passport':           '1',
@@ -58,6 +57,19 @@
     }
 
     gs.info('Fix Script Complete: ' + total + ' records processed, ' + updated + ' updated, ' + skipped + ' skipped/valid.');
-})();</script>
-  </sys_script_fix>
+})();]]></script>
+        <sys_class_name>sys_script_fix</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-16 20:58:55</sys_created_on>
+        <sys_id>c4479b39533f4530ab1c0133260e99cd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Migrate u_document_name to numeric choic</sys_name>
+        <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
+        <sys_update_name>sys_script_fix_c4479b39533f4530ab1c0133260e99cd</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-16 20:58:55</sys_updated_on>
+        <unloadable>false</unloadable>
+    </sys_script_fix>
 </record_update>

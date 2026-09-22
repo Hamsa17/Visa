@@ -1,26 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_db_object">
-  <sys_db_object action="INSERT_OR_UPDATE">
-    <sys_id>ff26d9f703464c16b923c83077b238eb</sys_id>
-    <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
-    <sys_update_name>sys_db_object_ff26d9f703464c16b923c83077b238eb</sys_update_name>
-    <access>public</access>
-    <actions_access>false</actions_access>
-    <alter_access>false</alter_access>
-    <caller_access/>
-    <client_scripts_access>false</client_scripts_access>
-    <create_access>false</create_access>
-    <create_access_controls>false</create_access_controls>
-    <delete_access>false</delete_access>
-    <is_extendable>false</is_extendable>
-    <label>Immigration Case</label>
-    <live_feed_enabled>false</live_feed_enabled>
-    <name>x_2023506_german_1_imm_case</name>
-    <number_ref category="x_2023506_german_1_imm_case" prefix="VFT">597992f41661430ba0309c36211a83a7</number_ref>
-    <read_access>true</read_access>
-    <scriptable_table>false</scriptable_table>
-    <super_class name="task">cf0258c60d04474aa8be167bc85f06b3</super_class>
-    <update_access>false</update_access>
-    <user_role/>
-    <ws_access>true</ws_access>
-  </sys_db_object>
+    <sys_db_object action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <actions_access>false</actions_access>
+        <alter_access>false</alter_access>
+        <caller_access/>
+        <client_scripts_access>false</client_scripts_access>
+        <configuration_access>false</configuration_access>
+        <create_access>false</create_access>
+        <create_access_controls>false</create_access_controls>
+        <delete_access>false</delete_access>
+        <filter_extension/>
+        <is_data_interface>false</is_data_interface>
+        <is_df_table>false</is_df_table>
+        <is_extendable>true</is_extendable>
+        <label>Immigration Case</label>
+        <live_feed_enabled>false</live_feed_enabled>
+        <name>x_2023506_german_1_imm_case</name>
+        <number_ref display_value="VFT">597992f41661430ba0309c36211a83a7</number_ref>
+        <provider_class/>
+        <read_access>true</read_access>
+        <scriptable_table>false</scriptable_table>
+        <super_class display_value="Task" name="task">fc4e9d04a56103108bb220b7a4d21277</super_class>
+        <sys_class_name>sys_db_object</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-01 09:20:26</sys_created_on>
+        <sys_id>ff26d9f703464c16b923c83077b238eb</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Immigration Case</sys_name>
+        <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
+        <sys_update_name>sys_db_object_ff26d9f703464c16b923c83077b238eb</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-16 20:22:14</sys_updated_on>
+        <update_access>false</update_access>
+        <user_role/>
+        <ws_access>true</ws_access>
+    </sys_db_object>
 </record_update>

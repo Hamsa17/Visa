@@ -1,56 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
-  <sp_widget action="INSERT_OR_UPDATE" apply_defaults="true">
-    <sys_id>5a8d285f631a4075a93462438878e4d7</sys_id>
-    <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
-    <sys_update_name>sp_widget_5a8d285f631a4075a93462438878e4d7</sys_update_name>
-    <category>custom</category>
-    <client_script><![CDATA[api.controller = function($scope) {
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope) {
     var c = this;
     c.rating = 0;
+    c.hoverRating = 0;
     c.feedback = '';
     c.needsHelp = false;
+    c.errorMsg = '';
     c.submitting = false;
-    c.hoverRating = 0;
-    c.errorMsg = null;
 
     c.setRating = function(val) {
         c.rating = val;
     };
-
     c.setHover = function(val) {
         c.hoverRating = val;
     };
-
     c.clearHover = function() {
         c.hoverRating = 0;
     };
 
     c.submit = function() {
-        if (c.rating === 0) {
-            c.errorMsg = 'Please select a sentiment rating (1-5).';
+        if (!c.rating) {
+            c.errorMsg = 'Please provide an overall rating before submitting.';
             return;
         }
+        c.errorMsg = '';
         c.submitting = true;
-        c.errorMsg = null;
 
-        c.data.action = 'submit_checkin';
-        c.data.rating = c.rating;
-        c.data.feedback = c.feedback;
-        c.data.needsHelp = c.needsHelp;
-
-        c.server.update().then(function() {
+        c.server.get({
+            action: 'submit_checkin',
+            sys_id: c.data.checkinSysId,
+            rating: c.rating,
+            feedback: c.feedback,
+            needsHelp: c.needsHelp
+        }).then(function(response) {
             c.submitting = false;
-            c.data.action = null;
-        }, function() {
-            c.submitting = false;
-            c.errorMsg = 'Submission failed. Please try again.';
-            c.data.action = null;
+            c.data = response.data;
         });
     };
-};
-]]></client_script>
-    <controller_as>c</controller_as>
-    <css><![CDATA[.retention-checkin-wrapper {
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.retention-checkin-wrapper {
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -309,22 +300,22 @@
 .alert-danger i {
   margin-right: 6px;
 }
-]]></css>
-    <data_table>sp_instance</data_table>
-    <demo_data/>
-    <description/>
-    <docs/>
-    <field_list/>
-    <has_preview>false</has_preview>
-    <id>gvft_retention_pulse_checkin</id>
-    <internal>false</internal>
-    <link>function link(scope, element, attrs, controller) {
-}</link>
-    <name>Retention Pulse Check-In</name>
-    <option_schema/>
-    <public>false</public>
-    <roles/>
-    <script><![CDATA[(function() {
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>gvft_retention_pulse_checkin</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+}]]></link>
+        <name>Retention Pulse Check-In</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
     data.submitted = false;
     data.candidateName = '';
     data.caseNumber = '';
@@ -337,7 +328,8 @@
     // Handle check-in submission
     if (input && input.action === 'submit_checkin') {
         try {
-            var submitId = $sp.getParameter('sys_id');
+            // Read from input payload first, fallback to URL parameter
+            var submitId = input.sys_id || $sp.getParameter('sys_id');
             if (!submitId) {
                 data.errorMessage = 'Missing check-in identifier.';
                 return;
@@ -353,7 +345,10 @@
             submitGr.setValue('u_settling_feedback', input.feedback || '');
             submitGr.setValue('u_needs_intervention', input.needsHelp ? true : false);
             submitGr.setValue('u_status', 'completed');
-            submitGr.setValue('u_completed_at', new GlideDateTime().toString());
+            
+            // Use getValue() for standard scoped GlideDateTime formatting
+            var now = new GlideDateTime();
+            submitGr.setValue('u_completed_at', now.getValue());
             submitGr.update();
 
             data.submitted = true;
@@ -365,7 +360,7 @@
                 data.candidateName = thankCaseGr.getValue('u_candidate_name') || '';
             }
         } catch (e) {
-            data.errorMessage = 'An error occurred while submitting. Please try again.';
+            data.errorMessage = 'An error occurred while submitting: ' + e.message;
         }
         return;
     }
@@ -377,9 +372,12 @@
         return;
     }
 
+    // Store sys_id in data so client controller can send it back safely on submit
+    data.checkinSysId = sysId;
+
     var gr = new GlideRecord('x_2023506_german_1_ret_chkin');
     if (!gr.get(sysId)) {
-        data.errorMessage = 'Check-in record not found.';
+        data.errorMessage = 'Check-in record not found for ID: ' + sysId;
         return;
     }
 
@@ -401,7 +399,7 @@
     var caseGr = new GlideRecord('x_2023506_german_1_ret_case');
     if (caseGr.get(gr.getValue('u_retention_case'))) {
         data.candidateName = caseGr.getValue('u_candidate_name') || '';
-        data.caseNumber = caseGr.getDisplayValue('sys_id') || '';
+        data.caseNumber = caseGr.getDisplayValue('number') || caseGr.getDisplayValue('sys_id');
     }
 
     // Milestone-specific questions
@@ -429,10 +427,21 @@
     };
 
     data.questions = milestoneQuestions[data.milestone] || [];
-})();
-]]></script>
-    <servicenow>false</servicenow>
-    <template><![CDATA[<div class="retention-checkin-wrapper">
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-17 09:15:02</sys_created_on>
+        <sys_id>5a8d285f631a4075a93462438878e4d7</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Retention Pulse Check-In</sys_name>
+        <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
+        <sys_update_name>sp_widget_5a8d285f631a4075a93462438878e4d7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-17 12:27:40</sys_updated_on>
+        <template><![CDATA[<div class="retention-checkin-wrapper">
   <!-- Error State -->
   <div ng-if="c.data.errorMessage" class="checkin-card">
     <div class="checkin-header">
@@ -560,5 +569,5 @@
   </div>
 </div>
 ]]></template>
-  </sp_widget>
+    </sp_widget>
 </record_update>

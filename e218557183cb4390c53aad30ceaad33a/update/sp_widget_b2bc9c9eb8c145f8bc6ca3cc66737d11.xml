@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
-  <sp_widget action="INSERT_OR_UPDATE" apply_defaults="true">
-    <sys_id>b2bc9c9eb8c145f8bc6ca3cc66737d11</sys_id>
-    <sys_scope display_value="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_scope>
-    <sys_update_name>sp_widget_b2bc9c9eb8c145f8bc6ca3cc66737d11</sys_update_name>
-    <category>custom</category>
-    <client_script><![CDATA[api.controller = function($scope, $interval) {
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope, $interval) {
   var c = this;
 
   // Track upload state per document
@@ -97,8 +94,8 @@
   }
 };
 ]]></client_script>
-    <controller_as>c</controller_as>
-    <css><![CDATA[.gvft-status-container {
+        <controller_as>c</controller_as>
+        <css>.gvft-status-container {
   background-color: #1e4587;
   color: #ffffff;
   min-height: 100vh;
@@ -159,7 +156,7 @@
 .status-under_review { background-color: #f59e0b; color: #1e293b; }
 .status-pre_approved, .status-approved { background-color: #10b981; }
 
-/* Progress Card & Percentage Indicator */
+/* Progress Card &amp; Percentage Indicator */
 .progress-section-card {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -473,22 +470,22 @@
 .action-check {
   color: rgba(255, 255, 255, 0.3);
   font-size: 14px;
-}]]></css>
-    <data_table>sp_instance</data_table>
-    <demo_data/>
-    <description/>
-    <docs/>
-    <field_list/>
-    <has_preview>false</has_preview>
-    <id>gvft_status_widget</id>
-    <internal>false</internal>
-    <link><![CDATA[function link(scope, element, attrs, controller) {
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>gvft_status_widget</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
 }]]></link>
-    <name>GVFT Status Widget</name>
-    <option_schema/>
-    <public>false</public>
-    <roles/>
-    <script><![CDATA[(function() {
+        <name>GVFT Status Widget</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
   var caseTable = 'x_2023506_german_1_imm_case';
   var docTable  = 'x_2023506_german_1_case_doc';
 
@@ -600,8 +597,11 @@
     data.category = grCase.getValue('u_visa_category') || 'EU Blue Card';
     data.state = grCase.getDisplayValue('state') || 'Open';
     data.feeStatus = grCase.getValue('u_fee_status') || 'Pending';
-    data.clearanceId = grCase.getValue('u_vorabzustimmung_id');
+    data.clearanceId = grCase.getValue('u_approval_number');
     data.passportNumber = grCase.getValue('u_passport_number');
+    
+    // Alias clearanceId to govApprovalNumber for the HTML template logic
+    data.govApprovalNumber = grCase.getValue('u_approval_number') || '';
 
     var stateVal = (grCase.getValue('state') || '').toString();
     data.stateKey = (data.state || '').toLowerCase().replace(/\s+/g, '_');
@@ -614,16 +614,22 @@
     if (stateVal === '11') {
       data.percent = 100;
       data.stageIndex = 4;
+    } else if (stateVal === '2') {
+      data.percent = 25;
+      data.stageIndex = 2;
+    } else if (stateVal === '9') {
+      data.percent = 50;
+      data.stageIndex = 3;
     } else if (stateVal === '10') {
       data.percent = 80;
       data.stageIndex = 3;
-    } else if (stateVal === '9') {
-      data.percent = 50;
+    } else if (stateVal === '15') {
+      data.percent = 100;
       data.stageIndex = 2;
     } else {
-      data.percent = 25;
+      data.percent = 10;
       data.stageIndex = 1;
-    }
+    } 
 
     // ── Load Document Matrix ──
     data.documents = [];
@@ -645,14 +651,24 @@
         notes: (grDoc.getValue('u_review_notes') || 'Pending initial caseworker verification').toString()
       });
     }
-
   } else {
     data.hasRecord = false;
   }
-})();
-]]></script>
-    <servicenow>false</servicenow>
-    <template><![CDATA[<div class="gvft-status-container">
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-02 08:40:39</sys_created_on>
+        <sys_id>b2bc9c9eb8c145f8bc6ca3cc66737d11</sys_id>
+        <sys_mod_count>42</sys_mod_count>
+        <sys_name>GVFT Status Widget</sys_name>
+        <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
+        <sys_update_name>sp_widget_b2bc9c9eb8c145f8bc6ca3cc66737d11</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-17 14:12:25</sys_updated_on>
+        <template><![CDATA[<div class="gvft-status-container">
   <!-- Empty State (No Record Found) -->
   <div ng-if="!c.data.hasRecord" class="empty-state-card">
     <i class="fa fa-folder-open empty-icon"></i>
@@ -744,7 +760,7 @@
       </div>
 
       <div class="metric-card">
-        <label>Pre-Approval Reference (§ 81a)</label>
+        <label>Gov Approval Number</label>
         <span class="metric-value code-font">{{c.data.clearanceId || 'Awaiting Clearance'}}</span>
       </div>
 
@@ -821,5 +837,5 @@
   </div>
 </div>
 ]]></template>
-  </sp_widget>
+    </sp_widget>
 </record_update>

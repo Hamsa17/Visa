@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sysevent_email_action">
+    <sysevent_email_action action="INSERT_OR_UPDATE">
+        <action_insert>false</action_insert>
+        <action_update>false</action_update>
+        <active>true</active>
+        <advanced_condition/>
+        <affected_field_on_event/>
+        <category display_value="Uncategorized" name="Uncategorized">c97d83137f4432005f58108c3ffa917a</category>
+        <collection>x_2023506_german_1_imm_case</collection>
+        <condition/>
+        <content_type>text/html</content_type>
+        <default_digest>false</default_digest>
+        <default_interval/>
+        <description/>
+        <digest_from/>
+        <digest_html/>
+        <digest_reply_to/>
+        <digest_separator_html><![CDATA[<p>&nbsp;</p>
+<hr>
+<p>&nbsp;</p>]]></digest_separator_html>
+        <digest_separator_text><![CDATA[\n--------------------------------------------------------------------------------\n]]></digest_separator_text>
+        <digest_subject/>
+        <digest_template/>
+        <digest_text/>
+        <digest_type>single</digest_type>
+        <digestable>false</digestable>
+        <enable_dynamic_translation>false</enable_dynamic_translation>
+        <event_name>x_2023506_german_1.vollmacht_generated</event_name>
+        <event_parm_1>true</event_parm_1>
+        <event_parm_2>false</event_parm_2>
+        <exclude_delegates>false</exclude_delegates>
+        <force_delivery>false</force_delivery>
+        <from/>
+        <generation_type>event</generation_type>
+        <importance/>
+        <include_attachments>false</include_attachments>
+        <item>event.parm1</item>
+        <item_table/>
+        <mandatory>false</mandatory>
+        <message/>
+        <message_html><![CDATA[<p>Dear ${u_candidate_name},</p>
+<p>We have compiled your official &sect;81a Fast-Track Power of Attorney (Vollmacht) based on your intake submission (attached to this email).</p>
+<p><strong>Next Steps:</strong><br><br>&nbsp; Download and print the attached PDF document.<br>&nbsp; Sign and date under the <strong>"Vollmachtgeber (Candidate Signature)</strong>" section at the bottom.<br>&nbsp; Scan or take a clear photo of the signed document and reply directly to this email with the file attached.</p>
+<p>${mail_script:attach_poa_pdf}</p>
+<p>Once received, our team will settle the municipal fee and submit your expedited dossier to the Foreigners Authority (Ausl&auml;nderbeh&ouml;rde).</p>
+<p>Kind regards,<br>Germany Fast-Track Operations Team</p>]]></message_html>
+        <message_list/>
+        <message_text/>
+        <name>Send Vollmacht to Candidate for Signatur</name>
+        <omit_watermark>true</omit_watermark>
+        <order>100</order>
+        <push_message_only>false</push_message_only>
+        <recipient_fields/>
+        <recipient_groups/>
+        <recipient_users/>
+        <reply_to/>
+        <send_self>true</send_self>
+        <sms_alternate/>
+        <style/>
+        <subject>Action Required: Sign your German Fast-Track Power of Attorney (Case: ${number})</subject>
+        <subscribable>false</subscribable>
+        <sys_class_name>sysevent_email_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-02 10:01:07</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>cf8b2a8e830b0790c53aad30ceaad38f</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>Send Vollmacht to Candidate for Signatur</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
+        <sys_update_name>sysevent_email_action_cf8b2a8e830b0790c53aad30ceaad38f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-22 09:27:00</sys_updated_on>
+        <sys_version>2</sys_version>
+        <template display_value="Unsubscribe and Preferences">7ed0481f3b0b2200c869c2c703efc487</template>
+        <type>email</type>
+        <weight>0</weight>
+    </sysevent_email_action>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>cf8b2a8e830b0790c53aad30ceaad38f</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-02 10:03:41</sys_created_on>
+        <sys_id>8adc6242834b0790c53aad30ceaad3c3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-02 10:03:41</sys_updated_on>
+        <table>sysevent_email_action</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
