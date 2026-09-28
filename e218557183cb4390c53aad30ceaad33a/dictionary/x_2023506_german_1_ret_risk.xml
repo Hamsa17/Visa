@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="375febc9a6664b8a9f0ef3679538a54c" label="Retention Risk Alert" name="x_2023506_german_1_ret_risk" type="collection">
+        <element label="Assigned To" max_length="32" name="u_assigned_to" reference="sys_user" type="reference"/>
+        <element choice="1" default="Low" label="Risk Level" max_length="40" name="u_risk_level" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Medium" sequence="2" value="medium"/>
+                <element inactive_on_update="false" label="Low" sequence="1" value="low"/>
+                <element inactive_on_update="false" label="High" sequence="3" value="high"/>
+                <element inactive_on_update="false" label="Critical" sequence="4" value="critical"/>
+            </choice>
+        </element>
+        <element choice="3" label="Alert Status" max_length="255" name="alert_status" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Acknowledge" sequence="2" value="acknowledge"/>
+                <element inactive_on_update="false" label="Closed" sequence="3" value="closed"/>
+                <element inactive_on_update="false" label="Open" sequence="1" value="open"/>
+                <element inactive_on_update="false" label="Action Taken" sequence="0" value="action_taken"/>
+            </choice>
+        </element>
+        <element label="Issue Summary" max_length="1000" name="u_issue_summary" type="string"/>
+        <element label="Retention Case" mandatory="true" max_length="32" name="u_retention_case" reference="x_2023506_german_1_ret_case" type="reference"/>
+        <element label="Manager Intervention Notes" max_length="1000" name="manager_intervention_notes" type="string"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" display="true" label="Alert Number" max_length="40" name="number" type="string"/>
+        <element label="Closed at" max_length="40" name="closed_at" type="glide_date"/>
+        <element label="Category" name="u_category" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Workplace Integration" sequence="2" value="workplace_integration"/>
+                <element inactive_on_update="false" label="Legal / Bureaucracy" sequence="3" value="legal_bureaucracy"/>
+                <element inactive_on_update="false" label="Housing &amp; Registration" sequence="1" value="housing_registration"/>
+                <element inactive_on_update="false" label="General Distress" sequence="4" value="general_distress"/>
+            </choice>
+        </element>
+        <element label="Assigned Manager" max_length="32" name="assigned_manager" reference="sys_user" type="reference"/>
+        <element default="new" label="Status" name="u_status" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="New" sequence="1" value="new"/>
+                <element inactive_on_update="false" label="In Review" sequence="2" value="in_review"/>
+                <element inactive_on_update="false" label="Resolved" sequence="3" value="resolved"/>
+            </choice>
+        </element>
+        <element label="Triggering Check-In" max_length="32" name="u_triggering_checkin" reference="x_2023506_german_1_ret_chkin" type="reference"/>
+        <index name="index">
+            <element name="assigned_manager"/>
+        </index>
+        <index name="index2">
+            <element name="u_assigned_to"/>
+        </index>
+        <index name="index3">
+            <element name="u_retention_case"/>
+        </index>
+        <index name="index4">
+            <element name="u_triggering_checkin"/>
+        </index>
+    </element>
+</database>

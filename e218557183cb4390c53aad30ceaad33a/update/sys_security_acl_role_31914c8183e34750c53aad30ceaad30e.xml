@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-23 15:33:28</sys_created_on>
+        <sys_id>31914c8183e34750c53aad30ceaad30e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>.x_2023506_german_1.caseworker</sys_name>
+        <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
+        <sys_security_acl display_value="x_2023506_german_1_case_doc">08910c8183e34750c53aad30ceaad31c</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_31914c8183e34750c53aad30ceaad30e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-23 15:33:28</sys_updated_on>
+        <sys_user_role display_value="x_2023506_german_1.caseworker" name="x_2023506_german_1.caseworker">8cb4737c83234750c53aad30ceaad352</sys_user_role>
+    </sys_security_acl_role>
+</record_update>

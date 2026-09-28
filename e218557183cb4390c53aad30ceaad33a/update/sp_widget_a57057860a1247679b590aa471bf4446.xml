@@ -107,7 +107,20 @@
         <controller_as>c</controller_as>
         <css>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap');&#13;
 &#13;
-/* Fixed background for full screen coverage */&#13;
+/* Color Variables matching Retention Pulse Portal */&#13;
+$page-bg: #f1f5f9;&#13;
+$card-bg: #ffffff;&#13;
+$header-teal: #005f73;&#13;
+$accent-blue: #0284c7;&#13;
+$accent-blue-hover: #0369a1;&#13;
+$success-green: #10b981;&#13;
+$border-light: #e2e8f0;&#13;
+$input-border: #cbd5e1;&#13;
+$text-dark: #0f172a;&#13;
+$text-body: #334155;&#13;
+$text-muted: #64748b;&#13;
+&#13;
+/* Fixed background coverage */&#13;
 .gvft-bg-layer {&#13;
   position: fixed;&#13;
   top: 0;&#13;
@@ -115,7 +128,7 @@
   width: 100vw;&#13;
   height: 100vh;&#13;
   z-index: 0;&#13;
-  background: linear-gradient(135deg, #091322 0%, #0e223d 50%, #0a192f 100%);&#13;
+  background-color: $page-bg;&#13;
   pointer-events: none;&#13;
 }&#13;
 &#13;
@@ -127,41 +140,66 @@
   padding: 40px 20px 80px 20px;&#13;
 }&#13;
 &#13;
-/* Centered content box */&#13;
+/* Broadened Desktop Layout */&#13;
 .gvft-main-container {&#13;
-  max-width: 820px;&#13;
-  margin: 0 auto;&#13;
+  max-width: 1060px !important;&#13;
+  width: 95% !important;&#13;
+  margin: 0 auto !important;&#13;
   position: relative;&#13;
   z-index: 2;&#13;
 }&#13;
 &#13;
-/* Header &amp; Titles */&#13;
-.gvft-header {&#13;
-  margin-bottom: 30px;&#13;
-  text-align: left;&#13;
+/* Card Shell */&#13;
+.gvft-card {&#13;
+  background: $card-bg;&#13;
+  border-radius: 12px;&#13;
+  overflow: hidden;&#13;
+  border: 1px solid $border-light;&#13;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);&#13;
+  width: 100%;&#13;
 }&#13;
 &#13;
-.main-title {&#13;
-  color: #ffffff !important;&#13;
-  font-size: 32px;&#13;
-  font-weight: 800;&#13;
-  letter-spacing: -0.5px;&#13;
-  margin: 0 0 8px 0;&#13;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);&#13;
+/* Top Petrol / Teal Header Banner */&#13;
+.gvft-card-header {&#13;
+  background-color: $header-teal;&#13;
+  color: #ffffff;&#13;
+  padding: 30px 32px 26px 32px;&#13;
+  text-align: center;&#13;
+&#13;
+  i {&#13;
+    opacity: 0.9;&#13;
+    margin-bottom: 8px;&#13;
+    display: inline-block;&#13;
+  }&#13;
+&#13;
+  h2 {&#13;
+    margin: 4px 0 6px 0;&#13;
+    font-size: 24px;&#13;
+    font-weight: 700;&#13;
+    letter-spacing: 0.5px;&#13;
+    color: #ffffff;&#13;
+  }&#13;
+&#13;
+  p {&#13;
+    margin: 0;&#13;
+    font-size: 14px;&#13;
+    color: #e0f2fe;&#13;
+    opacity: 0.85;&#13;
+  }&#13;
 }&#13;
 &#13;
-.main-subtitle {&#13;
-  color: #94a3b8;&#13;
-  font-size: 14px;&#13;
-  margin: 0;&#13;
+/* Inner Body */&#13;
+.gvft-card-body {&#13;
+  padding: 36px 48px;&#13;
 }&#13;
 &#13;
-/* Stepper Wizard - Full Width &amp; Centered */&#13;
+/* Stepper Wizard */&#13;
 .gvft-wizard-nav {&#13;
   display: flex;&#13;
   align-items: center;&#13;
   justify-content: space-between;&#13;
-  margin-bottom: 28px;&#13;
+  margin: 0 auto 36px auto;&#13;
+  max-width: 820px;&#13;
   width: 100%;&#13;
 }&#13;
 &#13;
@@ -169,9 +207,10 @@
   display: flex;&#13;
   flex-direction: column;&#13;
   align-items: center;&#13;
-  opacity: 0.5;&#13;
+  opacity: 0.55;&#13;
   transition: all 0.25s ease;&#13;
   min-width: 110px;&#13;
+  cursor: pointer;&#13;
 &#13;
   &amp;.active,&#13;
   &amp;.completed {&#13;
@@ -180,35 +219,35 @@
 }&#13;
 &#13;
 .step-circle {&#13;
-  width: 42px;&#13;
-  height: 42px;&#13;
+  width: 44px;&#13;
+  height: 44px;&#13;
   border-radius: 50%;&#13;
-  background: rgba(255, 255, 255, 0.08);&#13;
-  color: #94a3b8;&#13;
+  background: #f8fafc;&#13;
+  color: $text-muted;&#13;
   display: inline-flex;&#13;
   align-items: center;&#13;
   justify-content: center;&#13;
   font-weight: 700;&#13;
-  font-size: 16px;&#13;
-  border: 2px solid rgba(255, 255, 255, 0.2);&#13;
+  font-size: 15px;&#13;
+  border: 2px solid $input-border;&#13;
   transition: all 0.25s ease;&#13;
 }&#13;
 &#13;
 .step-item.active .step-circle {&#13;
-  background: #38bdf8 !important;&#13;
-  color: #0b1a30 !important;&#13;
-  border-color: #38bdf8 !important;&#13;
-  box-shadow: 0 0 16px rgba(56, 189, 248, 0.45);&#13;
+  background: $accent-blue !important;&#13;
+  color: #ffffff !important;&#13;
+  border-color: $accent-blue !important;&#13;
+  box-shadow: 0 0 14px rgba(2, 132, 199, 0.35);&#13;
 }&#13;
 &#13;
 .step-item.completed .step-circle {&#13;
-  background: #10b981 !important;&#13;
+  background: $success-green !important;&#13;
   color: #ffffff !important;&#13;
-  border-color: #10b981 !important;&#13;
+  border-color: $success-green !important;&#13;
 }&#13;
 &#13;
 .step-label {&#13;
-  color: #cbd5e1;&#13;
+  color: $text-muted;&#13;
   font-weight: 600;&#13;
   font-size: 13px;&#13;
   margin-top: 8px;&#13;
@@ -216,58 +255,58 @@
   white-space: nowrap;&#13;
 }&#13;
 &#13;
+.step-item.active .step-label {&#13;
+  color: $header-teal !important;&#13;
+}&#13;
+&#13;
 .step-line {&#13;
   flex: 1;&#13;
   height: 2px;&#13;
-  background: rgba(255, 255, 255, 0.15);&#13;
-  margin: 0 10px 24px 10px;&#13;
+  background: $border-light;&#13;
+  margin: 0 12px 24px 12px;&#13;
   transition: background 0.3s ease;&#13;
 &#13;
   &amp;.active {&#13;
-    background: #38bdf8;&#13;
+    background: $accent-blue;&#13;
   }&#13;
 }&#13;
 &#13;
-/* Step Card Container */&#13;
-.gvft-step-pane {&#13;
-  background: rgba(15, 23, 42, 0.75);&#13;
-  border: 1px solid rgba(255, 255, 255, 0.12);&#13;
-  backdrop-filter: blur(16px);&#13;
-  -webkit-backdrop-filter: blur(16px);&#13;
-  border-radius: 14px;&#13;
-  padding: 32px 36px;&#13;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);&#13;
-  width: 100%;&#13;
-}&#13;
-&#13;
+/* Step Header */&#13;
 .pane-header {&#13;
   margin-bottom: 24px;&#13;
+  padding-bottom: 12px;&#13;
+  border-bottom: 1px solid $border-light;&#13;
 }&#13;
 &#13;
 .step-title {&#13;
-  color: #ffffff !important;&#13;
+  color: $header-teal;&#13;
   font-size: 20px;&#13;
   font-weight: 700;&#13;
   margin: 0 0 6px 0;&#13;
 &#13;
   i {&#13;
-    color: #38bdf8;&#13;
+    color: $accent-blue;&#13;
     margin-right: 8px;&#13;
   }&#13;
 }&#13;
 &#13;
 .instruction-text {&#13;
-  color: #94a3b8 !important;&#13;
+  color: $text-muted;&#13;
   font-size: 14px;&#13;
   margin: 0;&#13;
 }&#13;
 &#13;
+/* Form Controls &amp; Inputs */&#13;
 .form-grid {&#13;
-  margin-bottom: 12px;&#13;
+  margin-bottom: 8px;&#13;
+}&#13;
+&#13;
+.form-group {&#13;
+  margin-bottom: 22px;&#13;
 }&#13;
 &#13;
 .control-label {&#13;
-  color: #e2e8f0 !important;&#13;
+  color: $text-dark;&#13;
   font-size: 13px;&#13;
   font-weight: 600;&#13;
   margin-bottom: 6px;&#13;
@@ -275,34 +314,33 @@
 }&#13;
 &#13;
 .text-danger {&#13;
-  color: #f87171 !important;&#13;
+  color: #ef4444;&#13;
 }&#13;
 &#13;
-/* Inputs &amp; Form Controls */&#13;
 .form-control {&#13;
-  background: rgba(10, 25, 47, 0.8) !important;&#13;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;&#13;
-  color: #ffffff !important;&#13;
-  border-radius: 8px !important;&#13;
+  background: #ffffff !important;&#13;
+  border: 1px solid $input-border !important;&#13;
+  color: $text-dark !important;&#13;
+  border-radius: 6px !important;&#13;
   height: 44px;&#13;
   font-size: 14px;&#13;
   padding: 8px 14px;&#13;
   box-shadow: none !important;&#13;
 &#13;
   &amp;:focus {&#13;
-    background: rgba(10, 25, 47, 0.95) !important;&#13;
-    border-color: #38bdf8 !important;&#13;
-    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25) !important;&#13;
+    border-color: $accent-blue !important;&#13;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15) !important;&#13;
+    outline: none;&#13;
   }&#13;
 &#13;
   &amp;::placeholder {&#13;
-    color: rgba(255, 255, 255, 0.35) !important;&#13;
+    color: #94a3b8;&#13;
   }&#13;
 }&#13;
 &#13;
 select.form-control option {&#13;
-  background: #0f172a;&#13;
-  color: #ffffff;&#13;
+  background: #ffffff;&#13;
+  color: $text-dark;&#13;
 }&#13;
 &#13;
 .uppercase-input {&#13;
@@ -312,27 +350,36 @@ select.form-control option {&#13;
 .gvft-file-input {&#13;
   padding: 8px 12px !important;&#13;
   line-height: normal;&#13;
+  background: #f8fafc !important;&#13;
+  border: 1px dashed $input-border !important;&#13;
 }&#13;
 &#13;
 .file-tag {&#13;
   display: inline-block;&#13;
   margin-top: 6px;&#13;
   font-size: 12px;&#13;
-  color: #38bdf8;&#13;
+  color: $header-teal;&#13;
   font-weight: 600;&#13;
-  background: rgba(56, 189, 248, 0.12);&#13;
-  padding: 2px 8px;&#13;
+  background: #e0f2fe;&#13;
+  padding: 4px 10px;&#13;
   border-radius: 4px;&#13;
+  border: 1px solid #bae6fd;&#13;
+&#13;
+  i {&#13;
+    color: $success-green;&#13;
+    margin-right: 4px;&#13;
+  }&#13;
 }&#13;
 &#13;
-/* Legal Representation Box */&#13;
+/* Legal Power of Attorney Consent Callout */&#13;
 .gvft-consent-box {&#13;
-  background: rgba(10, 25, 47, 0.65);&#13;
-  border: 1px solid rgba(255, 255, 255, 0.14);&#13;
-  border-radius: 8px;&#13;
-  padding: 16px 18px;&#13;
+  background: #f0f7fa;&#13;
+  border: 1px solid #bae6fd;&#13;
+  border-left: 4px solid $header-teal;&#13;
+  border-radius: 6px;&#13;
+  padding: 16px 20px;&#13;
   margin-top: 20px;&#13;
-  margin-bottom: 10px;&#13;
+  margin-bottom: 20px;&#13;
 &#13;
   .checkbox-container {&#13;
     display: flex;&#13;
@@ -344,7 +391,7 @@ select.form-control option {&#13;
 &#13;
   input[type="checkbox"] {&#13;
     margin-top: 3px;&#13;
-    accent-color: #38bdf8;&#13;
+    accent-color: $header-teal;&#13;
     width: 18px;&#13;
     height: 18px;&#13;
     cursor: pointer;&#13;
@@ -352,16 +399,16 @@ select.form-control option {&#13;
 &#13;
   .consent-text {&#13;
     font-size: 13px;&#13;
-    color: #cbd5e1;&#13;
+    color: $text-body;&#13;
     line-height: 1.5;&#13;
 &#13;
     strong {&#13;
-      color: #38bdf8;&#13;
+      color: $header-teal;&#13;
     }&#13;
   }&#13;
 }&#13;
 &#13;
-/* Button Rows */&#13;
+/* Action Buttons */&#13;
 .gvft-button-row {&#13;
   margin-top: 28px;&#13;
 &#13;
@@ -377,114 +424,56 @@ select.form-control option {&#13;
 }&#13;
 &#13;
 .btn-prev {&#13;
-  background: rgba(255, 255, 255, 0.08) !important;&#13;
-  color: #ffffff !important;&#13;
-  border: 1px solid rgba(255, 255, 255, 0.22) !important;&#13;
+  background: #f1f5f9 !important;&#13;
+  color: $text-body !important;&#13;
+  border: 1px solid $input-border !important;&#13;
   height: 44px;&#13;
   padding: 0 24px;&#13;
-  border-radius: 8px;&#13;
+  border-radius: 6px;&#13;
   font-weight: 600;&#13;
   transition: all 0.2s;&#13;
 &#13;
   &amp;:hover {&#13;
-    background: rgba(255, 255, 255, 0.18) !important;&#13;
+    background: #e2e8f0 !important;&#13;
+    color: $text-dark !important;&#13;
   }&#13;
 }&#13;
 &#13;
 .btn-next {&#13;
-  background: #38bdf8 !important;&#13;
-  color: #0b1a30 !important;&#13;
-  border: none !important;&#13;
-  height: 44px;&#13;
-  padding: 0 28px;&#13;
-  border-radius: 8px;&#13;
-  font-weight: 700;&#13;
-  transition: all 0.2s ease;&#13;
-&#13;
-  &amp;:hover {&#13;
-    background: #0ea5e9 !important;&#13;
-    box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);&#13;
-  }&#13;
-}&#13;
-&#13;
-.btn-submit {&#13;
-  background: #10b981 !important;&#13;
+  background: $accent-blue !important;&#13;
   color: #ffffff !important;&#13;
   border: none !important;&#13;
   height: 44px;&#13;
   padding: 0 28px;&#13;
-  border-radius: 8px;&#13;
+  border-radius: 6px;&#13;
   font-weight: 700;&#13;
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);&#13;
+  transition: all 0.2s ease;&#13;
 &#13;
   &amp;:hover {&#13;
-    background: #059669 !important;&#13;
+    background: $accent-blue-hover !important;&#13;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25);&#13;
+  }&#13;
+}&#13;
+&#13;
+.btn-submit {&#13;
+  background: $success-green !important;&#13;
+  color: #ffffff !important;&#13;
+  border: none !important;&#13;
+  height: 44px;&#13;
+  padding: 0 32px;&#13;
+  border-radius: 6px;&#13;
+  font-weight: 700;&#13;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);&#13;
+  transition: background-color 0.2s ease;&#13;
+&#13;
+  &amp;:hover {&#13;
+    background: darken($success-green, 8%) !important;&#13;
   }&#13;
 &#13;
   &amp;[disabled] {&#13;
-    opacity: 0.6;&#13;
+    opacity: 0.65;&#13;
     cursor: not-allowed;&#13;
   }&#13;
-  &#13;
-  &#13;
-  .custom-select-dark {&#13;
-  background-color: #0f1d32 !important;&#13;
-  color: #e2e8f0 !important;&#13;
-  border: 1px solid #1e293b !important;&#13;
-  border-radius: 6px;&#13;
-  height: 42px;&#13;
-  padding: 6px 12px;&#13;
-  font-size: 14px;&#13;
-}&#13;
-&#13;
-.custom-select-dark:focus {&#13;
-  border-color: #38bdf8 !important;&#13;
-  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2) !important;&#13;
-  outline: none;&#13;
-}&#13;
-&#13;
-.custom-select-dark option {&#13;
-  background-color: #0b1526;&#13;
-  color: #ffffff;&#13;
-}&#13;
-  &#13;
-  /* Fix field label alignment and clear floats */&#13;
-.form-group {&#13;
-  margin-bottom: 20px !important;&#13;
-  clear: none;&#13;
-}&#13;
-&#13;
-.control-label {&#13;
-  display: block !important;&#13;
-  margin-bottom: 8px !important;&#13;
-  font-weight: 600;&#13;
-  color: #cbd5e1 !important;&#13;
-}&#13;
-&#13;
-.button-row {&#13;
-  display: flex;&#13;
-  justify-content: space-between;&#13;
-  align-items: center;&#13;
-  margin-top: 28px;&#13;
-}&#13;
-&#13;
-.btn-secondary {&#13;
-  background-color: #1e293b !important;&#13;
-  border: 1px solid #475569 !important;&#13;
-  color: #cbd5e1 !important;&#13;
-  font-weight: 600;&#13;
-  padding: 10px 22px;&#13;
-  border-radius: 8px !important;&#13;
-}&#13;
-&#13;
-.btn-secondary:hover {&#13;
-  background-color: #334155 !important;&#13;
-  color: #f8fafc !important;&#13;
-}&#13;
-  &#13;
-  &#13;
-  &#13;
-  &#13;
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -498,7 +487,7 @@ select.form-control option {&#13;
 }]]></link>
         <name>GVFT Intake Form Widget</name>
         <option_schema/>
-        <public>false</public>
+        <public>true</public>
         <roles/>
         <script><![CDATA[(function() {
 
@@ -558,7 +547,7 @@ select.form-control option {&#13;
       gr.setValue('u_target_city', input.targetCity);
       gr.setValue('u_visa_category', input.visaCategory);
       gr.setValue('u_job_title', input.jobTitle);
-      gr.setValue('u_salary_euro', input.salary);
+      gr.setValue('u_annual_salary', input.salary);
       gr.setValue('u_fast_track_authorized', input.legalConsent);
       gr.setValue('state', '1'); // 1 = Open
       gr.setValue('u_fee_status', 'Pending');
@@ -627,375 +616,217 @@ select.form-control option {&#13;
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-09-02 08:40:39</sys_created_on>
         <sys_id>a57057860a1247679b590aa471bf4446</sys_id>
-        <sys_mod_count>48</sys_mod_count>
+        <sys_mod_count>60</sys_mod_count>
         <sys_name>GVFT Intake Form Widget</sys_name>
         <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
         <sys_update_name>sp_widget_a57057860a1247679b590aa471bf4446</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-17 13:49:22</sys_updated_on>
+        <sys_updated_on>2026-09-24 13:17:25</sys_updated_on>
         <template><![CDATA[<div class="gvft-intake-wrapper">
+  <!-- Soft slate-gray fixed background layer -->
   <div class="gvft-bg-layer"></div>
 
+  <!-- Broadened responsive layout container -->
   <div class="gvft-main-container">
-    
-    <!-- Title & Subtitle -->
-    <div class="gvft-header">
-      <h1 class="main-title">Germany Visa Fast-Track Application</h1>
-      <p class="main-subtitle">Official § 81a accelerated skilled immigration intake portal</p>
-    </div>
-
-    <!-- Stepper Wizard (Matches Card Width Perfectly) -->
-    <div class="gvft-wizard-nav">
-      <div class="step-item" ng-class="{'active': c.step === 1, 'completed': c.step > 1}">
-        <div class="step-circle">1</div>
-        <div class="step-label">Personal Details</div>
-      </div>
-      <div class="step-line" ng-class="{'active': c.step >= 2}"></div>
-
-      <div class="step-item" ng-class="{'active': c.step === 2, 'completed': c.step > 2}">
-        <div class="step-circle">2</div>
-        <div class="step-label">Relocation &amp; Role</div>
-      </div>
-      <div class="step-line" ng-class="{'active': c.step === 3}"></div>
-
-      <div class="step-item" ng-class="{'active': c.step === 3}">
-        <div class="step-circle">3</div>
-        <div class="step-label">Document Uploads</div>
-      </div>
-    </div>
-
-    <!-- Step 1: Personal Details -->
-    <div class="gvft-step-pane" ng-if="c.step === 1">
-      <div class="pane-header">
-        <h4 class="step-title"><i class="fa fa-user"></i> Step 1: Personal Details</h4>
-        <p class="instruction-text">Please provide your personal information exactly as shown on your passport.</p>
-      </div>
-
-      <div class="row form-grid">
-        <div class="col-sm-6 form-group">
-          <label class="control-label">Full Name <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" ng-model="c.data.fullName" placeholder="Enter your full name" />
-        </div>
-        <div class="col-sm-6 form-group">
-          <label class="control-label">Email Address <span class="text-danger">*</span></label>
-          <input type="email" class="form-control" ng-model="c.data.email" placeholder="you@example.com" />
-        </div>
-      </div>
+    <div class="gvft-card">
       
-   <div class="row">
-  <!-- Date of Birth (Col 1) 
-  <div class="col-sm-4 col-xs-12 form-group">
-    <label for="dob" class="control-label">
-      Date of Birth <span class="text-danger">*</span>
-    </label>
-    <input type="date"
-           id="dob"
-           class="form-control custom-input-dark"
-           ng-model="c.form.dob"
-           required />
-  </div>-->
+      <!-- Top Petrol / Teal Header Banner matching Retention Portal -->
+      <div class="gvft-card-header">
+        <i class="fa fa-id-card-o fa-2x"></i>
+        <h2>Germany Visa Fast-Track Application</h2>
+        <p>Official § 81a accelerated skilled immigration intake portal</p>
+      </div>
 
-     <div class="col-sm-4 col-xs-12 form-group">
-  <label for="dob" class="control-label">
-    Date of Birth <span class="text-danger">*</span>
-  </label>
-  <div class="date-picker-wrapper">
-    <input type="date"
-           id="dob"
-           name="dob"
-           class="form-control custom-input-dark custom-date-input"
-           ng-model="c.data.dob"
-           onclick="this.showPicker && this.showPicker()"
-           required />
-    <i class="fa fa-calendar date-icon" onclick="document.getElementById('dob').showPicker()"></i>
-  </div>
-</div>
-     
-     
-  <!-- Nationality Dropdown (Col 2) -->
-  <div class="col-sm-4 col-xs-12 form-group">
-    <label for="nationality" class="control-label">
-      Nationality <span class="text-danger">*</span>
-    </label>
-    <select id="nationality"
-            class="form-control custom-select-dark"
-            ng-model="c.data.nationality"
-            required>
-      <option value="" disabled selected>Select your nationality</option>
-      <option ng-repeat="item in c.data.nationalities track by item.value" value="{{item.value}}">
-        {{item.label}}
-      </option>
-    </select>
-  </div>
+      <!-- Card Inner Body -->
+      <div class="gvft-card-body">
 
-  <!-- Passport Number (Col 3) -->
-  <div class="col-sm-4 col-xs-12 form-group">
-    <label for="passportNumber" class="control-label">
-      Passport Number <span class="text-danger">*</span>
-    </label>
-    <input type="text"
-           id="passportNumber"
-           class="form-control custom-input-dark"
-           placeholder="E.g. AB1234567"
-           ng-model="c.data.passportNumber"
-           required />
-  </div>
-</div>   
-      
-      
-      
-   <!-- Old code
-      <div class="row form-grid">
-        <div class="col-sm-4 form-group">
-          <label class="control-label">Date of Birth <span class="text-danger">*</span></label>
-          <input type="date" class="form-control" ng-model="c.data.dob" />
-        </div>
-          
-        <div class="col-sm-4 form-group">
-          <label class="control-label">Nationality <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" ng-model="c.data.nationality" placeholder="e.g. Indian" />
-        </div>
-        <div class="col-sm-4 form-group">
-          <label class="control-label">Passport Number <span class="text-danger">*</span></label>
-          <input type="text" class="form-control uppercase-input" ng-model="c.data.passportNumber" placeholder="e.g. AB1234567" />
-        </div>
-      </div> 
-        <div class="form-group">
-  <label for="nationality" class="control-label">
-    Nationality <span class="text-danger">*</span>
-  </label>
-  <select id="nationality"
-          class="form-control custom-select-dark"
-          ng-model="c.form.nationality"
-          required>
-    <option value="" disabled selected>Select your nationality</option>
-    <option ng-repeat="item in c.data.nationalities track by item.value" value="{{item.value}}">
-      {{item.label}}
-    </option>
-  </select>
-</div> -->
+        <!-- Stepper Wizard Navigation -->
+        <div class="gvft-wizard-nav">
+          <div class="step-item" ng-class="{'active': c.step === 1, 'completed': c.step > 1}" ng-click="c.goToStep(1)">
+            <div class="step-circle">
+              <span ng-if="c.step <= 1">1</span>
+              <i ng-if="c.step > 1" class="fa fa-check"></i>
+            </div>
+            <span class="step-label">Personal Details</span>
+          </div>
 
-      <div class="gvft-button-row text-right">
-        <button type="button" class="btn btn-primary btn-next" ng-click="c.goToStep(2)">
-          Next <i class="fa fa-chevron-right"></i>
-        </button>
+          <div class="step-line" ng-class="{'active': c.step > 1}"></div>
+
+          <div class="step-item" ng-class="{'active': c.step === 2, 'completed': c.step > 2}" ng-click="c.goToStep(2)">
+            <div class="step-circle">
+              <span ng-if="c.step <= 2">2</span>
+              <i ng-if="c.step > 2" class="fa fa-check"></i>
+            </div>
+            <span class="step-label">Relocation &amp; Role</span>
+          </div>
+
+          <div class="step-line" ng-class="{'active': c.step > 2}"></div>
+
+          <div class="step-item" ng-class="{'active': c.step === 3}" ng-click="c.goToStep(3)">
+            <div class="step-circle">3</div>
+            <span class="step-label">Document Uploads</span>
+          </div>
+        </div>
+
+        <!-- ================= STEP 1: PERSONAL DETAILS ================= -->
+        <div class="step-pane" ng-show="c.step === 1">
+          <div class="pane-header">
+            <h3 class="step-title"><i class="fa fa-user"></i> Step 1: Personal Details</h3>
+            <p class="instruction-text">Please provide your personal information exactly as shown on your passport.</p>
+          </div>
+
+          <div class="row form-grid">
+            <div class="col-md-6 form-group">
+              <label class="control-label">Full Name <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" ng-model="c.data.fullName" placeholder="Enter your full name" />
+            </div>
+            <div class="col-md-6 form-group">
+              <label class="control-label">Email Address <span class="text-danger">*</span></label>
+              <input type="email" class="form-control" ng-model="c.data.email" placeholder="you@example.com" />
+            </div>
+          </div>
+
+          <div class="row form-grid">
+            <div class="col-md-4 form-group">
+              <label class="control-label">Date of Birth <span class="text-danger">*</span></label>
+              <input type="date" class="form-control" ng-model="c.data.dob" />
+            </div>
+            <div class="col-md-4 form-group">
+              <label class="control-label">Nationality <span class="text-danger">*</span></label>
+              <select class="form-control" ng-model="c.data.nationality">
+                <option value="">Select Nationality</option>
+                <option ng-repeat="nat in c.data.nationalities track by nat.value" value="{{nat.value}}">{{nat.label}}</option>
+              </select>
+            </div>
+            <div class="col-md-4 form-group">
+              <label class="control-label">Passport Number <span class="text-danger">*</span></label>
+              <input type="text" class="form-control uppercase-input" ng-model="c.data.passportNumber" placeholder="E.g. AB1234567" />
+            </div>
+          </div>
+
+          <div class="gvft-button-row text-right">
+            <button type="button" class="btn btn-next" ng-click="c.goToStep(2)">
+              Next <i class="fa fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- ================= STEP 2: RELOCATION & ROLE ================= -->
+        <div class="step-pane" ng-show="c.step === 2">
+          <div class="pane-header">
+            <h3 class="step-title"><i class="fa fa-briefcase"></i> Step 2: Relocation &amp; Role Details</h3>
+            <p class="instruction-text">Provide details regarding your target position and intended destination in Germany.</p>
+          </div>
+
+          <div class="row form-grid">
+            <div class="col-md-6 form-group">
+              <label class="control-label">Destination City in Germany <span class="text-danger">*</span></label>
+              <select class="form-control" ng-model="c.data.targetCity">
+                <option value="">Select Destination City</option>
+                <option ng-repeat="city in c.data.germanCities track by $index" value="{{city}}">{{city}}</option>
+              </select>
+            </div>
+            <div class="col-md-6 form-group">
+              <label class="control-label">Visa Category <span class="text-danger">*</span></label>
+              <select class="form-control" ng-model="c.data.visaCategory">
+                <option value="">Select Category</option>
+                <option value="EU Blue Card">EU Blue Card (§ 18g AufenthG)</option>
+                <option value="Skilled Worker - Academic">Skilled Worker - Academic (§ 18b AufenthG)</option>
+                <option value="Skilled Worker - Vocational">Skilled Worker - Vocational (§ 18a AufenthG)</option>
+                <option value="IT Specialist">IT Specialist (§ 19c Abs. 2 AufenthG)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row form-grid">
+            <div class="col-md-6 form-group">
+              <label class="control-label">Job Title <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" ng-model="c.data.jobTitle" placeholder="e.g. Senior Software Engineer" />
+            </div>
+            <div class="col-md-6 form-group">
+              <label class="control-label">Gross Annual Salary (€) <span class="text-danger">*</span></label>
+              <input type="number" class="form-control" ng-model="c.data.salary" placeholder="e.g. 65000" />
+            </div>
+          </div>
+
+          <div class="gvft-button-row between-row">
+            <button type="button" class="btn btn-prev" ng-click="c.goToStep(1)">
+              <i class="fa fa-chevron-left"></i> Previous
+            </button>
+            <button type="button" class="btn btn-next" ng-click="c.goToStep(3)">
+              Next <i class="fa fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- ================= STEP 3: DOCUMENT UPLOADS ================= -->
+        <div class="step-pane" ng-show="c.step === 3">
+          <div class="pane-header">
+            <h3 class="step-title"><i class="fa fa-folder-open"></i> Step 3: Required Document Dossier</h3>
+            <p class="instruction-text">Upload scans of required credentials for fast-track submission (PDF, PNG, or JPG).</p>
+          </div>
+
+          <div class="row form-grid">
+            <div class="col-md-6 form-group">
+              <label class="control-label">Passport Scan (Bio page) <span class="text-danger">*</span></label>
+              <input type="file" class="form-control gvft-file-input" onchange="angular.element(this).scope().c.fileSelected(this, 'passport')" accept=".pdf,image/*" />
+              <div class="file-tag" ng-if="c.data.files.passport">
+                <i class="fa fa-check"></i> {{c.data.files.passport.name}}
+              </div>
+            </div>
+
+            <div class="col-md-6 form-group">
+              <label class="control-label">Passport Photograph (Biometric) <span class="text-danger">*</span></label>
+              <input type="file" class="form-control gvft-file-input" onchange="angular.element(this).scope().c.fileSelected(this, 'photo')" accept=".pdf,image/*" />
+              <div class="file-tag" ng-if="c.data.files.photo">
+                <i class="fa fa-check"></i> {{c.data.files.photo.name}}
+              </div>
+            </div>
+          </div>
+
+          <div class="row form-grid">
+            <div class="col-md-6 form-group">
+              <label class="control-label">Signed Employment Contract <span class="text-danger">*</span></label>
+              <input type="file" class="form-control gvft-file-input" onchange="angular.element(this).scope().c.fileSelected(this, 'contract')" accept=".pdf,image/*" />
+              <div class="file-tag" ng-if="c.data.files.contract">
+                <i class="fa fa-check"></i> {{c.data.files.contract.name}}
+              </div>
+            </div>
+
+            <div class="col-md-6 form-group">
+              <label class="control-label">Degree Certificate / Diploma <span class="text-danger">*</span></label>
+              <input type="file" class="form-control gvft-file-input" onchange="angular.element(this).scope().c.fileSelected(this, 'degree')" accept=".pdf,image/*" />
+              <div class="file-tag" ng-if="c.data.files.degree">
+                <i class="fa fa-check"></i> {{c.data.files.degree.name}}
+              </div>
+            </div>
+          </div>
+
+          <!-- Legal Power of Attorney Consent Callout -->
+          <div class="gvft-consent-box">
+            <label class="checkbox-container">
+              <input type="checkbox" ng-model="c.data.legalConsent" />
+              <span class="consent-text">
+                I hereby grant <strong>Power of Attorney (Vollmacht)</strong> to the employer and designated immigration counsel to file the § 81a accelerated procedure on my behalf with the German Foreigners Authority (Ausländerbehörde).
+              </span>
+            </label>
+          </div>
+
+          <div class="gvft-button-row between-row">
+            <button type="button" class="btn btn-prev" ng-click="c.goToStep(2)">
+              <i class="fa fa-chevron-left"></i> Previous
+            </button>
+            <button type="button" class="btn btn-submit" ng-click="c.submitApplication()" ng-disabled="c.isSubmitting">
+              <span ng-if="!c.isSubmitting"><i class="fa fa-paper-plane"></i> Submit Application</span>
+              <span ng-if="c.isSubmitting"><i class="fa fa-spinner fa-spin"></i> Submitting...</span>
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
-
-    <!-- Step 2: Relocation & Role 
-    <div class="gvft-step-pane" ng-if="c.step === 2">
-      <div class="pane-header">
-        <h4 class="step-title"><i class="fa fa-briefcase"></i> Step 2: Relocation &amp; Employment</h4>
-        <p class="instruction-text">Specify your employment agreement and intended destination in Germany.</p>
-      </div>
-<!--
-      <div class="row form-grid">
-        <div class="col-sm-6 form-group">
-          <label class="control-label">Target German City <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" ng-model="c.data.targetCity" placeholder="e.g. Berlin, Munich, Frankfurt" />
-        </div>-->
-    <!-- Target German City Dropdown 
-<div class="form-group col-sm-6 col-xs-12">
-  <label for="targetCity" class="control-label">
-    Target German City <span class="text-danger">*</span>
-  </label>
-  <select id="targetCity"
-          name="targetCity"
-          class="form-control custom-select-dark"
-          ng-model="c.data.targetCity"
-          required>
-    <option value="" disabled selected>Select destination city</option>
-    <option ng-repeat="city in c.data.germanCities track by city" value="{{city}}">
-      {{city}}
-    </option>
-  </select>
-</div>    
-        
-        
-        
-        
-        <div class="col-sm-6 form-group">
-          <label class="control-label">Visa Stream <span class="text-danger">*</span></label>
-          <select class="form-control" ng-model="c.data.visaCategory">
-            <option value="" disabled selected>Select Visa Category</option>
-            <option value="EU Blue Card">EU Blue Card (§ 18g)</option>
-            <option value="Skilled Worker - Academic">Skilled Worker - Academic (§ 18b)</option>
-            <option value="Skilled Worker - Vocational">Skilled Worker - Vocational (§ 18a)</option>
-            <option value="IT Specialist">IT Specialist (§ 19c Abs. 2)</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="row form-grid">
-        <div class="col-sm-6 form-group">
-          <label class="control-label">Job Title <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" ng-model="c.data.jobTitle" placeholder="e.g. Senior Software Engineer" />
-        </div>
-        <div class="col-sm-6 form-group">
-          <label class="control-label">Gross Annual Salary (€) <span class="text-danger">*</span></label>
-          <input type="number" class="form-control" ng-model="c.data.salary" placeholder="e.g. 65000" />
-        </div>
-      </div>
-
-      <div class="gvft-button-row between-row">
-        <button type="button" class="btn btn-default btn-prev" ng-click="c.goToStep(1)">
-          <i class="fa fa-chevron-left"></i> Back
-        </button>
-        <button type="button" class="btn btn-primary btn-next" ng-click="c.goToStep(3)">
-          Next <i class="fa fa-chevron-right"></i>
-        </button>
-      </div>
-    </div>-->
-
-    
-    
-    <!-- Step 2 Container -->
-<div ng-show="c.step === 2">
-  <div class="form-card-header">
-    <i class="fa fa-briefcase"></i> Step 2: Relocation & Employment
-  </div>
-  <p class="form-card-desc">
-    Specify your employment agreement and intended destination in Germany.
-  </p>
-
-  <!-- Row 1: City & Visa Stream -->
-  <div class="row">
-    <div class="col-sm-6 col-xs-12 form-group">
-      <label for="targetCity" class="control-label">
-        Target German City <span class="text-danger">*</span>
-      </label>
-      <select id="targetCity"
-              name="targetCity"
-              class="form-control custom-select-dark"
-              ng-model="c.data.targetCity"
-              required>
-        <option value="" disabled selected>Select destination city</option>
-        <option ng-repeat="city in c.data.germanCities track by city" value="{{city}}">
-          {{city}}
-        </option>
-      </select>
-    </div>
-
-    <div class="col-sm-6 col-xs-12 form-group">
-      <label for="visaCategory" class="control-label">
-        Visa Stream <span class="text-danger">*</span>
-      </label>
-      <select id="visaCategory"
-              name="visaCategory"
-              class="form-control custom-select-dark"
-              ng-model="c.data.visaCategory"
-              required>
-        <option value="" disabled selected>Select Visa Category</option>
-        <option value="EU Blue Card">EU Blue Card (§ 18g)</option>
-        <option value="Skilled Worker (Academic)">Skilled Worker Academic (§ 18b)</option>
-        <option value="Skilled Worker (Vocational)">Skilled Worker Vocational (§ 18a)</option>
-        <option value="IT Specialist">IT Specialist (§ 19c Abs. 2)</option>
-        <option value="Opportunity Card">Opportunity Card / Chancenkarte (§ 20a)</option>
-      </select>
-    </div>
-  </div>
-
-  <!-- Row 2: Job Title & Salary -->
-  <div class="row">
-    <div class="col-sm-6 col-xs-12 form-group">
-      <label for="jobTitle" class="control-label">
-        Job Title <span class="text-danger">*</span>
-      </label>
-      <input type="text"
-             id="jobTitle"
-             name="jobTitle"
-             class="form-control custom-input-dark"
-             placeholder="e.g. Senior Software Engineer"
-             ng-model="c.data.jobTitle"
-             required />
-    </div>
-
-    <div class="col-sm-6 col-xs-12 form-group">
-      <label for="salary" class="control-label">
-        Gross Annual Salary (€) <span class="text-danger">*</span>
-      </label>
-      <input type="number"
-             id="salary"
-             name="salary"
-             class="form-control custom-input-dark"
-             placeholder="e.g. 65000"
-             ng-model="c.data.salary"
-             required />
-    </div>
-  </div>
-
-  <!-- Navigation Buttons -->
-  <div class="button-row">
-    <button type="button" class="btn btn-secondary" ng-click="c.goToStep(1)">
-      <i class="fa fa-chevron-left"></i> Back
-    </button>
-    <button type="button" class="btn btn-primary" ng-click="c.goToStep(3)">
-      Next <i class="fa fa-chevron-right"></i>
-    </button>
-  </div>
-</div>
-    
-    
-    
-    
-    
-    <!-- Step 3: Document Uploads & Legal Consent -->
-    <div class="gvft-step-pane" ng-if="c.step === 3">
-      <div class="pane-header">
-        <h4 class="step-title"><i class="fa fa-folder-open"></i> Step 3: Document Uploads &amp; Legal Consent</h4>
-        <p class="instruction-text">Upload your verification files. PDF or image formats are accepted.</p>
-      </div>
-
-      <div class="row form-grid">
-        <div class="col-sm-6 form-group gvft-upload-field">
-          <label class="control-label">1. Biometric Passport Main Page <span class="text-danger">*</span></label>
-          <input type="file" class="form-control gvft-file-input" onchange="angular.element(this).scope().c.fileSelected(this, 'passport')" accept=".pdf,.png,.jpg,.jpeg" />
-          <span class="file-tag" ng-if="c.data.files.passport"><i class="fa fa-check"></i> {{c.data.files.passport.name}}</span>
-        </div>
-        <div class="col-sm-6 form-group gvft-upload-field">
-          <label class="control-label">2. Biometric Passport Photo <span class="text-danger">*</span></label>
-          <input type="file" class="form-control gvft-file-input" onchange="angular.element(this).scope().c.fileSelected(this, 'photo')" accept=".png,.jpg,.jpeg" />
-          <span class="file-tag" ng-if="c.data.files.photo"><i class="fa fa-check"></i> {{c.data.files.photo.name}}</span>
-        </div>
-      </div>
-
-      <div class="row form-grid">
-        <div class="col-sm-6 form-group gvft-upload-field">
-          <label class="control-label">3. Signed Employment Contract <span class="text-danger">*</span></label>
-          <input type="file" class="form-control gvft-file-input" onchange="angular.element(this).scope().c.fileSelected(this, 'contract')" accept=".pdf,.png,.jpg,.jpeg" />
-          <span class="file-tag" ng-if="c.data.files.contract"><i class="fa fa-check"></i> {{c.data.files.contract.name}}</span>
-        </div>
-        <div class="col-sm-6 form-group gvft-upload-field">
-          <label class="control-label">4. University Degree Certificate <span class="text-danger">*</span></label>
-          <input type="file" class="form-control gvft-file-input" onchange="angular.element(this).scope().c.fileSelected(this, 'degree')" accept=".pdf,.png,.jpg,.jpeg" />
-          <span class="file-tag" ng-if="c.data.files.degree"><i class="fa fa-check"></i> {{c.data.files.degree.name}}</span>
-        </div>
-      </div>
-
-      <!-- Consent Checkbox -->
-      <div class="gvft-consent-box">
-        <label class="checkbox-container">
-          <input type="checkbox" ng-model="c.data.legalConsent" />
-          <span class="consent-text">
-            I hereby authorize my employer and designated immigration caseworkers to initiate the 
-            <strong>§ 81a Fast-Track procedure</strong> on my behalf.
-          </span>
-        </label>
-      </div>
-
-      <div class="gvft-button-row between-row">
-        <button type="button" class="btn btn-default btn-prev" ng-click="c.goToStep(2)">
-          <i class="fa fa-chevron-left"></i> Back
-        </button>
-        <button type="button" class="btn btn-primary btn-submit" ng-click="c.submitApplication()" ng-disabled="c.isSubmitting">
-          <span ng-if="!c.isSubmitting">Submit Application <i class="fa fa-check"></i></span>
-          <span ng-if="c.isSubmitting">Submitting Application...</span>
-        </button>
-      </div>
-    </div>
-
   </div>
 </div>]]></template>
     </sp_widget>

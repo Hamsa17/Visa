@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic_category">
+    <sys_cb_topic_category action="INSERT_OR_UPDATE">
+        <description/>
+        <name>Visa Fast-Track</name>
+        <sys_class_name>sys_cb_topic_category</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-24 19:58:43</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>7a8702d9832b0b50c53aad30ceaad3be</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Visa Fast-Track</sys_name>
+        <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
+        <sys_update_name>sys_cb_topic_category_7a8702d9832b0b50c53aad30ceaad3be</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-24 19:58:43</sys_updated_on>
+        <visible>true</visible>
+    </sys_cb_topic_category>
+</record_update>

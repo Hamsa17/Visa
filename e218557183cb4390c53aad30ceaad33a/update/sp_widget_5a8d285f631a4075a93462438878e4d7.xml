@@ -28,278 +28,321 @@
         c.errorMsg = '';
         c.submitting = true;
 
-        c.server.get({
-            action: 'submit_checkin',
-            sys_id: c.data.checkinSysId,
-            rating: c.rating,
-            feedback: c.feedback,
-            needsHelp: c.needsHelp
-        }).then(function(response) {
+        // Populate c.data directly for c.server.update()
+        c.data.action = 'submit_checkin';
+        c.data.rating = c.rating;
+        c.data.feedback = c.feedback;
+        c.data.questionAnswers = c.data.questions;
+        c.data.needsHelp = c.needsHelp;
+
+        // Native Service Portal two-way synchronization
+        c.server.update().then(function(response) {
             c.submitting = false;
-            c.data = response.data;
+            // The template switches automatically to the Thank You screen
+            // when c.data.submitted is true
+        }).catch(function(err) {
+            c.submitting = false;
+            c.errorMsg = 'Submission failed: ' + (err.message || 'Server error occurred');
         });
     };
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css>.retention-checkin-wrapper {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 15px;
-  background-color: $background-primary;
-}
-
-.checkin-card {
-  max-width: 680px;
-  width: 100%;
-  border-radius: $border-radius-large;
-  overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
-  background: $background-secondary;
-}
-
-.checkin-header {
-  background-color: $brand-primary-dark;
-  color: #fff;
-  padding: 28px 32px;
-  text-align: center;
-}
-
-.checkin-header i {
-  margin-bottom: 8px;
-  opacity: 0.85;
-}
-
-.checkin-header h2 {
-  margin: 8px 0 0;
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  color: #fff;
-}
-
-.checkin-body {
-  padding: 32px;
-}
-
-/* Candidate Info Bar */
-.candidate-info {
-  display: flex;
-  justify-content: space-around;
-  padding: 16px;
-  margin-bottom: 24px;
-  border-radius: $border-radius-base;
-  background: $background-tertiary;
-}
-
-.info-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: $text-color;
-  font-weight: 500;
-}
-
-.info-item i {
-  color: $brand-info;
-}
-
-/* Section Titles */
-.section-title {
-  font-size: 15px;
-  font-weight: 600;
-  color: $text-color;
-  margin-bottom: 12px;
-}
-
-.section-title i {
-  color: $brand-info;
-  margin-right: 6px;
-}
-
-/* Questions */
-.questions-section {
-  margin-bottom: 28px;
-  padding: 20px;
-  border-radius: $border-radius-base;
-  border-left: 4px solid $brand-info;
-  background: $background-tertiary;
-}
-
-.question-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.question-list li {
-  padding: 8px 0;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  color: $text-color;
-  font-size: 14px;
-}
-
-.question-list li i {
-  color: $brand-info;
-  margin-top: 3px;
-  font-size: 11px;
-}
-
-/* Star Rating */
-.rating-section {
-  margin-bottom: 28px;
-}
-
-.star-rating {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  padding: 16px 0;
-}
-
-.star {
-  cursor: pointer;
-  color: $border-secondary;
-  transition: color 0.2s ease, transform 0.15s ease;
-}
-
-.star:hover,
-.star.active {
-  color: $brand-warning;
-}
-
-.star:hover {
-  transform: scale(1.15);
-}
-
-.rating-labels {
-  display: flex;
-  justify-content: space-between;
-  font-size: $font-size-small;
-  color: $text-muted;
-  padding: 0 20px;
-}
-
-/* Feedback */
-.feedback-section {
-  margin-bottom: 24px;
-}
-
-.feedback-textarea {
-  resize: vertical;
-  min-height: 100px;
-  border: 1px solid $border-primary;
-  border-radius: $border-radius-base;
-  padding: 12px;
-  font-size: $font-size-base;
-  color: $text-color;
-  background: $background-primary;
-}
-
-.feedback-textarea:focus {
-  border-color: $brand-info;
-  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.15);
-}
-
-/* HR Support Toggle */
-.hr-support-section {
-  margin-bottom: 24px;
-  padding: 16px;
-  border-radius: $border-radius-base;
-  background: $background-tertiary;
-}
-
-.hr-toggle {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  margin: 0;
-  font-weight: 500;
-  color: $text-color;
-}
-
-.hr-toggle input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  accent-color: $brand-info;
-}
-
-.toggle-label i {
-  color: $brand-warning;
-  margin-right: 4px;
-}
-
-/* Submit Button */
-.submit-section {
-  margin-top: 8px;
-}
-
-.submit-btn {
-  padding: 14px;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  border-radius: $border-radius-base;
-  border: none;
-  background-color: $brand-info;
-  color: #fff;
-  transition: background-color 0.2s ease;
-}
-
-.submit-btn:hover:not(:disabled) {
-  background-color: $brand-primary;
-}
-
-.submit-btn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-/* Success State */
-.success-icon {
-  margin: 20px 0 16px;
-}
-
-.success-icon i {
-  color: $brand-success;
-}
-
-.thank-you-title {
-  font-size: 22px;
-  font-weight: 600;
-  color: $text-color;
-  margin-bottom: 12px;
-}
-
-.thank-you-message {
-  font-size: 15px;
-  color: $text-secondary;
-  line-height: 1.6;
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-/* Error Text */
-.error-text {
-  color: $brand-danger;
-  font-size: 15px;
-  margin: 20px 0;
-}
-
-/* Alert Overrides */
-.alert-danger {
-  border-radius: $border-radius-base;
-  margin-bottom: 20px;
-}
-
-.alert-danger i {
-  margin-right: 6px;
-}
+        <css>.retention-checkin-wrapper {&#13;
+  min-height: 100vh;&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  justify-content: center;&#13;
+  padding: 40px 15px;&#13;
+  background-color: $background-primary;&#13;
+}&#13;
+&#13;
+.checkin-card {&#13;
+  max-width: 680px;&#13;
+  width: 100%;&#13;
+  border-radius: $border-radius-large;&#13;
+  overflow: hidden;&#13;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);&#13;
+  background: $background-secondary;&#13;
+}&#13;
+&#13;
+.checkin-header {&#13;
+  background-color: $brand-primary-dark;&#13;
+  color: #fff;&#13;
+  padding: 28px 32px;&#13;
+  text-align: center;&#13;
+}&#13;
+&#13;
+.checkin-header i {&#13;
+  margin-bottom: 8px;&#13;
+  opacity: 0.85;&#13;
+}&#13;
+&#13;
+.checkin-header h2 {&#13;
+  margin: 8px 0 0;&#13;
+  font-size: 22px;&#13;
+  font-weight: 600;&#13;
+  letter-spacing: 0.5px;&#13;
+  color: #fff;&#13;
+}&#13;
+&#13;
+.checkin-body {&#13;
+  padding: 32px;&#13;
+}&#13;
+&#13;
+/* Candidate Info Bar */&#13;
+.candidate-info {&#13;
+  display: flex;&#13;
+  justify-content: space-around;&#13;
+  padding: 16px;&#13;
+  margin-bottom: 24px;&#13;
+  border-radius: $border-radius-base;&#13;
+  background: $background-tertiary;&#13;
+}&#13;
+&#13;
+.info-item {&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  gap: 8px;&#13;
+  color: $text-color;&#13;
+  font-weight: 500;&#13;
+}&#13;
+&#13;
+.info-item i {&#13;
+  color: $brand-info;&#13;
+}&#13;
+&#13;
+/* Section Titles */&#13;
+.section-title {&#13;
+  font-size: 15px;&#13;
+  font-weight: 600;&#13;
+  color: $text-color;&#13;
+  margin-bottom: 12px;&#13;
+}&#13;
+&#13;
+.section-title i {&#13;
+  color: $brand-info;&#13;
+  margin-right: 6px;&#13;
+}&#13;
+&#13;
+/* Questions */&#13;
+.questions-section {&#13;
+  margin-bottom: 28px;&#13;
+  padding: 20px;&#13;
+  border-radius: $border-radius-base;&#13;
+  border-left: 4px solid $brand-info;&#13;
+  background: $background-tertiary;&#13;
+}&#13;
+&#13;
+.question-list {&#13;
+  list-style: none;&#13;
+  padding: 0;&#13;
+  margin: 0;&#13;
+}&#13;
+&#13;
+.question-list li {&#13;
+  padding: 8px 0;&#13;
+  display: flex;&#13;
+  align-items: flex-start;&#13;
+  gap: 10px;&#13;
+  color: $text-color;&#13;
+  font-size: 14px;&#13;
+}&#13;
+&#13;
+.question-list li i {&#13;
+  color: $brand-info;&#13;
+  margin-top: 3px;&#13;
+  font-size: 11px;&#13;
+}&#13;
+&#13;
+/* Star Rating */&#13;
+.rating-section {&#13;
+  margin-bottom: 28px;&#13;
+}&#13;
+&#13;
+.star-rating {&#13;
+  display: flex;&#13;
+  justify-content: center;&#13;
+  gap: 12px;&#13;
+  padding: 16px 0;&#13;
+}&#13;
+&#13;
+.star {&#13;
+  cursor: pointer;&#13;
+  color: $border-secondary;&#13;
+  transition: color 0.2s ease, transform 0.15s ease;&#13;
+}&#13;
+&#13;
+.star:hover,&#13;
+.star.active {&#13;
+  color: $brand-warning;&#13;
+}&#13;
+&#13;
+.star:hover {&#13;
+  transform: scale(1.15);&#13;
+}&#13;
+&#13;
+.rating-labels {&#13;
+  display: flex;&#13;
+  justify-content: space-between;&#13;
+  font-size: $font-size-small;&#13;
+  color: $text-muted;&#13;
+  padding: 0 20px;&#13;
+}&#13;
+&#13;
+/* Feedback */&#13;
+.feedback-section {&#13;
+  margin-bottom: 24px;&#13;
+}&#13;
+&#13;
+.feedback-textarea {&#13;
+  resize: vertical;&#13;
+  min-height: 100px;&#13;
+  border: 1px solid $border-primary;&#13;
+  border-radius: $border-radius-base;&#13;
+  padding: 12px;&#13;
+  font-size: $font-size-base;&#13;
+  color: $text-color;&#13;
+  background: $background-primary;&#13;
+}&#13;
+&#13;
+.feedback-textarea:focus {&#13;
+  border-color: $brand-info;&#13;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.15);&#13;
+}&#13;
+&#13;
+/* HR Support Toggle */&#13;
+.hr-support-section {&#13;
+  margin-bottom: 24px;&#13;
+  padding: 16px;&#13;
+  border-radius: $border-radius-base;&#13;
+  background: $background-tertiary;&#13;
+}&#13;
+&#13;
+.hr-toggle {&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  gap: 12px;&#13;
+  cursor: pointer;&#13;
+  margin: 0;&#13;
+  font-weight: 500;&#13;
+  color: $text-color;&#13;
+}&#13;
+&#13;
+.hr-toggle input[type="checkbox"] {&#13;
+  width: 20px;&#13;
+  height: 20px;&#13;
+  cursor: pointer;&#13;
+  accent-color: $brand-info;&#13;
+}&#13;
+&#13;
+.toggle-label i {&#13;
+  color: $brand-warning;&#13;
+  margin-right: 4px;&#13;
+}&#13;
+&#13;
+/* Submit Button */&#13;
+.submit-section {&#13;
+  margin-top: 8px;&#13;
+}&#13;
+&#13;
+.submit-btn {&#13;
+  padding: 14px;&#13;
+  font-size: 16px;&#13;
+  font-weight: 600;&#13;
+  letter-spacing: 0.5px;&#13;
+  border-radius: $border-radius-base;&#13;
+  border: none;&#13;
+  background-color: $brand-info;&#13;
+  color: #fff;&#13;
+  transition: background-color 0.2s ease;&#13;
+}&#13;
+&#13;
+.submit-btn:hover:not(:disabled) {&#13;
+  background-color: $brand-primary;&#13;
+}&#13;
+&#13;
+.submit-btn:disabled {&#13;
+  opacity: 0.7;&#13;
+  cursor: not-allowed;&#13;
+}&#13;
+&#13;
+/* Success State */&#13;
+.success-icon {&#13;
+  margin: 20px 0 16px;&#13;
+}&#13;
+&#13;
+.success-icon i {&#13;
+  color: $brand-success;&#13;
+}&#13;
+&#13;
+.thank-you-title {&#13;
+  font-size: 22px;&#13;
+  font-weight: 600;&#13;
+  color: $text-color;&#13;
+  margin-bottom: 12px;&#13;
+}&#13;
+&#13;
+.thank-you-message {&#13;
+  font-size: 15px;&#13;
+  color: $text-secondary;&#13;
+  line-height: 1.6;&#13;
+  max-width: 480px;&#13;
+  margin: 0 auto;&#13;
+}&#13;
+&#13;
+/* Error Text */&#13;
+.error-text {&#13;
+  color: $brand-danger;&#13;
+  font-size: 15px;&#13;
+  margin: 20px 0;&#13;
+}&#13;
+&#13;
+/* Alert Overrides */&#13;
+.alert-danger {&#13;
+  border-radius: $border-radius-base;&#13;
+  margin-bottom: 20px;&#13;
+}&#13;
+&#13;
+.alert-danger i {&#13;
+  margin-right: 6px;&#13;
+}&#13;
+&#13;
+.qa-block {&#13;
+  margin-bottom: 16px;&#13;
+  background: $background-secondary;&#13;
+  padding: 14px;&#13;
+  border-radius: $border-radius-base;&#13;
+  border: 1px solid $border-primary;&#13;
+}&#13;
+&#13;
+.qa-question-label {&#13;
+  display: block;&#13;
+  font-weight: 600;&#13;
+  font-size: 14px;&#13;
+  color: $text-color;&#13;
+  margin-bottom: 8px;&#13;
+&#13;
+  i {&#13;
+    color: $brand-info;&#13;
+    margin-right: 4px;&#13;
+  }&#13;
+}&#13;
+&#13;
+.qa-answer-input {&#13;
+  width: 100%;&#13;
+  resize: vertical;&#13;
+  background-color: $background-primary;&#13;
+  border: 1px solid $border-primary;&#13;
+  border-radius: $border-radius-base;&#13;
+  color: $text-color;&#13;
+  font-size: 13px;&#13;
+  padding: 8px 12px;&#13;
+&#13;
+  &amp;:focus {&#13;
+    border-color: $brand-info;&#13;
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.15);&#13;
+  }&#13;
+}&#13;
 </css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -313,7 +356,7 @@
 }]]></link>
         <name>Retention Pulse Check-In</name>
         <option_schema/>
-        <public>false</public>
+        <public>true</public>
         <roles/>
         <script><![CDATA[(function() {
     data.submitted = false;
@@ -325,10 +368,9 @@
     data.thankYouMessage = '';
     data.errorMessage = '';
 
-    // Handle check-in submission
+    // ── 1. Handle check-in submission ──
     if (input && input.action === 'submit_checkin') {
         try {
-            // Read from input payload first, fallback to URL parameter
             var submitId = input.sys_id || $sp.getParameter('sys_id');
             if (!submitId) {
                 data.errorMessage = 'Missing check-in identifier.';
@@ -337,22 +379,34 @@
 
             var submitGr = new GlideRecord('x_2023506_german_1_ret_chkin');
             if (!submitGr.get(submitId)) {
-                data.errorMessage = 'Check-in record not found.';
+                data.errorMessage = 'Check-in record not found for ID: ' + submitId;
                 return;
             }
 
-            submitGr.setValue('u_sentiment_score', input.rating);
-            submitGr.setValue('u_settling_feedback', input.feedback || '');
+            // Compile question & answer responses into u_settling_feedback
+            var compiledFeedback = '';
+            if (input.questionAnswers && input.questionAnswers.length > 0) {
+                compiledFeedback += '=== MILESTONE QUESTIONS & ANSWERS ===\n\n';
+                for (var i = 0; i < input.questionAnswers.length; i++) {
+                    var qa = input.questionAnswers[i];
+                    var ansText = (qa.answer && qa.answer.toString().trim() !== '') ? qa.answer.toString().trim() : '[No response provided]';
+                    compiledFeedback += (i + 1) + '. ' + qa.question + '\nAnswer: ' + ansText + '\n\n';
+                }
+            }
+
+            if (input.feedback && input.feedback.toString().trim() !== '') {
+                compiledFeedback += '=== ADDITIONAL EXPERIENCE & FEEDBACK ===\n' + input.feedback.toString().trim() + '\n';
+            }
+
+            // Set field values on the retention check-in record
+            submitGr.setValue('u_sentiment_score', parseInt(input.rating, 10));
+            submitGr.setValue('u_settling_feedback', compiledFeedback);
             submitGr.setValue('u_needs_intervention', input.needsHelp ? true : false);
             submitGr.setValue('u_status', 'completed');
-            
-            // Use getValue() for standard scoped GlideDateTime formatting
-            var now = new GlideDateTime();
-            submitGr.setValue('u_completed_at', now.getValue());
             submitGr.update();
 
             data.submitted = true;
-            data.thankYouMessage = 'Thank you for completing your check-in! Your feedback helps us ensure a smooth transition to life in Germany.';
+            data.thankYouMessage = 'Thank you for completing your check-in! Your responses have been successfully recorded.';
 
             // Reload candidate info for the thank-you screen
             var thankCaseGr = new GlideRecord('x_2023506_german_1_ret_case');
@@ -365,14 +419,13 @@
         return;
     }
 
-    // Initial load: get check-in details
+    // ── 2. Initial page load ──
     var sysId = $sp.getParameter('sys_id');
     if (!sysId) {
         data.errorMessage = 'No check-in ID provided. Please use the link from your invitation email.';
         return;
     }
 
-    // Store sys_id in data so client controller can send it back safely on submit
     data.checkinSysId = sysId;
 
     var gr = new GlideRecord('x_2023506_german_1_ret_chkin');
@@ -395,7 +448,7 @@
     data.milestone = gr.getValue('u_milestone') || '';
     data.milestoneLabel = gr.getDisplayValue('u_milestone') || '';
 
-    // Get parent Retention Case
+    // Load parent Retention Case details
     var caseGr = new GlideRecord('x_2023506_german_1_ret_case');
     if (caseGr.get(gr.getValue('u_retention_case'))) {
         data.candidateName = caseGr.getValue('u_candidate_name') || '';
@@ -403,7 +456,7 @@
     }
 
     // Milestone-specific questions
-    var milestoneQuestions = {
+    var milestoneQuestionsMap = {
         '30_days': [
             'Have you completed your Anmeldung (city registration)?',
             'How is your initial settling-in experience?',
@@ -426,21 +479,30 @@
         ]
     };
 
-    data.questions = milestoneQuestions[data.milestone] || [];
+    // Prepare questions array with individual answer bindings
+    var rawQuestions = milestoneQuestionsMap[data.milestone] || [];
+    data.questions = [];
+    for (var j = 0; j < rawQuestions.length; j++) {
+        data.questions.push({
+            id: 'q_' + j,
+            question: rawQuestions[j],
+            answer: ''
+        });
+    }
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-09-17 09:15:02</sys_created_on>
         <sys_id>5a8d285f631a4075a93462438878e4d7</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Retention Pulse Check-In</sys_name>
         <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
         <sys_update_name>sp_widget_5a8d285f631a4075a93462438878e4d7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-17 12:27:40</sys_updated_on>
+        <sys_updated_on>2026-09-23 15:24:58</sys_updated_on>
         <template><![CDATA[<div class="retention-checkin-wrapper">
   <!-- Error State -->
   <div ng-if="c.data.errorMessage" class="checkin-card">
@@ -488,7 +550,7 @@
         </div>
       </div>
 
-      <!-- Milestone Questions -->
+      <!-- Milestone Questions 
       <div class="questions-section" ng-if="c.data.questions.length > 0">
         <h4 class="section-title">
           <i class="fa fa-clipboard"></i> Please reflect on these topics:
@@ -499,7 +561,24 @@
             <span>{{q}}</span>
           </li>
         </ul>
-      </div>
+      </div>-->
+      
+      <!-- Milestone Questions with Text Input Blocks -->
+<div class="questions-section" ng-if="c.data.questions.length > 0">
+  <h4 class="section-title">
+    <i class="fa fa-clipboard"></i> Milestone Check-In Questions:
+  </h4>
+  
+  <div class="qa-block" ng-repeat="item in c.data.questions track by item.id">
+    <label class="qa-question-label">
+      <i class="fa fa-question-circle"></i> {{item.question}}
+    </label>
+    <textarea class="form-control qa-answer-input"
+              rows="2"
+              ng-model="item.answer"
+              placeholder="Your answer or current status..."></textarea>
+  </div>
+</div>
 
       <!-- Sentiment Rating -->
       <div class="rating-section">

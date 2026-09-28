@@ -95,381 +95,532 @@
 };
 ]]></client_script>
         <controller_as>c</controller_as>
-        <css>.gvft-status-container {
-  background-color: #1e4587;
-  color: #ffffff;
-  min-height: 100vh;
-  padding: 40px 60px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  box-sizing: border-box;
-}
-
-/* Header */
-.status-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 25px;
-  max-width: 950px;
-}
-
-.badge-case {
-  background: #38bdf8;
-  color: #0c4a6e;
-  padding: 4px 10px;
-  font-weight: 700;
-  border-radius: 4px;
-  font-size: 13px;
-  display: inline-block;
-  margin-bottom: 8px;
-}
-
-.applicant-name {
-  font-size: 32px;
-  font-weight: 600;
-  margin: 0 0 6px 0;
-  color: #ffffff;
-}
-
-.role-sub {
-  color: #cbd5e1;
-  font-size: 14px;
-  margin: 0;
-}
-
-.bullet-sep {
-  margin: 0 8px;
-  color: #64748b;
-}
-
-.status-pill {
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: uppercase;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.status-submitted { background-color: #0284c7; }
-.status-under_review { background-color: #f59e0b; color: #1e293b; }
-.status-pre_approved, .status-approved { background-color: #10b981; }
-
-/* Progress Card &amp; Percentage Indicator */
-.progress-section-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
-  padding: 24px 30px 20px 30px;
-  margin-bottom: 25px;
-  max-width: 950px;
-}
-
-.progress-header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 18px;
-}
-
-.progress-title {
-  font-size: 15px;
-  font-weight: 600;
-  color: #e2e8f0;
-}
-
-.percentage-badge {
-  background: #38bdf8;
-  color: #0c4a6e;
-  font-weight: 700;
-  font-size: 14px;
-  padding: 4px 12px;
-  border-radius: 12px;
-}
-
-.progress-bar-track {
-  height: 10px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 5px;
-  overflow: hidden;
-  margin-bottom: 28px;
-}
-
-.progress-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #38bdf8, #0ea5e9);
-  border-radius: 5px;
-  transition: width 0.6s ease-in-out;
-}
-
-/* Stepper Nodes */
-.stages-wrapper {
-  display: flex;
-  justify-content: space-between;
-}
-
-.stage-node {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 120px;
-}
-
-.node-circle {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #1e3a8a;
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.stage-node.active .node-circle {
-  background: #38bdf8;
-  color: #0c4a6e;
-  border-color: #38bdf8;
-}
-
-.stage-node.current .node-circle {
-  box-shadow: 0 0 0 5px rgba(56, 189, 248, 0.3);
-}
-
-.node-title {
-  font-size: 12px;
-  color: #94a3b8;
-  text-align: center;
-  font-weight: 500;
-}
-
-.stage-node.active .node-title {
-  color: #ffffff;
-  font-weight: 600;
-}
-
-/* Metrics Grid */
-.metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  max-width: 950px;
-  margin-bottom: 25px;
-}
-
-.metric-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  padding: 18px;
-}
-
-.metric-card label {
-  display: block;
-  font-size: 11px;
-  text-transform: uppercase;
-  color: #94a3b8;
-  margin-bottom: 6px;
-}
-
-.metric-value {
-  font-size: 15px;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-.text-success { color: #4ade80 !important; }
-.text-warning { color: #fde047 !important; }
-.code-font { font-family: monospace; font-size: 14px; }
-.uppercase { text-transform: uppercase; }
-
-/* Verification Table */
-.checklist-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  padding: 20px;
-  max-width: 950px;
-}
-
-.checklist-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0 0 15px 0;
-  color: #ffffff;
-}
-
-.custom-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.custom-table th {
-  color: #94a3b8;
-  font-size: 12px;
-  text-transform: uppercase;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 8px 12px;
-}
-
-.custom-table td {
-  padding: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  font-size: 13.5px;
-}
-
-.label-status {
-  display: inline-block;
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.status-verified {
-  background: rgba(74, 222, 128, 0.15);
-  color: #4ade80;
-  border: 1px solid rgba(74, 222, 128, 0.3);
-}
-
-/* Empty State */
-.empty-state-card {
-  text-align: center;
-  padding: 80px 20px;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.empty-icon {
-  font-size: 54px;
-  color: rgba(255, 255, 255, 0.3);
-  margin-bottom: 16px;
-}
-
-.empty-title {
-  font-size: 22px;
-  margin-bottom: 8px;
-}
-
-.empty-desc {
-  font-size: 14px;
-  color: #cbd5e1;
-  margin-bottom: 24px;
-}
-
-.btn-start {
-  background: #38bdf8;
-  color: #0c4a6e;
-  font-weight: 600;
-  padding: 10px 22px;
-  border-radius: 6px;
-  text-decoration: none;
-  display: inline-block;
-}
-/* Dynamic Document Status Colors */
-.status-verified, 
-.status-approved {
-  background: rgba(74, 222, 128, 0.15);
-  color: #4ade80;
-  border: 1px solid rgba(74, 222, 128, 0.3);
-}
-
-.status-submitted, 
-.status-pending, 
-.status-in_review {
-  background: rgba(253, 224, 71, 0.15);
-  color: #fde047;
-  border: 1px solid rgba(253, 224, 71, 0.3);
-}
-
-.status-uploaded {
-  background: rgba(56, 189, 248, 0.15);
-  color: #38bdf8;
-  border: 1px solid rgba(56, 189, 248, 0.3);
-}
-
-.status-rejected {
-  background: rgba(248, 113, 113, 0.15);
-  color: #f87171;
-  border: 1px solid rgba(248, 113, 113, 0.3);
-}
-
-.review-notes-cell {
-  font-size: 13px;
-  color: #cbd5e1;
-  font-style: italic;
-}
-
-/* ═══════════════════════════════════════════════════════
-   Re-upload Action Styles
-   ═══════════════════════════════════════════════════════ */
-.reupload-btn {
-  background: rgba(56, 189, 248, 0.2);
-  color: #38bdf8;
-  border: 1px solid rgba(56, 189, 248, 0.4);
-  padding: 5px 12px;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.reupload-btn:hover {
-  background: rgba(56, 189, 248, 0.35);
-  color: #ffffff;
-}
-.reupload-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-.upload-spinner {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  border: 2px solid rgba(56, 189, 248, 0.3);
-  border-top-color: #38bdf8;
-  border-radius: 50%;
-  animation: spin 0.6s linear infinite;
-  margin-right: 6px;
-  vertical-align: middle;
-}
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-.action-cell {
-  text-align: center;
-  vertical-align: middle;
-}
-.upload-alert {
-  padding: 10px 16px;
-  border-radius: 6px;
-  font-size: 13px;
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.upload-alert-success {
-  background: rgba(74, 222, 128, 0.15);
-  color: #4ade80;
-  border: 1px solid rgba(74, 222, 128, 0.3);
-}
-.upload-alert-error {
-  background: rgba(248, 113, 113, 0.15);
-  color: #f87171;
-  border: 1px solid rgba(248, 113, 113, 0.3);
-}
-.file-input-hidden {
-  display: none;
-}
-.action-check {
-  color: rgba(255, 255, 255, 0.3);
-  font-size: 14px;
+        <css>@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap');&#13;
+&#13;
+/* Master Design Tokens */&#13;
+$page-bg: #eef4f7;           // Subtle ice-slate cool tint matching teal&#13;
+$card-bg: #ffffff;           // Crisp white cards&#13;
+$brand-teal: #005f73;        // Deep Petrol&#13;
+$brand-teal-deep: #0a4350;&#13;
+$brand-blue: #0284c7;        // Sky Blue Accent&#13;
+$brand-blue-hover: #0369a1;&#13;
+$accent-sky: #38bdf8;&#13;
+$border-light: #d8e2ea;      // Soft cool-gray borders&#13;
+$border-subtle: #edf2f7;&#13;
+$text-dark: #0f172a;&#13;
+$text-body: #334155;&#13;
+$text-muted: #64748b;&#13;
+$success-green: #10b981;&#13;
+$warning-amber: #d97706;&#13;
+&#13;
+/* Outer Screen Wrapper */&#13;
+.gvft-status-container {&#13;
+  background-color: $page-bg;&#13;
+  color: $text-body;&#13;
+  min-height: 100vh;&#13;
+  padding: 36px 24px 80px 24px;&#13;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;&#13;
+  box-sizing: border-box;&#13;
+}&#13;
+&#13;
+.status-content {&#13;
+  max-width: 1080px;&#13;
+  width: 100%;&#13;
+  margin: 0 auto;&#13;
+}&#13;
+&#13;
+/* ================= 1. Integrated Hero Header ================= */&#13;
+.status-header {&#13;
+  background: $card-bg;&#13;
+  border: 1px solid $border-light;&#13;
+  border-radius: 14px;&#13;
+  padding: 24px 30px;&#13;
+  margin-bottom: 20px;&#13;
+  display: flex;&#13;
+  justify-content: space-between;&#13;
+  align-items: center;&#13;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);&#13;
+}&#13;
+&#13;
+.badge-case {&#13;
+  background: #e0f2fe;&#13;
+  color: $brand-teal;&#13;
+  border: 1px solid #bae6fd;&#13;
+  padding: 4px 10px;&#13;
+  font-weight: 700;&#13;
+  border-radius: 6px;&#13;
+  font-size: 12px;&#13;
+  letter-spacing: 0.4px;&#13;
+  display: inline-block;&#13;
+  margin-bottom: 6px;&#13;
+}&#13;
+&#13;
+.applicant-name {&#13;
+  font-size: 26px;&#13;
+  font-weight: 800;&#13;
+  margin: 0 0 4px 0;&#13;
+  color: $text-dark;&#13;
+  letter-spacing: -0.5px;&#13;
+}&#13;
+&#13;
+.role-sub {&#13;
+  color: $text-muted;&#13;
+  font-size: 13.5px;&#13;
+  margin: 0;&#13;
+&#13;
+  strong {&#13;
+    color: $text-dark;&#13;
+    font-weight: 600;&#13;
+  }&#13;
+}&#13;
+&#13;
+.bullet-sep {&#13;
+  margin: 0 8px;&#13;
+  color: #cbd5e1;&#13;
+}&#13;
+&#13;
+.status-pill {&#13;
+  padding: 7px 18px;&#13;
+  border-radius: 30px;&#13;
+  font-size: 12px;&#13;
+  font-weight: 700;&#13;
+  letter-spacing: 0.6px;&#13;
+  text-transform: uppercase;&#13;
+  background: #f1f5f9;&#13;
+  color: $text-body;&#13;
+  border: 1px solid $border-light;&#13;
+}&#13;
+&#13;
+.status-submitted,&#13;
+.status-open {&#13;
+  background-color: #ecfeff !important;&#13;
+  color: $brand-teal !important;&#13;
+  border-color: #a5f3fc !important;&#13;
+}&#13;
+&#13;
+.status-under_review,&#13;
+.status-pending {&#13;
+  background-color: #fffbeb !important;&#13;
+  color: $warning-amber !important;&#13;
+  border-color: #fef3c7 !important;&#13;
+}&#13;
+&#13;
+.status-pre_approved,&#13;
+.status-approved,&#13;
+.status-closed_complete {&#13;
+  background-color: #ecfdf5 !important;&#13;
+  color: #059669 !important;&#13;
+  border-color: #a7f3d0 !important;&#13;
+}&#13;
+&#13;
+/* ================= 2. Petrol/Teal Progress Banner ================= */&#13;
+.progress-section-card {&#13;
+  background: linear-gradient(135deg, $brand-teal 0%, $brand-teal-deep 100%) !important;&#13;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;&#13;
+  border-radius: 14px;&#13;
+  padding: 26px 32px 22px 32px;&#13;
+  margin-bottom: 20px;&#13;
+  box-shadow: 0 10px 24px rgba(0, 95, 115, 0.18);&#13;
+  color: #ffffff !important;&#13;
+  position: relative;&#13;
+  overflow: hidden;&#13;
+&#13;
+  &amp;::after {&#13;
+    content: '';&#13;
+    position: absolute;&#13;
+    top: -50%;&#13;
+    right: -10%;&#13;
+    width: 300px;&#13;
+    height: 300px;&#13;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);&#13;
+    pointer-events: none;&#13;
+  }&#13;
+}&#13;
+&#13;
+.progress-header-row {&#13;
+  display: flex;&#13;
+  justify-content: space-between;&#13;
+  align-items: center;&#13;
+  margin-bottom: 16px;&#13;
+}&#13;
+&#13;
+.progress-title {&#13;
+  font-size: 15px;&#13;
+  font-weight: 700;&#13;
+  color: #ffffff;&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  gap: 8px;&#13;
+&#13;
+  i {&#13;
+    color: $accent-sky;&#13;
+    font-size: 16px;&#13;
+  }&#13;
+}&#13;
+&#13;
+.percentage-badge {&#13;
+  background: rgba(255, 255, 255, 0.15) !important;&#13;
+  backdrop-filter: blur(8px);&#13;
+  color: #ffffff !important;&#13;
+  font-weight: 700;&#13;
+  font-size: 12.5px;&#13;
+  padding: 5px 14px;&#13;
+  border-radius: 20px;&#13;
+  border: 1px solid rgba(255, 255, 255, 0.22);&#13;
+}&#13;
+&#13;
+.progress-bar-track {&#13;
+  height: 7px;&#13;
+  background: rgba(0, 0, 0, 0.28);&#13;
+  border-radius: 10px;&#13;
+  overflow: hidden;&#13;
+  margin-bottom: 26px;&#13;
+}&#13;
+&#13;
+.progress-bar-fill {&#13;
+  height: 100%;&#13;
+  background: linear-gradient(90deg, #38bdf8, #22d3ee);&#13;
+  border-radius: 10px;&#13;
+  transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);&#13;
+}&#13;
+&#13;
+/* Stepper Nodes */&#13;
+.stages-wrapper {&#13;
+  display: flex;&#13;
+  justify-content: space-between;&#13;
+}&#13;
+&#13;
+.stage-node {&#13;
+  display: flex;&#13;
+  flex-direction: column;&#13;
+  align-items: center;&#13;
+  width: 135px;&#13;
+  position: relative;&#13;
+}&#13;
+&#13;
+.node-circle {&#13;
+  width: 34px;&#13;
+  height: 34px;&#13;
+  border-radius: 50%;&#13;
+  background: rgba(255, 255, 255, 0.08);&#13;
+  border: 2px solid rgba(255, 255, 255, 0.25);&#13;
+  color: #cbd5e1;&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  justify-content: center;&#13;
+  font-size: 12.5px;&#13;
+  font-weight: 700;&#13;
+  margin-bottom: 8px;&#13;
+  transition: all 0.3s ease;&#13;
+}&#13;
+&#13;
+.stage-node.active .node-circle {&#13;
+  background: $accent-sky !important;&#13;
+  color: #042f2e !important;&#13;
+  border-color: $accent-sky !important;&#13;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.45);&#13;
+}&#13;
+&#13;
+.stage-node.current .node-circle {&#13;
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.25);&#13;
+}&#13;
+&#13;
+.node-title {&#13;
+  font-size: 12px;&#13;
+  color: #cbd5e1;&#13;
+  text-align: center;&#13;
+  font-weight: 500;&#13;
+  line-height: 1.35;&#13;
+}&#13;
+&#13;
+.stage-node.active .node-title {&#13;
+  color: #ffffff;&#13;
+  font-weight: 600;&#13;
+}&#13;
+&#13;
+/* ================= 3. Metrics Grid ================= */&#13;
+.metrics-grid {&#13;
+  display: grid;&#13;
+  grid-template-columns: repeat(4, 1fr);&#13;
+  gap: 16px;&#13;
+  margin-bottom: 20px;&#13;
+}&#13;
+&#13;
+.metric-card {&#13;
+  background: $card-bg;&#13;
+  border: 1px solid $border-light;&#13;
+  border-radius: 12px;&#13;
+  padding: 16px 20px;&#13;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);&#13;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;&#13;
+&#13;
+  &amp;:hover {&#13;
+    transform: translateY(-2px);&#13;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);&#13;
+  }&#13;
+&#13;
+  label {&#13;
+    display: block;&#13;
+    font-size: 11px;&#13;
+    text-transform: uppercase;&#13;
+    color: $text-muted;&#13;
+    font-weight: 700;&#13;
+    letter-spacing: 0.5px;&#13;
+    margin-bottom: 6px;&#13;
+  }&#13;
+}&#13;
+&#13;
+.metric-value {&#13;
+  font-size: 15.5px;&#13;
+  font-weight: 700;&#13;
+  color: $text-dark;&#13;
+  letter-spacing: -0.2px;&#13;
+}&#13;
+&#13;
+.text-success { color: $success-green !important; }&#13;
+.text-warning { color: $warning-amber !important; }&#13;
+.code-font {&#13;
+  font-family: 'JetBrains Mono', monospace !important;&#13;
+  font-size: 13.5px !important;&#13;
+  color: $brand-teal !important;&#13;
+}&#13;
+.uppercase {&#13;
+  font-family: 'JetBrains Mono', monospace !important;&#13;
+  letter-spacing: 0.5px;&#13;
+}&#13;
+&#13;
+/* ================= 4. Verification Matrix Table ================= */&#13;
+.checklist-card {&#13;
+  background: $card-bg;&#13;
+  border: 1px solid $border-light;&#13;
+  border-radius: 14px;&#13;
+  padding: 24px 28px;&#13;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);&#13;
+}&#13;
+&#13;
+.checklist-title {&#13;
+  font-size: 16.5px;&#13;
+  font-weight: 700;&#13;
+  margin: 0 0 16px 0;&#13;
+  color: $brand-teal;&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  gap: 8px;&#13;
+&#13;
+  i {&#13;
+    color: $brand-blue;&#13;
+    font-size: 18px;&#13;
+  }&#13;
+}&#13;
+&#13;
+.custom-table {&#13;
+  width: 100%;&#13;
+  border-collapse: separate;&#13;
+  border-spacing: 0;&#13;
+&#13;
+  th {&#13;
+    color: $text-muted;&#13;
+    font-size: 11.5px;&#13;
+    font-weight: 700;&#13;
+    text-transform: uppercase;&#13;
+    letter-spacing: 0.5px;&#13;
+    border-bottom: 1px solid $border-light;&#13;
+    padding: 12px 16px;&#13;
+    background-color: #f8fafc;&#13;
+&#13;
+    &amp;:first-child { border-top-left-radius: 8px; }&#13;
+    &amp;:last-child { border-top-right-radius: 8px; }&#13;
+  }&#13;
+&#13;
+  td {&#13;
+    padding: 14px 16px;&#13;
+    border-bottom: 1px solid $border-subtle;&#13;
+    font-size: 13.5px;&#13;
+    color: $text-body;&#13;
+    vertical-align: middle;&#13;
+&#13;
+    strong {&#13;
+      color: $text-dark;&#13;
+      font-weight: 600;&#13;
+    }&#13;
+  }&#13;
+&#13;
+  tbody tr:last-child td {&#13;
+    border-bottom: none;&#13;
+  }&#13;
+&#13;
+  tbody tr:hover {&#13;
+    background-color: #f8fafc;&#13;
+  }&#13;
+}&#13;
+&#13;
+/* Badges */&#13;
+.label-status {&#13;
+  display: inline-flex;&#13;
+  align-items: center;&#13;
+  gap: 6px;&#13;
+  padding: 4px 10px;&#13;
+  border-radius: 6px;&#13;
+  font-size: 12px;&#13;
+  font-weight: 600;&#13;
+&#13;
+  i {&#13;
+    font-size: 11px;&#13;
+  }&#13;
+}&#13;
+&#13;
+.status-verified, &#13;
+.status-approved {&#13;
+  background: #ecfdf5;&#13;
+  color: #059669;&#13;
+  border: 1px solid #a7f3d0;&#13;
+}&#13;
+&#13;
+.status-submitted, &#13;
+.status-pending, &#13;
+.status-in_review {&#13;
+  background: #f0fdfa;&#13;
+  color: $brand-teal;&#13;
+  border: 1px solid #ccfbf1;&#13;
+}&#13;
+&#13;
+.status-uploaded {&#13;
+  background: #f0f9ff;&#13;
+  color: $brand-blue;&#13;
+  border: 1px solid #bae6fd;&#13;
+}&#13;
+&#13;
+.status-rejected {&#13;
+  background: #fef2f2;&#13;
+  color: #dc2626;&#13;
+  border: 1px solid #fecaca;&#13;
+}&#13;
+&#13;
+.review-notes-cell {&#13;
+  font-size: 13px;&#13;
+  color: #64748b;&#13;
+}&#13;
+&#13;
+/* Re-upload Styles */&#13;
+.reupload-btn {&#13;
+  background: #e0f2fe;&#13;
+  color: $brand-blue;&#13;
+  border: 1px solid #bae6fd;&#13;
+  padding: 6px 14px;&#13;
+  border-radius: 6px;&#13;
+  font-size: 12px;&#13;
+  font-weight: 600;&#13;
+  cursor: pointer;&#13;
+  transition: all 0.2s ease;&#13;
+&#13;
+  &amp;:hover {&#13;
+    background: $brand-blue;&#13;
+    color: #ffffff;&#13;
+  }&#13;
+&#13;
+  &amp;:disabled {&#13;
+    opacity: 0.5;&#13;
+    cursor: not-allowed;&#13;
+  }&#13;
+}&#13;
+&#13;
+.upload-spinner {&#13;
+  display: inline-block;&#13;
+  width: 14px;&#13;
+  height: 14px;&#13;
+  border: 2px solid #bae6fd;&#13;
+  border-top-color: $brand-blue;&#13;
+  border-radius: 50%;&#13;
+  animation: spin 0.6s linear infinite;&#13;
+  margin-right: 6px;&#13;
+  vertical-align: middle;&#13;
+}&#13;
+&#13;
+@keyframes spin {&#13;
+  to { transform: rotate(360deg); }&#13;
+}&#13;
+&#13;
+.action-cell {&#13;
+  text-align: center;&#13;
+  vertical-align: middle;&#13;
+}&#13;
+&#13;
+.action-check {&#13;
+  color: #cbd5e1;&#13;
+  font-size: 14px;&#13;
+}&#13;
+&#13;
+.upload-alert {&#13;
+  padding: 12px 18px;&#13;
+  border-radius: 8px;&#13;
+  font-size: 13px;&#13;
+  margin-bottom: 16px;&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  gap: 8px;&#13;
+}&#13;
+&#13;
+.upload-alert-success {&#13;
+  background: #ecfdf5;&#13;
+  color: #059669;&#13;
+  border: 1px solid #a7f3d0;&#13;
+}&#13;
+&#13;
+.upload-alert-error {&#13;
+  background: #fef2f2;&#13;
+  color: #dc2626;&#13;
+  border: 1px solid #fecaca;&#13;
+}&#13;
+&#13;
+.file-input-hidden {&#13;
+  display: none;&#13;
+}&#13;
+&#13;
+/* ================= 5. Empty State ================= */&#13;
+.empty-state-card {&#13;
+  background: $card-bg;&#13;
+  border: 1px solid $border-light;&#13;
+  border-radius: 14px;&#13;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);&#13;
+  text-align: center;&#13;
+  padding: 80px 20px;&#13;
+  max-width: 600px;&#13;
+  margin: 40px auto 0 auto;&#13;
+}&#13;
+&#13;
+.empty-icon {&#13;
+  font-size: 54px;&#13;
+  color: #cbd5e1;&#13;
+  margin-bottom: 16px;&#13;
+}&#13;
+&#13;
+.empty-title {&#13;
+  font-size: 22px;&#13;
+  font-weight: 700;&#13;
+  color: $text-dark;&#13;
+  margin-bottom: 8px;&#13;
+}&#13;
+&#13;
+.empty-desc {&#13;
+  font-size: 14px;&#13;
+  color: $text-muted;&#13;
+  margin-bottom: 24px;&#13;
+}&#13;
+&#13;
+.btn-start {&#13;
+  background: $brand-blue;&#13;
+  color: #ffffff;&#13;
+  font-weight: 600;&#13;
+  padding: 10px 24px;&#13;
+  border-radius: 8px;&#13;
+  text-decoration: none;&#13;
+  display: inline-block;&#13;
+  transition: background 0.2s ease;&#13;
+&#13;
+  &amp;:hover {&#13;
+    background: $brand-blue-hover;&#13;
+    color: #ffffff;&#13;
+  }&#13;
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -483,7 +634,7 @@
 }]]></link>
         <name>GVFT Status Widget</name>
         <option_schema/>
-        <public>false</public>
+        <public>true</public>
         <roles/>
         <script><![CDATA[(function() {
   var caseTable = 'x_2023506_german_1_imm_case';
@@ -660,14 +811,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-09-02 08:40:39</sys_created_on>
         <sys_id>b2bc9c9eb8c145f8bc6ca3cc66737d11</sys_id>
-        <sys_mod_count>42</sys_mod_count>
+        <sys_mod_count>47</sys_mod_count>
         <sys_name>GVFT Status Widget</sys_name>
         <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
         <sys_update_name>sp_widget_b2bc9c9eb8c145f8bc6ca3cc66737d11</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-17 14:12:25</sys_updated_on>
+        <sys_updated_on>2026-09-23 15:24:50</sys_updated_on>
         <template><![CDATA[<div class="gvft-status-container">
   <!-- Empty State (No Record Found) -->
   <div ng-if="!c.data.hasRecord" class="empty-state-card">

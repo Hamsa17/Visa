@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="db_image">
+    <db_image action="DELETE">
+        <active>true</active>
+        <category/>
+        <format>JPEG</format>
+        <height>493</height>
+        <image>7c7e7e8683cb0790c53aad30ceaad364</image>
+        <name>visa_travel_bg.jpg</name>
+        <size_bytes>42867</size_bytes>
+        <sys_class_name>db_image</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-02 11:19:58</sys_created_on>
+        <sys_id>1c4e7a8683cb0790c53aad30ceaad330</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>visa_travel_bg.jpg</sys_name>
+        <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
+        <sys_update_name>db_image_1c4e7a8683cb0790c53aad30ceaad330</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-02 11:20:37</sys_updated_on>
+        <thumbnail/>
+        <width>740</width>
+    </db_image>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</application>
+        <file_path/>
+        <instance_id>8a1e49e0db92395837d72a5913961972</instance_id>
+        <instance_name>dev199797</instance_name>
+        <name>db_image_1c4e7a8683cb0790c53aad30ceaad330</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="db_image"><db_image action="INSERT_OR_UPDATE"><active>true</active><category/><format>JPEG</format><height>493</height><image>7c7e7e8683cb0790c53aad30ceaad364</image><name>visa_travel_bg.jpg</name><size_bytes>42867</size_bytes><sys_class_name>db_image</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-09-02 11:19:58</sys_created_on><sys_id>1c4e7a8683cb0790c53aad30ceaad330</sys_id><sys_mod_count>3</sys_mod_count><sys_name>visa_travel_bg.jpg</sys_name><sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package><sys_policy/><sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope><sys_update_name>db_image_1c4e7a8683cb0790c53aad30ceaad330</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-09-02 11:20:37</sys_updated_on><thumbnail/><width>740</width></db_image></record_update>]]></payload>
+        <payload_hash>-1510314776</payload_hash>
+        <record_name>visa_travel_bg.jpg</record_name>
+        <reverted_from/>
+        <source>fe18557183cb4390c53aad30ceaad380</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-23 14:19:39</sys_created_on>
+        <sys_id>a0d037b883234750c53aad30ceaad394</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a0cea2f0440000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-23 14:19:39</sys_updated_on>
+        <type>Images</type>
+        <update_guid>20d037b84d234750e17e322a68178193</update_guid>
+        <update_guid_history>20d037b84d234750e17e322a68178193:-1510314776,557e32c694cb0790ced16c280504ca4d:-776726975,857e32c664cb07909b75785aeb27a436:-949898909,097e32c6d6cb0790dfcf20143dad5d31:936847061,695e3e86e7cb07902753458d902566a5:1318883437,2b4efa86ddcb0790593a3c1d5efc45a0:-1754416021</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="visa_travel_bg.jpg">e6d033b883234750c53aad30ceaad38f</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-23 14:19:48</sys_created_on>
+        <sys_db_object display_value="" name="db_image">db_image</sys_db_object>
+        <sys_id>9cbc00b7343040908de778016ff224c1</sys_id>
+        <sys_metadata>1c4e7a8683cb0790c53aad30ceaad330</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>visa_travel_bg.jpg</sys_name>
+        <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
+        <sys_scope_delete display_value="">16ff3c6e664d45e78293c7feae2c9389</sys_scope_delete>
+        <sys_update_name>db_image_1c4e7a8683cb0790c53aad30ceaad330</sys_update_name>
+        <sys_update_version display_value="db_image_1c4e7a8683cb0790c53aad30ceaad330">a0d037b883234750c53aad30ceaad394</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-23 14:19:48</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

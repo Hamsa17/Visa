@@ -4,13 +4,13 @@
             <element>number</element>
             <position>0</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-17 14:28:04</sys_created_on>
-            <sys_id>1939b00b839f0710c53aad30ceaad34d</sys_id>
+            <sys_created_on>2026-09-25 14:41:28</sys_created_on>
+            <sys_id>a7f886e983ab8b50c53aad30ceaad36c</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_2023506_german_1_ret_case" sys_domain="global" view="Default view">5e62fffa83170710c53aad30ceaad305</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-17 14:28:04</sys_updated_on>
+            <sys_updated_on>2026-09-25 14:41:28</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -18,97 +18,83 @@
             <element>u_candidate_name</element>
             <position>1</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-17 14:28:04</sys_created_on>
-            <sys_id>9539b00b839f0710c53aad30ceaad34e</sys_id>
+            <sys_created_on>2026-09-25 14:41:28</sys_created_on>
+            <sys_id>6ff886e983ab8b50c53aad30ceaad36d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_2023506_german_1_ret_case" sys_domain="global" view="Default view">5e62fffa83170710c53aad30ceaad305</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-17 14:28:04</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>u_arrival_date</element>
-            <position>2</position>
-            <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-17 14:28:04</sys_created_on>
-            <sys_id>1539b00b839f0710c53aad30ceaad34f</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_2023506_german_1_ret_case" sys_domain="global" view="Default view">5e62fffa83170710c53aad30ceaad305</sys_ui_section>
-            <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-17 14:28:04</sys_updated_on>
+            <sys_updated_on>2026-09-25 14:41:28</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>u_imm_case</element>
-            <position>3</position>
+            <position>2</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-17 14:28:04</sys_created_on>
-            <sys_id>9139b00b839f0710c53aad30ceaad350</sys_id>
+            <sys_created_on>2026-09-25 14:41:28</sys_created_on>
+            <sys_id>ebf886e983ab8b50c53aad30ceaad36e</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_2023506_german_1_ret_case" sys_domain="global" view="Default view">5e62fffa83170710c53aad30ceaad305</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-17 14:28:04</sys_updated_on>
+            <sys_updated_on>2026-09-25 14:41:28</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.split</element>
-            <position>4</position>
+            <position>3</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-17 14:28:04</sys_created_on>
-            <sys_id>1139b00b839f0710c53aad30ceaad351</sys_id>
+            <sys_created_on>2026-09-25 14:41:28</sys_created_on>
+            <sys_id>6bf886e983ab8b50c53aad30ceaad36f</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_2023506_german_1_ret_case" sys_domain="global" view="Default view">5e62fffa83170710c53aad30ceaad305</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-17 14:28:04</sys_updated_on>
+            <sys_updated_on>2026-09-25 14:41:28</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>u_candidate_email</element>
-            <position>5</position>
+            <position>4</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-17 14:28:04</sys_created_on>
-            <sys_id>9d39b00b839f0710c53aad30ceaad351</sys_id>
+            <sys_created_on>2026-09-25 14:41:28</sys_created_on>
+            <sys_id>e7f886e983ab8b50c53aad30ceaad370</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_2023506_german_1_ret_case" sys_domain="global" view="Default view">5e62fffa83170710c53aad30ceaad305</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-17 14:28:04</sys_updated_on>
+            <sys_updated_on>2026-09-25 14:41:28</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>u_assigned_hr</element>
-            <position>6</position>
+            <position>5</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-17 14:28:04</sys_created_on>
-            <sys_id>1d39b00b839f0710c53aad30ceaad352</sys_id>
+            <sys_created_on>2026-09-25 14:41:28</sys_created_on>
+            <sys_id>67f886e983ab8b50c53aad30ceaad371</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_2023506_german_1_ret_case" sys_domain="global" view="Default view">5e62fffa83170710c53aad30ceaad305</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-17 14:28:04</sys_updated_on>
+            <sys_updated_on>2026-09-25 14:41:28</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>u_retention_status</element>
-            <position>7</position>
+            <position>6</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-17 14:28:04</sys_created_on>
-            <sys_id>9939b00b839f0710c53aad30ceaad353</sys_id>
+            <sys_created_on>2026-09-25 14:41:28</sys_created_on>
+            <sys_id>e3f886e983ab8b50c53aad30ceaad372</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_2023506_german_1_ret_case" sys_domain="global" view="Default view">5e62fffa83170710c53aad30ceaad305</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-17 14:28:04</sys_updated_on>
+            <sys_updated_on>2026-09-25 14:41:28</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>

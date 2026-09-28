@@ -15,8 +15,8 @@
         <condition/>
         <description/>
         <execute_function>false</execute_function>
-        <filter_condition table="x_2023506_german_1_ret_chkin">u_statusVALCHANGES^u_status=completed<item endquery="false" field="u_status" goto="false" newquery="false" operator="VALCHANGES" or="false" value=""/>
-            <item endquery="false" field="u_status" goto="false" newquery="false" operator="=" or="false" value="completed"/>
+        <filter_condition table="x_2023506_german_1_ret_chkin">u_statusVALCHANGES^u_status=completed<item display_value="-- None --" endquery="false" field="u_status" goto="false" newquery="false" operator="VALCHANGES" or="false" value=""/>
+            <item display_value="Completed" endquery="false" field="u_status" goto="false" newquery="false" operator="=" or="false" value="completed"/>
         </filter_condition>
         <is_rest>false</is_rest>
         <message/>

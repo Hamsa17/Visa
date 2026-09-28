@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="u_document_name" table="x_2023506_german_1_case_doc" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>u_document_name</element>
+            <name>x_2023506_german_1_case_doc</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-01 09:20:17</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>u_document_name</sys_name>
+            <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
+            <sys_update_name>sys_choice_x_2023506_german_1_case_doc_u_document_name</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-01 09:20:17</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>u_document_name</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Passport</label>
+            <language>en</language>
+            <name>x_2023506_german_1_case_doc</name>
+            <sequence>1</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-17 09:15:03</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-17 09:15:03</sys_updated_on>
+            <value>1</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>u_document_name</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Passport</label>
+            <language>en</language>
+            <name>x_2023506_german_1_case_doc</name>
+            <sequence>1</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-17 09:15:03</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-17 09:15:03</sys_updated_on>
+            <value>Passport</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>u_document_name</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Passport Photo</label>
+            <language>en</language>
+            <name>x_2023506_german_1_case_doc</name>
+            <sequence>2</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-17 09:15:03</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-17 09:15:03</sys_updated_on>
+            <value>2</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>u_document_name</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Passport Photo</label>
+            <language>en</language>
+            <name>x_2023506_german_1_case_doc</name>
+            <sequence>2</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-17 09:15:03</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-17 09:15:03</sys_updated_on>
+            <value>Passport Photo</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>u_document_name</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Job Contract</label>
+            <language>en</language>
+            <name>x_2023506_german_1_case_doc</name>
+            <sequence>3</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-17 09:15:03</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-17 09:15:03</sys_updated_on>
+            <value>3</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>u_document_name</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Job Contract</label>
+            <language>en</language>
+            <name>x_2023506_german_1_case_doc</name>
+            <sequence>3</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-17 09:15:03</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-17 09:15:03</sys_updated_on>
+            <value>Job Contract</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>u_document_name</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Degree Certificate</label>
+            <language>en</language>
+            <name>x_2023506_german_1_case_doc</name>
+            <sequence>4</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-17 09:15:03</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-17 09:15:03</sys_updated_on>
+            <value>4</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>u_document_name</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Degree Certificate</label>
+            <language>en</language>
+            <name>x_2023506_german_1_case_doc</name>
+            <sequence>4</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-17 09:15:03</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-17 09:15:03</sys_updated_on>
+            <value>Degree Certificate</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>

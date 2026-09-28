@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_embedded_help_role">
+    <sys_embedded_help_role action="INSERT_OR_UPDATE">
+        <order>1000</order>
+        <role display_value="x_2023506_german_1.candidate" name="x_2023506_german_1.candidate">3c83b3f883234750c53aad30ceaad3f4</role>
+        <sys_class_name>sys_embedded_help_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-23 14:31:40</sys_created_on>
+        <sys_id>6493f33083634750c53aad30ceaad367</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>3c83b3f883234750c53aad30ceaad3f4</sys_name>
+        <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
+        <sys_update_name>sys_embedded_help_role_6493f33083634750c53aad30ceaad367</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-23 14:31:40</sys_updated_on>
+    </sys_embedded_help_role>
+</record_update>

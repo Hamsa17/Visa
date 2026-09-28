@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_design_topic">
+    <sys_cb_design_topic action="INSERT_OR_UPDATE">
+        <compiled_topic display_value="Settlement Assistance &amp; Check-In">e45a921583eb0b50c53aad30ceaad3d6</compiled_topic>
+        <design_definition>{"type":"FlowTopic","triggers":[{"type":"Trigger","name":"f9d0f76c32ec4fa7a76cef919385e219","triggerType":"request","applicability":{"type":"Applicability","mode":"script","value":"true"},"id":"f9d0f76c32ec4fa7a76cef919385e219"}],"goals":[{"name":"primary","trigger_id":"f9d0f76c32ec4fa7a76cef919385e219","nodes":[{"type":"StartGoal","goal_id":"primary","greeting_msg":{"type":"String","mode":"string","value":""},"id":"72a0d68988c444baa1b6b2dbc6de145b","name":"Start","expert_mode":false},{"type":"TerminateGoal","goal_id":"primary","confirmation_msg":{"type":"String","mode":"string","value":""},"id":"1407a0cc2fb3419da9e04d618b12a061","name":"End","expert_mode":false},{"type":"ChoiceInputPrompt","expression_mode":"simple","metadataScript":"","cardName":"","cardFields":[],"id":"b5fd58395fdc47b4ae87edce77fbb40a","name":"Select Assistance Topic","goal_id":"primary","applicability":{"type":"Applicability","mode":"script","value":"true"},"expert_mode":false,"variable_id":"98d4a2fa44ee43e3a2a40350e17a255b","message":{"type":"String","mode":"string","value":"gs.getMessageLang(\"Welcome to your Germany Settlement Assistant! What topic do you need help with?\", vaContext.getRequesterLang())"},"request_feedback":false,"skippable":{"type":"Applicability","mode":"script","value":"false"},"skipreprompt":{"type":"Applicability","mode":"script","value":"false"},"nlu_entity_binding":{"type":"NLUEntityBinding","allow_text_input":false,"use_confirmation_prompt":true},"description":""},{"type":"Decision","name":"Decision","branches":[{"type":"Branch","label":"Anmeldung Path","expression":{"type":"Applicability","mode":"query","value":"select_assistance_topic=anmeldung"},"id":"ec2c7f6181784d5f8e79d555110d2358","name":"Anmeldung Path","expert_mode":false},{"type":"Branch","label":"Tax ID Path","expression":{"type":"Applicability","mode":"query","value":"select_assistance_topic=tax_id"},"id":"28164dc7211b45d1a1659bf99dde71ec","name":"Tax ID Path","expert_mode":false},{"type":"Branch","label":"Pulse Check-In Path","expression":{"type":"Applicability","mode":"query","value":"select_assistance_topic=checkin"},"id":"32a774927d55476386c3a0f778bf74a2","name":"Pulse Check-In Path","expert_mode":false}],"id":"792fde33d0814d91ae8297b23f544869","goal_id":"primary","expert_mode":false},{"type":"TextOutputPrompt","value":[{"type":"String","mode":"string","value":"gs.getMessageLang(\"va:topic:48b45ad583ab0b50c53aad30ceaad351:node:c3abe53f56194761b63d3735fef2e79e:field:0\", vaContext.getRequesterLang())"}],"request_feedback":true,"isCollapsible":true,"id":"c3abe53f56194761b63d3735fef2e79e","name":"Anmeldung Guidance","goal_id":"primary","applicability":{"type":"Applicability","mode":"script","value":"true"},"expert_mode":false,"secure":false},{"type":"TextOutputPrompt","value":[{"type":"String","mode":"string","value":"gs.getMessageLang(\"va:topic:48b45ad583ab0b50c53aad30ceaad351:node:dc2724b5e22c43069c79c95f0e36b8d8:field:0\", vaContext.getRequesterLang())"}],"request_feedback":true,"isCollapsible":true,"id":"dc2724b5e22c43069c79c95f0e36b8d8","name":"Tax ID Guidance","goal_id":"primary","applicability":{"type":"Applicability","mode":"script","value":"true"},"expert_mode":false,"secure":false},{"type":"TextOutputPrompt","value":[{"type":"String","mode":"string","value":"gs.getMessageLang(\"va:topic:48b45ad583ab0b50c53aad30ceaad351:node:81304dbefc6d42e2829fc1cf7c608e02:field:0\", vaContext.getRequesterLang())"}],"request_feedback":true,"isCollapsible":true,"id":"81304dbefc6d42e2829fc1cf7c608e02","name":"Check-In Guidance","goal_id":"primary","applicability":{"type":"Applicability","mode":"script","value":"true"},"expert_mode":false,"secure":false},{"type":"InputPrompt","variable_id":"42f76e64979a4f70974695a355ff7701","message":{"type":"String","mode":"string","value":"gs.getMessageLang(\"Would you like information on another settlement topic?\", vaContext.getRequesterLang())"},"nlu_entity_binding":{"type":"NLUEntityBinding","allow_text_input":false,"use_confirmation_prompt":true},"request_feedback":false,"skippable":{"type":"Applicability","mode":"script","value":"false"},"skipreprompt":{"type":"Applicability","mode":"script","value":"false"},"metadataScript":"","cardName":"","cardFields":[],"id":"90486141ce214fc0bc5b31d70e515f17","name":"Check Another Topic","goal_id":"primary","applicability":{"type":"Applicability","mode":"script","value":"true"},"expert_mode":false,"description":""},{"type":"InputPrompt","variable_id":"6a30e24547dd4edd93794b3c523785ac","message":{"type":"String","mode":"string","value":"gs.getMessageLang(\"Would you like information on another settlement topic?\", vaContext.getRequesterLang())"},"nlu_entity_binding":{"type":"NLUEntityBinding","allow_text_input":false,"use_confirmation_prompt":true},"request_feedback":false,"skippable":{"type":"Applicability","mode":"script","value":"false"},"skipreprompt":{"type":"Applicability","mode":"script","value":"false"},"metadataScript":"","cardName":"","cardFields":[],"id":"2a5fc180947047ada887080c9fd4e1e1","name":"Check Another Topic","goal_id":"primary","applicability":{"type":"Applicability","mode":"script","value":"true"},"expert_mode":false,"description":""},{"type":"Decision","name":"Decision","branches":[{"type":"Branch","label":"Yes","expression":{"type":"Applicability","mode":"query","value":"check_another_topic_2=true"},"id":"4f60e13a9f2046e9abf852d7da97b2f8","name":"Yes","expert_mode":false},{"type":"Branch","label":"No","expression":{"type":"Applicability","mode":"query","value":"check_another_topic_2=false"},"id":"365af18d2bc340f2ac6b306861da226c","name":"No","expert_mode":false}],"id":"7edff6679f0a4539aeeb8b4deb37c313","goal_id":"primary","expert_mode":false},{"type":"Decision","name":"Decision","branches":[{"type":"Branch","label":"Yes","expression":{"type":"Applicability","mode":"query","value":"check_another_topic=true"},"id":"fe7d73ffe97d4038944298837791861d","name":"Yes","expert_mode":false},{"type":"Branch","label":"No","expression":{"type":"Applicability","mode":"query","value":"check_another_topic="},"id":"9fe9875fcb4049d09637f5ef6a0e4308","name":"No","expert_mode":false}],"id":"f7572ade4c454a858388e8cb19bf7635","goal_id":"primary","expert_mode":false},{"type":"TerminateGoal","goal_id":"primary","id":"0577f90119c640609f2b420c15d21335","name":"ImplicitEnd__536cc68b175a4650a5ad13f5c7594692","expert_mode":false},{"type":"TextOutputPrompt","value":[{"type":"String","mode":"string","value":"gs.getMessageLang(\"Glad we could help! Welcome to Germany, and reach out anytime you need assistance.\", vaContext.getRequesterLang())"}],"request_feedback":true,"isCollapsible":true,"id":"3474dae00a4848e2a236c01ce3f4031a","name":"Goodbye Message","goal_id":"primary","applicability":{"type":"Applicability","mode":"script","value":"true"},"expert_mode":false,"secure":false},{"type":"TextOutputPrompt","value":[{"type":"String","mode":"string","value":"gs.getMessageLang(\"Glad we could help! Welcome to Germany, and reach out anytime you need assistance.\", vaContext.getRequesterLang())"}],"request_feedback":true,"isCollapsible":true,"id":"84702a2a3dd14a2eba8895a940e669c9","name":"Goodbye Message","goal_id":"primary","applicability":{"type":"Applicability","mode":"script","value":"true"},"expert_mode":false,"secure":false}],"edges":[{"type":"Edge","source_node_id":"72a0d68988c444baa1b6b2dbc6de145b","target_node_id":"b5fd58395fdc47b4ae87edce77fbb40a","id":"bd055aa072e34dbbaff092cf77423d11"},{"type":"Edge","source_node_id":"b5fd58395fdc47b4ae87edce77fbb40a","target_node_id":"792fde33d0814d91ae8297b23f544869","id":"872614ed8d2c4796849dc995fd848cb2"},{"type":"Edge","source_node_id":"792fde33d0814d91ae8297b23f544869","target_node_id":"c3abe53f56194761b63d3735fef2e79e","branch_id":"ec2c7f6181784d5f8e79d555110d2358","id":"c7fd5b03ea554925a2885a746172090d","name":"ec2c7f6181784d5f8e79d555110d2358"},{"type":"Edge","source_node_id":"c3abe53f56194761b63d3735fef2e79e","target_node_id":"90486141ce214fc0bc5b31d70e515f17","id":"0b8fc04440c44708b489d2ac206c04db"},{"type":"Edge","source_node_id":"792fde33d0814d91ae8297b23f544869","target_node_id":"dc2724b5e22c43069c79c95f0e36b8d8","branch_id":"28164dc7211b45d1a1659bf99dde71ec","id":"79c3b4aa055c47a4b23f82694556927b","name":"28164dc7211b45d1a1659bf99dde71ec"},{"type":"Edge","source_node_id":"792fde33d0814d91ae8297b23f544869","target_node_id":"81304dbefc6d42e2829fc1cf7c608e02","branch_id":"32a774927d55476386c3a0f778bf74a2","id":"f004fb7c03a34510a5ae6aece4feb199","name":"32a774927d55476386c3a0f778bf74a2"},{"type":"Edge","source_node_id":"81304dbefc6d42e2829fc1cf7c608e02","target_node_id":"90486141ce214fc0bc5b31d70e515f17","id":"278fd366cc4849e0a5cd7dad9def4fe4"},{"type":"Edge","source_node_id":"dc2724b5e22c43069c79c95f0e36b8d8","target_node_id":"2a5fc180947047ada887080c9fd4e1e1","id":"e4065a1492d04b58aaf5da03aca098c8"},{"type":"Edge","source_node_id":"2a5fc180947047ada887080c9fd4e1e1","target_node_id":"7edff6679f0a4539aeeb8b4deb37c313","id":"71b10f4c2df843208604a55947a4a0dd"},{"type":"Edge","source_node_id":"90486141ce214fc0bc5b31d70e515f17","target_node_id":"f7572ade4c454a858388e8cb19bf7635","id":"7169f4cba81d4d9d88b5ce95bcf0244f"},{"type":"Edge","source_node_id":"f7572ade4c454a858388e8cb19bf7635","target_node_id":"b5fd58395fdc47b4ae87edce77fbb40a","branch_id":"fe7d73ffe97d4038944298837791861d","id":"b9919cedc62c4c9fa99f53c558e9331c","name":"fe7d73ffe97d4038944298837791861d"},{"type":"Edge","source_node_id":"f7572ade4c454a858388e8cb19bf7635","target_node_id":"3474dae00a4848e2a236c01ce3f4031a","branch_id":"9fe9875fcb4049d09637f5ef6a0e4308","id":"9ee2b112cf3644138effa0914e5cb692","name":"9fe9875fcb4049d09637f5ef6a0e4308"},{"type":"Edge","source_node_id":"3474dae00a4848e2a236c01ce3f4031a","target_node_id":"0577f90119c640609f2b420c15d21335","id":"d21f544e40a04c82a7e3b695a2aeaeb2"},{"type":"Edge","source_node_id":"7edff6679f0a4539aeeb8b4deb37c313","target_node_id":"b5fd58395fdc47b4ae87edce77fbb40a","branch_id":"4f60e13a9f2046e9abf852d7da97b2f8","id":"f2f8c3c9a37343df8ef8cfa5052e49be","name":"4f60e13a9f2046e9abf852d7da97b2f8"},{"type":"Edge","source_node_id":"7edff6679f0a4539aeeb8b4deb37c313","target_node_id":"84702a2a3dd14a2eba8895a940e669c9","branch_id":"365af18d2bc340f2ac6b306861da226c","id":"a1c95bbc8c014809bcfd0831dcb9dc6a","name":"365af18d2bc340f2ac6b306861da226c"},{"type":"Edge","source_node_id":"84702a2a3dd14a2eba8895a940e669c9","target_node_id":"1407a0cc2fb3419da9e04d618b12a061","id":"77b73f73fb8248cd8de78e94ce867d90"}],"id":"primary"}],"script_variables":[],"glide_variables":[{"type":"Reference","table":"sys_user","auto_select":false,"id":"current-user","name":"user","formatType":"text","secure":false,"sensitive":false,"aiInput":false,"list":false},{"type":"Choice","choices":[{"name":"City Registration (Anmeldung)","element":"anmeldung"},{"name":"Tax ID &amp; Bank Setup","element":"tax_id"},{"name":"Relocation Pulse Check-In","element":"checkin"}],"id":"98d4a2fa44ee43e3a2a40350e17a255b","name":"select_assistance_topic","formatType":"text","secure":false,"sensitive":false,"aiInput":false,"list":false,"label":"Select Assistance Topic"},{"type":"True/False","id":"42f76e64979a4f70974695a355ff7701","name":"check_another_topic","formatType":"text","secure":false,"sensitive":false,"aiInput":false,"list":false},{"type":"True/False","id":"6a30e24547dd4edd93794b3c523785ac","name":"check_another_topic_2","formatType":"text","secure":false,"sensitive":false,"aiInput":false,"list":false}],"applicability":{"type":"Applicability","mode":"script","value":"true"},"roles":[],"scope":"e218557183cb4390c53aad30ceaad33a","domain":"global","topic_type":"STANDARD","channels":[],"dialog_acts_enabled":false,"id":"48b45ad583ab0b50c53aad30ceaad351","name":"Settlement Assistance &amp; Check-In","key_phrases":["Settlement Assistance &amp; Check-In","anmeldung"," tax id"," bank"," check in"," settlement"," pulse"," relocation"," retention"],"nlu_provider":"","nlu_model":"","nlu_model_label":"","nlu_intent":"","nlu_intent_label":"","flexible_conversation_switching":false,"autopilot_topic":false,"design_categories":[{"name":null,"visible":false,"sysId":"a508421d832b0b50c53aad30ceaad300"}],"triggerable_by_notification":false,"description":"","model_type":"nlu_keyword","foundational":false,"modify_confirmation_enabled":false,"context_profiles":[],"title":"Settlement Assistance &amp; Check-In","library":false,"csTopicId":"e45a921583eb0b50c53aad30ceaad3d6","readOnly":false,"nluMapping":"[]"}</design_definition>
+        <design_topic_id>48b45ad583ab0b50c53aad30ceaad351</design_topic_id>
+        <graph>{
+  "graph_api_version": "1.0.82",
+  "goals": {
+    "primary": {
+      "id": "primary",
+      "trigger": {
+        "type": "primary"
+      },
+      "name": "primary",
+      "applicability": "",
+      "description": "",
+      "nodes": {
+        "72a0d68988c444baa1b6b2dbc6de145b": {
+          "id": "72a0d68988c444baa1b6b2dbc6de145b",
+          "stepType": "Start",
+          "name": "Start",
+          "greetingResponse": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "1407a0cc2fb3419da9e04d618b12a061": {
+          "id": "1407a0cc2fb3419da9e04d618b12a061",
+          "stepType": "TerminateGoal",
+          "name": "End",
+          "confirmationMessage": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "b5fd58395fdc47b4ae87edce77fbb40a": {
+          "name": "Select Assistance Topic",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Welcome to your Germany Settlement Assistant! What topic do you need help with?"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "98d4a2fa44ee43e3a2a40350e17a255b",
+          "detailDescription": "",
+          "id": "b5fd58395fdc47b4ae87edce77fbb40a",
+          "stepType": "ChoicePrompt",
+          "hasCardHeader": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        },
+        "792fde33d0814d91ae8297b23f544869": {
+          "id": "792fde33d0814d91ae8297b23f544869",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "c3abe53f56194761b63d3735fef2e79e": {
+          "id": "c3abe53f56194761b63d3735fef2e79e",
+          "stepType": "TextOutput",
+          "name": "Anmeldung Guidance",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "City Registration (Anmeldung):"
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "You must register your residential address at your local Bürgeramt or Bürgerbüro within 14 days of moving into permanent accommodation."
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "Key Documents Required:"
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "• Valid Passport/ID"
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "• Completed Wohnungsgeberbestätigung (landlord confirmation form)"
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "• Marriage/Birth certificates (if registering family members)"
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "5f5fbf5a4af14afcb09346efc2e28695"
+            }
+          ],
+          "isCollapsible": true,
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "dc2724b5e22c43069c79c95f0e36b8d8": {
+          "id": "dc2724b5e22c43069c79c95f0e36b8d8",
+          "stepType": "TextOutput",
+          "name": "Tax ID Guidance",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "Tax ID &amp; German Bank Account:"
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "• Tax ID (Steueridentifikationsnummer): It is automatically generated upon completing your Anmeldung and mailed to your registered address in 2 to 4 weeks."
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "• Bank Account: You can open an account at traditional or online German banks using your passport and proof of registration (Meldebescheinigung). Provide your IBAN to HR payroll once active."
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "581de9cfcb9145ef949e746758fdc1c0"
+            }
+          ],
+          "isCollapsible": true,
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "81304dbefc6d42e2829fc1cf7c608e02": {
+          "id": "81304dbefc6d42e2829fc1cf7c608e02",
+          "stepType": "TextOutput",
+          "name": "Check-In Guidance",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "Relocation Pulse Check-In:"
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "Our relocation team triggers scheduled check-ins at 30, 60, and 90 days to help ensure your transition is smooth."
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "You can complete pending feedback surveys directly from your Retention Portal dashboard or reach out to your relocation coordinator."
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "f3c26976088e420c9eded8c557321f8e"
+            }
+          ],
+          "isCollapsible": true,
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "90486141ce214fc0bc5b31d70e515f17": {
+          "id": "90486141ce214fc0bc5b31d70e515f17",
+          "stepType": "BooleanPrompt",
+          "name": "Check Another Topic",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Would you like information on another settlement topic?"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "hasCardHeader": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "42f76e64979a4f70974695a355ff7701",
+          "detailDescription": ""
+        },
+        "2a5fc180947047ada887080c9fd4e1e1": {
+          "id": "2a5fc180947047ada887080c9fd4e1e1",
+          "stepType": "BooleanPrompt",
+          "name": "Check Another Topic",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Would you like information on another settlement topic?"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "hasCardHeader": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "6a30e24547dd4edd93794b3c523785ac",
+          "detailDescription": ""
+        },
+        "7edff6679f0a4539aeeb8b4deb37c313": {
+          "id": "7edff6679f0a4539aeeb8b4deb37c313",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "f7572ade4c454a858388e8cb19bf7635": {
+          "id": "f7572ade4c454a858388e8cb19bf7635",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "0577f90119c640609f2b420c15d21335": {
+          "id": "0577f90119c640609f2b420c15d21335",
+          "stepType": "ImplicitEnd"
+        },
+        "3474dae00a4848e2a236c01ce3f4031a": {
+          "id": "3474dae00a4848e2a236c01ce3f4031a",
+          "stepType": "TextOutput",
+          "name": "Goodbye Message",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "Glad we could help! Welcome to Germany, and reach out anytime you need assistance."
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "dee33d24071a4f7abdf74d483e34a8f6"
+            }
+          ],
+          "isCollapsible": true,
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "84702a2a3dd14a2eba8895a940e669c9": {
+          "id": "84702a2a3dd14a2eba8895a940e669c9",
+          "stepType": "TextOutput",
+          "name": "Goodbye Message",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "Glad we could help! Welcome to Germany, and reach out anytime you need assistance."
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "0922ed53ba59403d962b23b09a58448a"
+            }
+          ],
+          "isCollapsible": true,
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        }
+      },
+      "edges": [
+        {
+          "id": "bd055aa072e34dbbaff092cf77423d11",
+          "edgeType": "Edge",
+          "source": "72a0d68988c444baa1b6b2dbc6de145b",
+          "target": "b5fd58395fdc47b4ae87edce77fbb40a",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "872614ed8d2c4796849dc995fd848cb2",
+          "edgeType": "Edge",
+          "source": "b5fd58395fdc47b4ae87edce77fbb40a",
+          "target": "792fde33d0814d91ae8297b23f544869",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "c7fd5b03ea554925a2885a746172090d",
+          "edgeType": "Branch",
+          "source": "792fde33d0814d91ae8297b23f544869",
+          "target": "c3abe53f56194761b63d3735fef2e79e",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.select_assistance_topic=anmeldung",
+            "mode": "query"
+          },
+          "label": "Anmeldung Path"
+        },
+        {
+          "id": "0b8fc04440c44708b489d2ac206c04db",
+          "edgeType": "Edge",
+          "source": "c3abe53f56194761b63d3735fef2e79e",
+          "target": "90486141ce214fc0bc5b31d70e515f17",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "79c3b4aa055c47a4b23f82694556927b",
+          "edgeType": "Branch",
+          "source": "792fde33d0814d91ae8297b23f544869",
+          "target": "dc2724b5e22c43069c79c95f0e36b8d8",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.select_assistance_topic=tax_id",
+            "mode": "query"
+          },
+          "label": "Tax ID Path"
+        },
+        {
+          "id": "f004fb7c03a34510a5ae6aece4feb199",
+          "edgeType": "Branch",
+          "source": "792fde33d0814d91ae8297b23f544869",
+          "target": "81304dbefc6d42e2829fc1cf7c608e02",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.select_assistance_topic=checkin",
+            "mode": "query"
+          },
+          "label": "Pulse Check-In Path"
+        },
+        {
+          "id": "278fd366cc4849e0a5cd7dad9def4fe4",
+          "edgeType": "Edge",
+          "source": "81304dbefc6d42e2829fc1cf7c608e02",
+          "target": "90486141ce214fc0bc5b31d70e515f17",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "e4065a1492d04b58aaf5da03aca098c8",
+          "edgeType": "Edge",
+          "source": "dc2724b5e22c43069c79c95f0e36b8d8",
+          "target": "2a5fc180947047ada887080c9fd4e1e1",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "71b10f4c2df843208604a55947a4a0dd",
+          "edgeType": "Edge",
+          "source": "2a5fc180947047ada887080c9fd4e1e1",
+          "target": "7edff6679f0a4539aeeb8b4deb37c313",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "7169f4cba81d4d9d88b5ce95bcf0244f",
+          "edgeType": "Edge",
+          "source": "90486141ce214fc0bc5b31d70e515f17",
+          "target": "f7572ade4c454a858388e8cb19bf7635",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "b9919cedc62c4c9fa99f53c558e9331c",
+          "edgeType": "Branch",
+          "source": "f7572ade4c454a858388e8cb19bf7635",
+          "target": "b5fd58395fdc47b4ae87edce77fbb40a",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.check_another_topic=true",
+            "mode": "query"
+          },
+          "label": "Yes"
+        },
+        {
+          "id": "9ee2b112cf3644138effa0914e5cb692",
+          "edgeType": "Branch",
+          "source": "f7572ade4c454a858388e8cb19bf7635",
+          "target": "3474dae00a4848e2a236c01ce3f4031a",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.check_another_topic=",
+            "mode": "query"
+          },
+          "label": "No"
+        },
+        {
+          "id": "d21f544e40a04c82a7e3b695a2aeaeb2",
+          "edgeType": "Edge",
+          "source": "3474dae00a4848e2a236c01ce3f4031a",
+          "target": "0577f90119c640609f2b420c15d21335",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "f2f8c3c9a37343df8ef8cfa5052e49be",
+          "edgeType": "Branch",
+          "source": "7edff6679f0a4539aeeb8b4deb37c313",
+          "target": "b5fd58395fdc47b4ae87edce77fbb40a",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.check_another_topic_2=true",
+            "mode": "query"
+          },
+          "label": "Yes"
+        },
+        {
+          "id": "a1c95bbc8c014809bcfd0831dcb9dc6a",
+          "edgeType": "Branch",
+          "source": "7edff6679f0a4539aeeb8b4deb37c313",
+          "target": "84702a2a3dd14a2eba8895a940e669c9",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.check_another_topic_2=false",
+            "mode": "query"
+          },
+          "label": "No"
+        },
+        {
+          "id": "77b73f73fb8248cd8de78e94ce867d90",
+          "edgeType": "Edge",
+          "source": "84702a2a3dd14a2eba8895a940e669c9",
+          "target": "1407a0cc2fb3419da9e04d618b12a061",
+          "sourcePort": "",
+          "targetPort": ""
+        }
+      ]
+    }
+  },
+  "variables": {
+    "current-user": {
+      "category": "vaInputs",
+      "id": "current-user",
+      "label": "User",
+      "name": "user",
+      "table": "sys_user",
+      "varType": "reference"
+    },
+    "98d4a2fa44ee43e3a2a40350e17a255b": {
+      "id": "98d4a2fa44ee43e3a2a40350e17a255b",
+      "name": "select_assistance_topic",
+      "label": "Select Assistance Topic",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "City Registration (Anmeldung)",
+          "value": "anmeldung"
+        },
+        {
+          "label": "Tax ID &amp; Bank Setup",
+          "value": "tax_id"
+        },
+        {
+          "label": "Relocation Pulse Check-In",
+          "value": "checkin",
+          "checked": true,
+          "meta": {}
+        }
+      ],
+      "category": "vaInputs",
+      "nodeId": "b5fd58395fdc47b4ae87edce77fbb40a",
+      "isHidden": false
+    },
+    "42f76e64979a4f70974695a355ff7701": {
+      "id": "42f76e64979a4f70974695a355ff7701",
+      "name": "check_another_topic",
+      "label": "Check Another Topic",
+      "varType": "boolean",
+      "secure": false,
+      "category": "vaInputs",
+      "nodeId": "90486141ce214fc0bc5b31d70e515f17",
+      "isHidden": false
+    },
+    "6a30e24547dd4edd93794b3c523785ac": {
+      "id": "6a30e24547dd4edd93794b3c523785ac",
+      "name": "check_another_topic_2",
+      "label": "Check Another Topic (2)",
+      "varType": "boolean",
+      "secure": false,
+      "category": "vaInputs",
+      "nodeId": "2a5fc180947047ada887080c9fd4e1e1",
+      "isHidden": false
+    }
+  }
+}</graph>
+        <name>Settlement Assistance &amp; Check-In</name>
+        <sys_class_name>sys_cb_design_topic</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-24 21:18:42</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>e85a921583eb0b50c53aad30ceaad3df</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>FlowTopic</sys_name>
+        <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
+        <sys_update_name>sys_cb_design_topic_e85a921583eb0b50c53aad30ceaad3df</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-24 21:18:48</sys_updated_on>
+        <type>FlowTopic</type>
+    </sys_cb_design_topic>
+</record_update>

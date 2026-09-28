@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="ff26d9f703464c16b923c83077b238eb" extends="task" label="Immigration Case" max_length="40" name="x_2023506_german_1_imm_case" type="collection">
+        <element label="Government Approval No." max_length="50" name="u_approval_number" type="string"/>
+        <element label="Degree Recognized?" max_length="40" name="u_degree_recognized" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Yes (Anabin H+)" sequence="1" value="yes_anabin"/>
+                <element inactive_on_update="false" label="Pending" sequence="3" value="pending"/>
+                <element inactive_on_update="false" label="Comparability Certificate" sequence="2" value="comparability"/>
+            </choice>
+        </element>
+        <element label="Approval Date" max_length="40" name="u_approval_date" type="glide_date"/>
+        <element label="Visa Category" max_length="40" name="u_visa_category" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="EU Blue Card" sequence="1" value="eu_blue_card"/>
+                <element inactive_on_update="false" label="Skilled Worker" sequence="2" value="skilled_worker"/>
+                <element inactive_on_update="false" label="IT Specialist" sequence="3" value="it_specialist"/>
+            </choice>
+        </element>
+        <element label="Job title" max_length="40" name="u_job_title" type="string"/>
+        <element label="Passport Number" max_length="40" name="u_passport_number" type="string"/>
+        <element label="Target City" max_length="100" name="u_target_city" type="string"/>
+        <element default="unpaid" label="Fee Status" max_length="40" name="u_fee_status" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Paid" sequence="2" value="paid"/>
+                <element inactive_on_update="false" label="Waived" sequence="3" value="waived"/>
+                <element inactive_on_update="false" label="Unpaid" sequence="1" value="unpaid"/>
+            </choice>
+        </element>
+        <element label="Candidate Email" mandatory="true" max_length="100" name="u_candidate_email" type="string"/>
+        <element label="Power of Attorney Signed?" max_length="40" name="u_poa_signed" type="boolean"/>
+        <element label="Candidate Name" mandatory="true" max_length="100" name="u_candidate_name" type="string"/>
+        <element label="Passport Expiry" max_length="40" name="u_passport_expiry" type="glide_date"/>
+        <element default="411" label="Fee Amount (€)" max_length="20" name="u_fee_amount" type="decimal"/>
+        <element label="Nationality" mandatory="true" max_length="50" name="u_nationality" type="string"/>
+        <element label="Annual Salary (€)" max_length="20" name="u_annual_salary" type="decimal"/>
+    </element>
+</database>

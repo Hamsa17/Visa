@@ -117,7 +117,10 @@
         }
 
         // Fire outbound email event with attachment
-        gs.eventQueue('x_2023506_german_1.vollmacht_generated', current, current.u_candidate_email, candidateName);
+       // gs.eventQueue('x_2023506_german_1.vollmacht_generated', current, current.u_candidate_email, candidateName);
+
+	   gs.eventQueue('x_2023506_german_1.vollmacht_generated',current, current.getValue('u_candidate_email'), result.attachment_id
+);
 
         gs.addInfoMessage("Vollmacht PDF generated and attached successfully.");
     } else {
@@ -139,7 +142,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>77ecacb42a61493c99b765e104d1374a</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Generate POA</sys_name>
         <sys_overrides/>
         <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
@@ -147,7 +150,7 @@
         <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
         <sys_update_name>sys_ui_action_77ecacb42a61493c99b765e104d1374a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-02 09:47:46</sys_updated_on>
+        <sys_updated_on>2026-09-23 12:07:38</sys_updated_on>
         <table>x_2023506_german_1_imm_case</table>
         <ui11_compatible>false</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>

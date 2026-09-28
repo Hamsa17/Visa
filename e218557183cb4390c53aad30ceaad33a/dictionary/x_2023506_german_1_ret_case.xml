@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="5e75a981fe0b4735b2530469c6709903" label="Retention Case" name="x_2023506_german_1_ret_case" type="collection">
+        <element label="Candidate Email" mandatory="true" max_length="100" name="u_candidate_email" type="string"/>
+        <element label="Assigned HR Contact" name="u_assigned_hr" reference="sys_user" type="reference"/>
+        <element label="Number" max_length="40" name="numbe0" type="string"/>
+        <element default="active" label="Retention Status" name="u_retention_status" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Needs Attention" sequence="2" value="needs_attention"/>
+                <element inactive_on_update="false" label="Critical Risk" sequence="3" value="critical_risk"/>
+                <element inactive_on_update="false" label="Active" sequence="1" value="active"/>
+                <element inactive_on_update="false" label="Completed" sequence="4" value="completed"/>
+            </choice>
+        </element>
+        <element default="javascript:getNextObjNumberPadded();" dynamic_default_value="fdcb83a85f220100a9ad2572f2b4773c" label="Number" max_length="40" name="number" type="string" use_dynamic_default="true"/>
+        <element label="Arrival Date" name="u_arrival_date" type="glide_date"/>
+        <element label="Immigration Case" name="u_imm_case" reference="x_2023506_german_1_imm_case" type="reference"/>
+        <element display="true" label="Candidate Name" mandatory="true" max_length="100" name="u_candidate_name" type="string"/>
+        <index name="index">
+            <element name="u_assigned_hr"/>
+        </index>
+        <index name="index2">
+            <element name="u_imm_case"/>
+        </index>
+    </element>
+</database>

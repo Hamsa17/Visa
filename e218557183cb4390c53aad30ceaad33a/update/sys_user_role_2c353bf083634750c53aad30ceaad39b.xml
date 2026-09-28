@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_role">
+    <sys_user_role action="INSERT_OR_UPDATE">
+        <assignable_by/>
+        <can_delegate>true</can_delegate>
+        <description>Access assigned Risk Alerts; record 1:1 intervention&#13;
+audit notes; close/escalate probation risks for direct&#13;
+reports.</description>
+        <elevated_privilege>false</elevated_privilege>
+        <federated_id>WnaJkJW0/s570j0+lUopd0Cds9PLCJO4TBIM5SDBmsY=</federated_id>
+        <grantable>true</grantable>
+        <includes_roles/>
+        <name>x_2023506_german_1.manager</name>
+        <scoped_admin>false</scoped_admin>
+        <suffix>manager</suffix>
+        <sys_class_name>sys_user_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-23 14:38:54</sys_created_on>
+        <sys_id>2c353bf083634750c53aad30ceaad39b</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>x_2023506_german_1.manager</sys_name>
+        <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
+        <sys_update_name>sys_user_role_2c353bf083634750c53aad30ceaad39b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-23 14:40:47</sys_updated_on>
+    </sys_user_role>
+</record_update>

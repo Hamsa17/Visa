@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="145de57fa4a4497abb91564c22d3e1f6" label="Case Document" name="x_2023506_german_1_case_doc" type="collection">
+        <element default="javascript:current.getTableName();" label="Class" max_length="80" name="sys_class_name" type="sys_class_name"/>
+        <element display="true" label="Document Name" max_length="40" name="u_document_name" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Passport Photo" sequence="2" value="2"/>
+                <element inactive_on_update="false" label="Passport Photo" sequence="2" value="Passport Photo"/>
+                <element inactive_on_update="false" label="Passport" sequence="1" value="Passport"/>
+                <element inactive_on_update="false" label="Passport" sequence="1" value="1"/>
+                <element inactive_on_update="false" label="Job Contract" sequence="3" value="3"/>
+                <element inactive_on_update="false" label="Degree Certificate" sequence="4" value="Degree Certificate"/>
+                <element inactive_on_update="false" label="Degree Certificate" sequence="4" value="4"/>
+                <element inactive_on_update="false" label="Job Contract" sequence="3" value="Job Contract"/>
+            </choice>
+        </element>
+        <element label="Review Notes" max_length="4000" name="u_review_notes" type="string"/>
+        <element label="Case" mandatory="true" max_length="32" name="u_case" reference="x_2023506_german_1_imm_case" type="reference"/>
+        <element default="pending" label="Status" max_length="40" name="u_status" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Verified" sequence="3" value="verified"/>
+                <element inactive_on_update="false" label="Uploaded" sequence="2" value="uploaded"/>
+                <element inactive_on_update="false" label="Pending" sequence="1" value="pending"/>
+                <element inactive_on_update="false" label="Rejected" sequence="4" value="rejected"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="sys_class_name"/>
+        </index>
+        <index name="index2">
+            <element name="u_case"/>
+        </index>
+    </element>
+</database>

@@ -4,13 +4,13 @@
             <element>number</element>
             <position>0</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-16 15:20:18</sys_created_on>
-            <sys_id>709b3fee83d38310c53aad30ceaad30c</sys_id>
+            <sys_created_on>2026-09-24 13:19:38</sys_created_on>
+            <sys_id>43ac685183ebc750c53aad30ceaad363</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Applicant Details" display_value="Applicant Details" name="x_2023506_german_1_imm_case" sys_domain="global" view="Default view">5aaa597983cb4390c53aad30ceaad34a</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-16 15:20:18</sys_updated_on>
+            <sys_updated_on>2026-09-24 13:19:38</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -18,13 +18,13 @@
             <element>u_candidate_name</element>
             <position>1</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-16 15:20:19</sys_created_on>
-            <sys_id>b89b3fee83d38310c53aad30ceaad30d</sys_id>
+            <sys_created_on>2026-09-24 13:19:38</sys_created_on>
+            <sys_id>8bac685183ebc750c53aad30ceaad364</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Applicant Details" display_value="Applicant Details" name="x_2023506_german_1_imm_case" sys_domain="global" view="Default view">5aaa597983cb4390c53aad30ceaad34a</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-16 15:20:19</sys_updated_on>
+            <sys_updated_on>2026-09-24 13:19:38</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -32,13 +32,13 @@
             <element>u_nationality</element>
             <position>2</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-16 15:20:19</sys_created_on>
-            <sys_id>389b3fee83d38310c53aad30ceaad30e</sys_id>
+            <sys_created_on>2026-09-24 13:19:38</sys_created_on>
+            <sys_id>0bac685183ebc750c53aad30ceaad365</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Applicant Details" display_value="Applicant Details" name="x_2023506_german_1_imm_case" sys_domain="global" view="Default view">5aaa597983cb4390c53aad30ceaad34a</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-16 15:20:19</sys_updated_on>
+            <sys_updated_on>2026-09-24 13:19:38</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -46,13 +46,13 @@
             <element>u_target_city</element>
             <position>3</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-16 15:20:19</sys_created_on>
-            <sys_id>b49b3fee83d38310c53aad30ceaad30f</sys_id>
+            <sys_created_on>2026-09-24 13:19:38</sys_created_on>
+            <sys_id>87ac685183ebc750c53aad30ceaad366</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Applicant Details" display_value="Applicant Details" name="x_2023506_german_1_imm_case" sys_domain="global" view="Default view">5aaa597983cb4390c53aad30ceaad34a</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-16 15:20:19</sys_updated_on>
+            <sys_updated_on>2026-09-24 13:19:38</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -60,13 +60,13 @@
             <element>.split</element>
             <position>4</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-16 15:20:19</sys_created_on>
-            <sys_id>349b3fee83d38310c53aad30ceaad310</sys_id>
+            <sys_created_on>2026-09-24 13:19:38</sys_created_on>
+            <sys_id>07ac685183ebc750c53aad30ceaad367</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Applicant Details" display_value="Applicant Details" name="x_2023506_german_1_imm_case" sys_domain="global" view="Default view">5aaa597983cb4390c53aad30ceaad34a</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-16 15:20:19</sys_updated_on>
+            <sys_updated_on>2026-09-24 13:19:38</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
@@ -74,13 +74,13 @@
             <element>u_candidate_email</element>
             <position>5</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-16 15:20:19</sys_created_on>
-            <sys_id>b09b3fee83d38310c53aad30ceaad311</sys_id>
+            <sys_created_on>2026-09-24 13:19:38</sys_created_on>
+            <sys_id>83ac685183ebc750c53aad30ceaad368</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Applicant Details" display_value="Applicant Details" name="x_2023506_german_1_imm_case" sys_domain="global" view="Default view">5aaa597983cb4390c53aad30ceaad34a</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-16 15:20:19</sys_updated_on>
+            <sys_updated_on>2026-09-24 13:19:38</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -88,13 +88,13 @@
             <element>u_passport_number</element>
             <position>6</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-16 15:20:19</sys_created_on>
-            <sys_id>309b3fee83d38310c53aad30ceaad312</sys_id>
+            <sys_created_on>2026-09-24 13:19:38</sys_created_on>
+            <sys_id>03ac685183ebc750c53aad30ceaad369</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Applicant Details" display_value="Applicant Details" name="x_2023506_german_1_imm_case" sys_domain="global" view="Default view">5aaa597983cb4390c53aad30ceaad34a</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-16 15:20:19</sys_updated_on>
+            <sys_updated_on>2026-09-24 13:19:38</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -102,13 +102,27 @@
             <element>state</element>
             <position>7</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2026-09-16 15:20:19</sys_created_on>
-            <sys_id>bc9b3fee83d38310c53aad30ceaad312</sys_id>
+            <sys_created_on>2026-09-24 13:19:38</sys_created_on>
+            <sys_id>8fac685183ebc750c53aad30ceaad369</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Applicant Details" display_value="Applicant Details" name="x_2023506_german_1_imm_case" sys_domain="global" view="Default view">5aaa597983cb4390c53aad30ceaad34a</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2026-09-16 15:20:19</sys_updated_on>
+            <sys_updated_on>2026-09-24 13:19:38</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>u_job_title</element>
+            <position>8</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-24 13:19:38</sys_created_on>
+            <sys_id>0fac685183ebc750c53aad30ceaad36a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Applicant Details" display_value="Applicant Details" name="x_2023506_german_1_imm_case" sys_domain="global" view="Default view">5aaa597983cb4390c53aad30ceaad34a</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-24 13:19:38</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>

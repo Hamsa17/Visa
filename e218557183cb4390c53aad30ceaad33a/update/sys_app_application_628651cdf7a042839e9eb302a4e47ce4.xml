@@ -7,14 +7,14 @@
         <hint>Manage §81a fast-track immigration cases</hint>
         <name/>
         <order>100</order>
-        <roles/>
+        <roles>x_2023506_german_1.admin,x_2023506_german_1.caseworker</roles>
         <sys_class_name>sys_app_application</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-09-01 09:20:11</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>628651cdf7a042839e9eb302a4e47ce4</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Germany Visa Fast-Track</sys_name>
         <sys_overrides/>
         <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
@@ -22,7 +22,7 @@
         <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
         <sys_update_name>sys_app_application_628651cdf7a042839e9eb302a4e47ce4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-01 09:20:11</sys_updated_on>
+        <sys_updated_on>2026-09-23 15:04:34</sys_updated_on>
         <title>Germany Visa Fast-Track</title>
         <view_name/>
     </sys_app_application>

@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic">
+    <sys_cb_topic action="INSERT_OR_UPDATE">
+        <applicability/>
+        <applicability_mode>query</applicability_mode>
+        <autopilot_topic>false</autopilot_topic>
+        <category>a508421d832b0b50c53aad30ceaad300</category>
+        <channels/>
+        <connect_queue/>
+        <context_profiles/>
+        <description/>
+        <dialog_acts_enabled>false</dialog_acts_enabled>
+        <expose_on_palette>false</expose_on_palette>
+        <flexible_conversation_switching>false</flexible_conversation_switching>
+        <foundational>false</foundational>
+        <graph>{
+  "graph_api_version": "1.0.82",
+  "goals": {
+    "primary": {
+      "id": "primary",
+      "trigger": {
+        "type": "primary"
+      },
+      "name": "primary",
+      "applicability": "",
+      "description": "",
+      "nodes": {
+        "72a0d68988c444baa1b6b2dbc6de145b": {
+          "id": "72a0d68988c444baa1b6b2dbc6de145b",
+          "stepType": "Start",
+          "name": "Start",
+          "greetingResponse": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "1407a0cc2fb3419da9e04d618b12a061": {
+          "id": "1407a0cc2fb3419da9e04d618b12a061",
+          "stepType": "TerminateGoal",
+          "name": "End",
+          "confirmationMessage": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "b5fd58395fdc47b4ae87edce77fbb40a": {
+          "name": "Select Assistance Topic",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Welcome to your Germany Settlement Assistant! What topic do you need help with?"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "98d4a2fa44ee43e3a2a40350e17a255b",
+          "detailDescription": "",
+          "id": "b5fd58395fdc47b4ae87edce77fbb40a",
+          "stepType": "ChoicePrompt",
+          "hasCardHeader": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        },
+        "792fde33d0814d91ae8297b23f544869": {
+          "id": "792fde33d0814d91ae8297b23f544869",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "c3abe53f56194761b63d3735fef2e79e": {
+          "id": "c3abe53f56194761b63d3735fef2e79e",
+          "stepType": "TextOutput",
+          "name": "Anmeldung Guidance",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "City Registration (Anmeldung):"
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "You must register your residential address at your local Bürgeramt or Bürgerbüro within 14 days of moving into permanent accommodation."
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "Key Documents Required:"
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "• Valid Passport/ID"
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "• Completed Wohnungsgeberbestätigung (landlord confirmation form)"
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "• Marriage/Birth certificates (if registering family members)"
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "5f5fbf5a4af14afcb09346efc2e28695"
+            }
+          ],
+          "isCollapsible": true,
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "dc2724b5e22c43069c79c95f0e36b8d8": {
+          "id": "dc2724b5e22c43069c79c95f0e36b8d8",
+          "stepType": "TextOutput",
+          "name": "Tax ID Guidance",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "Tax ID &amp; German Bank Account:"
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "• Tax ID (Steueridentifikationsnummer): It is automatically generated upon completing your Anmeldung and mailed to your registered address in 2 to 4 weeks."
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "• Bank Account: You can open an account at traditional or online German banks using your passport and proof of registration (Meldebescheinigung). Provide your IBAN to HR payroll once active."
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "581de9cfcb9145ef949e746758fdc1c0"
+            }
+          ],
+          "isCollapsible": true,
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "81304dbefc6d42e2829fc1cf7c608e02": {
+          "id": "81304dbefc6d42e2829fc1cf7c608e02",
+          "stepType": "TextOutput",
+          "name": "Check-In Guidance",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "Relocation Pulse Check-In:"
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "Our relocation team triggers scheduled check-ins at 30, 60, and 90 days to help ensure your transition is smooth."
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": ""
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "You can complete pending feedback surveys directly from your Retention Portal dashboard or reach out to your relocation coordinator."
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "f3c26976088e420c9eded8c557321f8e"
+            }
+          ],
+          "isCollapsible": true,
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "90486141ce214fc0bc5b31d70e515f17": {
+          "id": "90486141ce214fc0bc5b31d70e515f17",
+          "stepType": "BooleanPrompt",
+          "name": "Check Another Topic",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Would you like information on another settlement topic?"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "hasCardHeader": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "42f76e64979a4f70974695a355ff7701",
+          "detailDescription": ""
+        },
+        "2a5fc180947047ada887080c9fd4e1e1": {
+          "id": "2a5fc180947047ada887080c9fd4e1e1",
+          "stepType": "BooleanPrompt",
+          "name": "Check Another Topic",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Would you like information on another settlement topic?"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "hasCardHeader": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "6a30e24547dd4edd93794b3c523785ac",
+          "detailDescription": ""
+        },
+        "7edff6679f0a4539aeeb8b4deb37c313": {
+          "id": "7edff6679f0a4539aeeb8b4deb37c313",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "f7572ade4c454a858388e8cb19bf7635": {
+          "id": "f7572ade4c454a858388e8cb19bf7635",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "0577f90119c640609f2b420c15d21335": {
+          "id": "0577f90119c640609f2b420c15d21335",
+          "stepType": "ImplicitEnd"
+        },
+        "3474dae00a4848e2a236c01ce3f4031a": {
+          "id": "3474dae00a4848e2a236c01ce3f4031a",
+          "stepType": "TextOutput",
+          "name": "Goodbye Message",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "Glad we could help! Welcome to Germany, and reach out anytime you need assistance."
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "dee33d24071a4f7abdf74d483e34a8f6"
+            }
+          ],
+          "isCollapsible": true,
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "84702a2a3dd14a2eba8895a940e669c9": {
+          "id": "84702a2a3dd14a2eba8895a940e669c9",
+          "stepType": "TextOutput",
+          "name": "Goodbye Message",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "Glad we could help! Welcome to Germany, and reach out anytime you need assistance."
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "0922ed53ba59403d962b23b09a58448a"
+            }
+          ],
+          "isCollapsible": true,
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        }
+      },
+      "edges": [
+        {
+          "id": "bd055aa072e34dbbaff092cf77423d11",
+          "edgeType": "Edge",
+          "source": "72a0d68988c444baa1b6b2dbc6de145b",
+          "target": "b5fd58395fdc47b4ae87edce77fbb40a",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "872614ed8d2c4796849dc995fd848cb2",
+          "edgeType": "Edge",
+          "source": "b5fd58395fdc47b4ae87edce77fbb40a",
+          "target": "792fde33d0814d91ae8297b23f544869",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "c7fd5b03ea554925a2885a746172090d",
+          "edgeType": "Branch",
+          "source": "792fde33d0814d91ae8297b23f544869",
+          "target": "c3abe53f56194761b63d3735fef2e79e",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.select_assistance_topic=anmeldung",
+            "mode": "query"
+          },
+          "label": "Anmeldung Path"
+        },
+        {
+          "id": "0b8fc04440c44708b489d2ac206c04db",
+          "edgeType": "Edge",
+          "source": "c3abe53f56194761b63d3735fef2e79e",
+          "target": "90486141ce214fc0bc5b31d70e515f17",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "79c3b4aa055c47a4b23f82694556927b",
+          "edgeType": "Branch",
+          "source": "792fde33d0814d91ae8297b23f544869",
+          "target": "dc2724b5e22c43069c79c95f0e36b8d8",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.select_assistance_topic=tax_id",
+            "mode": "query"
+          },
+          "label": "Tax ID Path"
+        },
+        {
+          "id": "f004fb7c03a34510a5ae6aece4feb199",
+          "edgeType": "Branch",
+          "source": "792fde33d0814d91ae8297b23f544869",
+          "target": "81304dbefc6d42e2829fc1cf7c608e02",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.select_assistance_topic=checkin",
+            "mode": "query"
+          },
+          "label": "Pulse Check-In Path"
+        },
+        {
+          "id": "278fd366cc4849e0a5cd7dad9def4fe4",
+          "edgeType": "Edge",
+          "source": "81304dbefc6d42e2829fc1cf7c608e02",
+          "target": "90486141ce214fc0bc5b31d70e515f17",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "e4065a1492d04b58aaf5da03aca098c8",
+          "edgeType": "Edge",
+          "source": "dc2724b5e22c43069c79c95f0e36b8d8",
+          "target": "2a5fc180947047ada887080c9fd4e1e1",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "71b10f4c2df843208604a55947a4a0dd",
+          "edgeType": "Edge",
+          "source": "2a5fc180947047ada887080c9fd4e1e1",
+          "target": "7edff6679f0a4539aeeb8b4deb37c313",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "7169f4cba81d4d9d88b5ce95bcf0244f",
+          "edgeType": "Edge",
+          "source": "90486141ce214fc0bc5b31d70e515f17",
+          "target": "f7572ade4c454a858388e8cb19bf7635",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "b9919cedc62c4c9fa99f53c558e9331c",
+          "edgeType": "Branch",
+          "source": "f7572ade4c454a858388e8cb19bf7635",
+          "target": "b5fd58395fdc47b4ae87edce77fbb40a",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.check_another_topic=true",
+            "mode": "query"
+          },
+          "label": "Yes"
+        },
+        {
+          "id": "9ee2b112cf3644138effa0914e5cb692",
+          "edgeType": "Branch",
+          "source": "f7572ade4c454a858388e8cb19bf7635",
+          "target": "3474dae00a4848e2a236c01ce3f4031a",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.check_another_topic=",
+            "mode": "query"
+          },
+          "label": "No"
+        },
+        {
+          "id": "d21f544e40a04c82a7e3b695a2aeaeb2",
+          "edgeType": "Edge",
+          "source": "3474dae00a4848e2a236c01ce3f4031a",
+          "target": "0577f90119c640609f2b420c15d21335",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "f2f8c3c9a37343df8ef8cfa5052e49be",
+          "edgeType": "Branch",
+          "source": "7edff6679f0a4539aeeb8b4deb37c313",
+          "target": "b5fd58395fdc47b4ae87edce77fbb40a",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.check_another_topic_2=true",
+            "mode": "query"
+          },
+          "label": "Yes"
+        },
+        {
+          "id": "a1c95bbc8c014809bcfd0831dcb9dc6a",
+          "edgeType": "Branch",
+          "source": "7edff6679f0a4539aeeb8b4deb37c313",
+          "target": "84702a2a3dd14a2eba8895a940e669c9",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.check_another_topic_2=false",
+            "mode": "query"
+          },
+          "label": "No"
+        },
+        {
+          "id": "77b73f73fb8248cd8de78e94ce867d90",
+          "edgeType": "Edge",
+          "source": "84702a2a3dd14a2eba8895a940e669c9",
+          "target": "1407a0cc2fb3419da9e04d618b12a061",
+          "sourcePort": "",
+          "targetPort": ""
+        }
+      ]
+    }
+  },
+  "variables": {
+    "current-user": {
+      "category": "vaInputs",
+      "id": "current-user",
+      "label": "User",
+      "name": "user",
+      "table": "sys_user",
+      "varType": "reference"
+    },
+    "98d4a2fa44ee43e3a2a40350e17a255b": {
+      "id": "98d4a2fa44ee43e3a2a40350e17a255b",
+      "name": "select_assistance_topic",
+      "label": "Select Assistance Topic",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "City Registration (Anmeldung)",
+          "value": "anmeldung"
+        },
+        {
+          "label": "Tax ID &amp; Bank Setup",
+          "value": "tax_id"
+        },
+        {
+          "label": "Relocation Pulse Check-In",
+          "value": "checkin",
+          "checked": true,
+          "meta": {}
+        }
+      ],
+      "category": "vaInputs",
+      "nodeId": "b5fd58395fdc47b4ae87edce77fbb40a",
+      "isHidden": false
+    },
+    "42f76e64979a4f70974695a355ff7701": {
+      "id": "42f76e64979a4f70974695a355ff7701",
+      "name": "check_another_topic",
+      "label": "Check Another Topic",
+      "varType": "boolean",
+      "secure": false,
+      "category": "vaInputs",
+      "nodeId": "90486141ce214fc0bc5b31d70e515f17",
+      "isHidden": false
+    },
+    "6a30e24547dd4edd93794b3c523785ac": {
+      "id": "6a30e24547dd4edd93794b3c523785ac",
+      "name": "check_another_topic_2",
+      "label": "Check Another Topic (2)",
+      "varType": "boolean",
+      "secure": false,
+      "category": "vaInputs",
+      "nodeId": "2a5fc180947047ada887080c9fd4e1e1",
+      "isHidden": false
+    }
+  }
+}</graph>
+        <key_phrases>Settlement Assistance &amp; Check-In,anmeldung, tax id, bank, check in, settlement, pulse, relocation, retention</key_phrases>
+        <library>false</library>
+        <live_agent>false</live_agent>
+        <model_type>nlu_keyword</model_type>
+        <modify_confirmation_enabled>false</modify_confirmation_enabled>
+        <name>Settlement Assistance &amp; Check-In</name>
+        <nlu_intent/>
+        <nlu_intent_label/>
+        <nlu_model/>
+        <nlu_model_label/>
+        <nlu_provider/>
+        <palette_label/>
+        <roles/>
+        <root_topic_id/>
+        <secure_custom_input_control>false</secure_custom_input_control>
+        <source_topic_id/>
+        <sys_class_name>sys_cb_topic</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-24 20:54:05</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>48b45ad583ab0b50c53aad30ceaad351</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Settlement Assistance &amp; Check-In</sys_name>
+        <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
+        <sys_update_name>sys_cb_topic_48b45ad583ab0b50c53aad30ceaad351</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-24 21:17:24</sys_updated_on>
+        <title>Settlement Assistance &amp; Check-In</title>
+        <triggerable_by_notification>false</triggerable_by_notification>
+        <type>STANDARD</type>
+    </sys_cb_topic>
+    <sys_translated_text action="delete_multiple" query="documentkey=48b45ad583ab0b50c53aad30ceaad351"/>
+</record_update>

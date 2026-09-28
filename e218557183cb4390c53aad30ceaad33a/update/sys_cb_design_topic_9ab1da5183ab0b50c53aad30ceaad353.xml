@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_design_topic">
+    <sys_cb_design_topic action="INSERT_OR_UPDATE">
+        <compiled_topic display_value="Check Visa Status">8eb1da5183ab0b50c53aad30ceaad34c</compiled_topic>
+        <design_definition>{"type":"FlowTopic","triggers":[{"type":"Trigger","name":"36c34916886f49ef812c2bf36531e2c6","triggerType":"request","applicability":{"type":"Applicability","mode":"script","value":"true"},"id":"36c34916886f49ef812c2bf36531e2c6"}],"goals":[{"name":"primary","trigger_id":"36c34916886f49ef812c2bf36531e2c6","nodes":[{"type":"StartGoal","goal_id":"primary","greeting_msg":{"type":"String","mode":"string","value":""},"id":"965fefd75ffd4345bb334f6d21ddbb29","name":"Start","expert_mode":false},{"type":"TerminateGoal","goal_id":"primary","confirmation_msg":{"type":"String","mode":"string","value":""},"id":"0540b386fc5d4e9bb441792712606a72","name":"End","expert_mode":false},{"type":"CRUDAction","mode":"read","read_mode":"variable","query":"number={{vaInputs.ask_case_number}}^u_candidate_email={{vaInputs.ask_candidate_email}}","variable_id":"b8011bfbcb1642d0934dd6fd36c77a19","id":"c9af05b04a394b128b9d5e09385d4b59","name":"Find Candidate Case","goal_id":"primary","applicability":{"type":"Applicability","mode":"script","value":"true"},"expert_mode":false,"condition":{"type":"Condition","mode":"glide_query","value":"number={{vaInputs.ask_case_number}}^u_candidate_email={{vaInputs.ask_candidate_email}}"}},{"type":"Decision","name":"Decision","branches":[{"type":"Branch","label":"Case Found","expression":{"type":"Applicability","mode":"query","value":"find_candidate_caseISNOTEMPTY"},"id":"e4e24fcb2ba843d3a7b7808d49369239","name":"Case Found","expert_mode":false},{"type":"Branch","label":"No Case Found","expression":{"type":"Applicability","mode":"query","value":"find_candidate_caseISEMPTY"},"id":"b9ce4602d8ae4c2891f3ac82ecea5d2b","name":"No Case Found","expert_mode":false}],"id":"9b6fb6ee942f4650897ca48adbf2961f","goal_id":"primary","expert_mode":false},{"type":"TerminateGoal","goal_id":"primary","id":"2f17768173f4411fba98632fee681a02","name":"ImplicitEnd__093d5a9466fa456aa9e3c011ae4607b9","expert_mode":false},{"type":"TextOutputPrompt","value":[{"type":"String","mode":"string","value":"gs.getMessageLang(\"Here is the current status of your German Visa Fast-Track case:\", vaContext.getRequesterLang())"}],"request_feedback":true,"isCollapsible":true,"id":"ee838721e7d844469a567d8d50212754","name":"Case Found message","goal_id":"primary","applicability":{"type":"Applicability","mode":"script","value":"true"},"expert_mode":false,"secure":false},{"type":"RecordOutputPrompt","mode":"variable","table":"x_2023506_german_1_imm_case","variable_id":"b8011bfbcb1642d0934dd6fd36c77a19","fields":["number","state","comments_and_work_notes","sn_hr_le_activity"],"request_feedback":true,"id":"b994217bae0d4037a3e4e038b59edb1c","name":"Visa Case Card","goal_id":"primary","applicability":{"type":"Applicability","mode":"script","value":"true"},"expert_mode":false,"condition":{"type":"Condition","mode":"glide_query","value":""}},{"type":"TextOutputPrompt","value":[{"type":"String","mode":"string","value":"gs.getMessageLang(\"We could not find an active visa application linked to your account. Please submit an application through the Visa Portal home page or contact your HR caseworker.\", vaContext.getRequesterLang())"}],"request_feedback":true,"isCollapsible":true,"id":"059e026d5b20429ea87c7c648bdb0aea","name":"No Case Found Message","goal_id":"primary","applicability":{"type":"Applicability","mode":"script","value":"true"},"expert_mode":false,"secure":false},{"type":"InputPrompt","variable_id":"5f22a642755348f99bed97623d86ef5c","message":{"type":"String","mode":"string","value":"gs.getMessageLang(\"Please enter your Visa Case Number (e.g., VFT0001):\", vaContext.getRequesterLang())"},"nlu_entity_binding":{"type":"NLUEntityBinding","allow_text_input":false,"use_confirmation_prompt":true},"request_feedback":true,"skippable":{"type":"Applicability","mode":"script","value":"false"},"skipreprompt":{"type":"Applicability","mode":"script","value":"false"},"metadataScript":"","cardName":"","cardFields":[],"id":"4657f75203ad4b1194487eeadfd0d984","name":"Ask Case Number","goal_id":"primary","applicability":{"type":"Applicability","mode":"script","value":"true"},"expert_mode":false,"formatType":"Text","validationScript":"","description":""},{"type":"InputPrompt","variable_id":"deaed754f44845b38c89c7f8147d479f","message":{"type":"String","mode":"string","value":"gs.getMessageLang(\"Please enter the email address registered with your application:\", vaContext.getRequesterLang())"},"nlu_entity_binding":{"type":"NLUEntityBinding","allow_text_input":false,"use_confirmation_prompt":true},"request_feedback":true,"skippable":{"type":"Applicability","mode":"script","value":"false"},"skipreprompt":{"type":"Applicability","mode":"script","value":"false"},"metadataScript":"","cardName":"","cardFields":[],"id":"31f1e0deab4440e4a57fa52969561fb8","name":"Ask Candidate Email","goal_id":"primary","applicability":{"type":"Applicability","mode":"script","value":"true"},"expert_mode":false,"formatType":"Text","validationScript":"","description":""}],"edges":[{"type":"Edge","source_node_id":"c9af05b04a394b128b9d5e09385d4b59","target_node_id":"9b6fb6ee942f4650897ca48adbf2961f","id":"c3778e9df4d64fd987fcfe6959a0cf9d"},{"type":"Edge","source_node_id":"9b6fb6ee942f4650897ca48adbf2961f","target_node_id":"ee838721e7d844469a567d8d50212754","branch_id":"e4e24fcb2ba843d3a7b7808d49369239","id":"9d5e0e6e1ac44feab27d74c357b497d5","name":"e4e24fcb2ba843d3a7b7808d49369239"},{"type":"Edge","source_node_id":"ee838721e7d844469a567d8d50212754","target_node_id":"b994217bae0d4037a3e4e038b59edb1c","id":"3a8fcfc29e064095803f8319e3474cab"},{"type":"Edge","source_node_id":"b994217bae0d4037a3e4e038b59edb1c","target_node_id":"0540b386fc5d4e9bb441792712606a72","id":"3424e334b8d54d339aa3f6f5b1a04cc0"},{"type":"Edge","source_node_id":"9b6fb6ee942f4650897ca48adbf2961f","target_node_id":"059e026d5b20429ea87c7c648bdb0aea","branch_id":"b9ce4602d8ae4c2891f3ac82ecea5d2b","id":"ab5efeb982f744f486456b5151783319","name":"b9ce4602d8ae4c2891f3ac82ecea5d2b"},{"type":"Edge","source_node_id":"059e026d5b20429ea87c7c648bdb0aea","target_node_id":"2f17768173f4411fba98632fee681a02","id":"baa80523dab74d4eb4581ee1b63d851e"},{"type":"Edge","source_node_id":"965fefd75ffd4345bb334f6d21ddbb29","target_node_id":"4657f75203ad4b1194487eeadfd0d984","id":"110c5616a6664130afe73c94c4a3a3eb"},{"type":"Edge","source_node_id":"4657f75203ad4b1194487eeadfd0d984","target_node_id":"31f1e0deab4440e4a57fa52969561fb8","id":"bc813ef992374f62b582f377ccd7fa1f"},{"type":"Edge","source_node_id":"31f1e0deab4440e4a57fa52969561fb8","target_node_id":"c9af05b04a394b128b9d5e09385d4b59","id":"637dc626aadf4e2fb3e332872c8f5a5b"}],"id":"primary"}],"script_variables":[],"glide_variables":[{"type":"Reference","table":"sys_user","auto_select":false,"id":"current-user","name":"user","formatType":"text","secure":false,"sensitive":false,"aiInput":false,"list":false},{"type":"Reference","table":"x_2023506_german_1_imm_case","auto_select":false,"id":"b8011bfbcb1642d0934dd6fd36c77a19","name":"find_candidate_case","formatType":"text","secure":false,"sensitive":false,"aiInput":false,"list":false},{"type":"String","name":"ask_case_number","list":false,"id":"5f22a642755348f99bed97623d86ef5c","formatType":"Text","validationScript":"","secure":false,"sensitive":false,"aiInput":false},{"type":"String","name":"ask_candidate_email","list":false,"id":"deaed754f44845b38c89c7f8147d479f","formatType":"Text","validationScript":"","secure":false,"sensitive":false,"aiInput":false}],"applicability":{"type":"Applicability","mode":"script","value":"true"},"roles":[],"scope":"e218557183cb4390c53aad30ceaad33a","domain":"global","topic_type":"STANDARD","channels":[],"dialog_acts_enabled":false,"id":"cd194e1d832b0b50c53aad30ceaad33f","name":"Check Visa Status","key_phrases":["Check Visa Status","status"," visa"," case"," check"," track"],"nlu_provider":"","nlu_model":"","nlu_model_label":"","nlu_intent":"","nlu_intent_label":"","flexible_conversation_switching":false,"autopilot_topic":false,"design_categories":[{"name":null,"visible":false,"sysId":"7a8702d9832b0b50c53aad30ceaad3be"}],"triggerable_by_notification":false,"model_type":"nlu_keyword","foundational":false,"modify_confirmation_enabled":false,"context_profiles":[],"title":"Check Visa Status","library":false,"csTopicId":"8eb1da5183ab0b50c53aad30ceaad34c","readOnly":false,"nluMapping":"[]"}</design_definition>
+        <design_topic_id>cd194e1d832b0b50c53aad30ceaad33f</design_topic_id>
+        <graph>{
+  "graph_api_version": "1.0.82",
+  "goals": {
+    "primary": {
+      "id": "primary",
+      "trigger": {
+        "type": "primary"
+      },
+      "name": "primary",
+      "applicability": "",
+      "description": "",
+      "nodes": {
+        "965fefd75ffd4345bb334f6d21ddbb29": {
+          "id": "965fefd75ffd4345bb334f6d21ddbb29",
+          "stepType": "Start",
+          "name": "Start",
+          "greetingResponse": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "0540b386fc5d4e9bb441792712606a72": {
+          "id": "0540b386fc5d4e9bb441792712606a72",
+          "stepType": "TerminateGoal",
+          "name": "End",
+          "confirmationMessage": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "c9af05b04a394b128b9d5e09385d4b59": {
+          "id": "c9af05b04a394b128b9d5e09385d4b59",
+          "stepType": "LookupRecord",
+          "name": "Find Candidate Case",
+          "condition": {
+            "mode": "glide_query",
+            "value": "number={{vaInputs.ask_case_number}}^u_candidate_email={{vaInputs.ask_candidate_email}}"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "variableId": "b8011bfbcb1642d0934dd6fd36c77a19"
+        },
+        "9b6fb6ee942f4650897ca48adbf2961f": {
+          "id": "9b6fb6ee942f4650897ca48adbf2961f",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "2f17768173f4411fba98632fee681a02": {
+          "id": "2f17768173f4411fba98632fee681a02",
+          "stepType": "ImplicitEnd"
+        },
+        "ee838721e7d844469a567d8d50212754": {
+          "id": "ee838721e7d844469a567d8d50212754",
+          "stepType": "TextOutput",
+          "name": "Case Found message",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "Here is the current status of your German Visa Fast-Track case:"
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "2a7a6dfd87204b2682293647953db6eb"
+            }
+          ],
+          "isCollapsible": true,
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "b994217bae0d4037a3e4e038b59edb1c": {
+          "id": "b994217bae0d4037a3e4e038b59edb1c",
+          "stepType": "RecordOutput",
+          "name": "Visa Case Card",
+          "variableId": "b8011bfbcb1642d0934dd6fd36c77a19",
+          "cardTemplate": "General",
+          "cardFields": {},
+          "mode": "variable",
+          "tableName": "x_2023506_german_1_imm_case",
+          "fields": [
+            "number",
+            "state",
+            "comments_and_work_notes",
+            "sn_hr_le_activity"
+          ],
+          "cardDefinition": {
+            "name": "Record",
+            "value": "General"
+          },
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "condition": {
+            "mode": "glide_query",
+            "value": ""
+          }
+        },
+        "059e026d5b20429ea87c7c648bdb0aea": {
+          "id": "059e026d5b20429ea87c7c648bdb0aea",
+          "stepType": "TextOutput",
+          "name": "No Case Found Message",
+          "secure": false,
+          "value": [
+            {
+              "value": [
+                {
+                  "type": "paragraph",
+                  "children": [
+                    {
+                      "text": "We could not find an active visa application linked to your account. Please submit an application through the Visa Portal home page or contact your HR caseworker."
+                    }
+                  ]
+                }
+              ],
+              "mode": "simple",
+              "_key": "d9f03ceace0a48308d96f78d65f2062a"
+            }
+          ],
+          "isCollapsible": true,
+          "requestFeedback": true,
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "4657f75203ad4b1194487eeadfd0d984": {
+          "id": "4657f75203ad4b1194487eeadfd0d984",
+          "stepType": "TextPrompt",
+          "name": "Ask Case Number",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Please enter your Visa Case Number (e.g., VFT0001):"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "hasCardHeader": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "5f22a642755348f99bed97623d86ef5c",
+          "detailDescription": "",
+          "inputType": {
+            "format": "Text",
+            "script": ""
+          },
+          "requestFeedback": true
+        },
+        "31f1e0deab4440e4a57fa52969561fb8": {
+          "id": "31f1e0deab4440e4a57fa52969561fb8",
+          "stepType": "TextPrompt",
+          "name": "Ask Candidate Email",
+          "prompt": {
+            "value": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Please enter the email address registered with your application:"
+                  }
+                ]
+              }
+            ],
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "skipReprompt": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "hasCardHeader": false,
+          "cardMetadata": {
+            "mode": "card",
+            "metadataScript": "",
+            "cardTemplate": "",
+            "cardFields": {},
+            "cardDefinition": {}
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "deaed754f44845b38c89c7f8147d479f",
+          "detailDescription": "",
+          "inputType": {
+            "format": "Text",
+            "script": ""
+          },
+          "requestFeedback": true
+        }
+      },
+      "edges": [
+        {
+          "id": "c3778e9df4d64fd987fcfe6959a0cf9d",
+          "edgeType": "Edge",
+          "source": "c9af05b04a394b128b9d5e09385d4b59",
+          "target": "9b6fb6ee942f4650897ca48adbf2961f",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "9d5e0e6e1ac44feab27d74c357b497d5",
+          "edgeType": "Branch",
+          "source": "9b6fb6ee942f4650897ca48adbf2961f",
+          "target": "ee838721e7d844469a567d8d50212754",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.find_candidate_caseISNOTEMPTY",
+            "mode": "query"
+          },
+          "label": "Case Found"
+        },
+        {
+          "id": "3a8fcfc29e064095803f8319e3474cab",
+          "edgeType": "Edge",
+          "source": "ee838721e7d844469a567d8d50212754",
+          "target": "b994217bae0d4037a3e4e038b59edb1c",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "3424e334b8d54d339aa3f6f5b1a04cc0",
+          "edgeType": "Edge",
+          "source": "b994217bae0d4037a3e4e038b59edb1c",
+          "target": "0540b386fc5d4e9bb441792712606a72",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "ab5efeb982f744f486456b5151783319",
+          "edgeType": "Branch",
+          "source": "9b6fb6ee942f4650897ca48adbf2961f",
+          "target": "059e026d5b20429ea87c7c648bdb0aea",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.find_candidate_caseISEMPTY",
+            "mode": "query"
+          },
+          "label": "No Case Found"
+        },
+        {
+          "id": "baa80523dab74d4eb4581ee1b63d851e",
+          "edgeType": "Edge",
+          "source": "059e026d5b20429ea87c7c648bdb0aea",
+          "target": "2f17768173f4411fba98632fee681a02",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "110c5616a6664130afe73c94c4a3a3eb",
+          "edgeType": "Edge",
+          "source": "965fefd75ffd4345bb334f6d21ddbb29",
+          "target": "4657f75203ad4b1194487eeadfd0d984",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "bc813ef992374f62b582f377ccd7fa1f",
+          "edgeType": "Edge",
+          "source": "4657f75203ad4b1194487eeadfd0d984",
+          "target": "31f1e0deab4440e4a57fa52969561fb8",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "637dc626aadf4e2fb3e332872c8f5a5b",
+          "edgeType": "Edge",
+          "source": "31f1e0deab4440e4a57fa52969561fb8",
+          "target": "c9af05b04a394b128b9d5e09385d4b59",
+          "sourcePort": "",
+          "targetPort": ""
+        }
+      ]
+    }
+  },
+  "variables": {
+    "current-user": {
+      "category": "vaInputs",
+      "id": "current-user",
+      "label": "User",
+      "name": "user",
+      "table": "sys_user",
+      "varType": "reference"
+    },
+    "b8011bfbcb1642d0934dd6fd36c77a19": {
+      "id": "b8011bfbcb1642d0934dd6fd36c77a19",
+      "name": "find_candidate_case",
+      "label": "Find Candidate Case",
+      "varType": "reference",
+      "table": "x_2023506_german_1_imm_case",
+      "category": "vaInputs",
+      "nodeId": "b994217bae0d4037a3e4e038b59edb1c",
+      "isHidden": false
+    },
+    "5f22a642755348f99bed97623d86ef5c": {
+      "id": "5f22a642755348f99bed97623d86ef5c",
+      "name": "ask_case_number",
+      "label": "Ask Case Number",
+      "varType": "string",
+      "secure": false,
+      "category": "vaInputs",
+      "encryptionHashFunction": "SHA-256",
+      "encryptionSalt": {
+        "value": "MTc5MDI4MjAzODA0MSBWQSBEZXNpZ25lciBpcyBhd2Vzb21l",
+        "mode": "simple"
+      },
+      "nodeId": "4657f75203ad4b1194487eeadfd0d984",
+      "isHidden": false
+    },
+    "deaed754f44845b38c89c7f8147d479f": {
+      "id": "deaed754f44845b38c89c7f8147d479f",
+      "name": "ask_candidate_email",
+      "label": "Ask Candidate Email",
+      "varType": "string",
+      "secure": false,
+      "category": "vaInputs",
+      "encryptionHashFunction": "SHA-256",
+      "encryptionSalt": {
+        "value": "MTc5MDI4MjE0OTMzOCBWQSBEZXNpZ25lciBpcyBhd2Vzb21l",
+        "mode": "simple"
+      },
+      "nodeId": "31f1e0deab4440e4a57fa52969561fb8",
+      "isHidden": false
+    }
+  }
+}</graph>
+        <name>Check Visa Status</name>
+        <sys_class_name>sys_cb_design_topic</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-24 20:41:07</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>9ab1da5183ab0b50c53aad30ceaad353</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>FlowTopic</sys_name>
+        <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
+        <sys_update_name>sys_cb_design_topic_9ab1da5183ab0b50c53aad30ceaad353</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-24 20:41:32</sys_updated_on>
+        <type>FlowTopic</type>
+    </sys_cb_design_topic>
+</record_update>

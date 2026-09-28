@@ -10,15 +10,15 @@
         <image/>
         <link_type>LIST</link_type>
         <map_page/>
-        <mobile_title/>
-        <mobile_view_name/>
+        <mobile_title>Documents</mobile_title>
+        <mobile_view_name>Mobile</mobile_view_name>
         <name>x_2023506_german_1_case_doc</name>
         <order>400</order>
         <override_menu_roles>false</override_menu_roles>
         <query/>
         <report/>
         <require_confirmation>false</require_confirmation>
-        <roles/>
+        <roles>x_2023506_german_1.admin,x_2023506_german_1.caseworker</roles>
         <route/>
         <screen/>
         <sys_class_name>sys_app_module</sys_class_name>
@@ -27,7 +27,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>93aa16b706744f19a3fccf5b508c3819</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Documents</sys_name>
         <sys_overrides/>
         <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
@@ -35,7 +35,7 @@
         <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
         <sys_update_name>sys_app_module_93aa16b706744f19a3fccf5b508c3819</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-01 09:20:17</sys_updated_on>
+        <sys_updated_on>2026-09-23 14:48:29</sys_updated_on>
         <timeline_page/>
         <title>Documents</title>
         <uncancelable>false</uncancelable>

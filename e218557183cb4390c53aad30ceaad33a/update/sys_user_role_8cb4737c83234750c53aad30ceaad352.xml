@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_role">
+    <sys_user_role action="INSERT_OR_UPDATE">
+        <assignable_by/>
+        <can_delegate>true</can_delegate>
+        <description>Read/write access on Visa Cases and Case  Documents; execute POA generation; approve/reject uploaded evidence; record fee settlements</description>
+        <elevated_privilege>false</elevated_privilege>
+        <federated_id>c4XxI197YjUZraAdGUWj0lktjOCvybqf1pOLjFzCxnM=</federated_id>
+        <grantable>true</grantable>
+        <includes_roles/>
+        <name>x_2023506_german_1.caseworker</name>
+        <scoped_admin>false</scoped_admin>
+        <suffix>caseworker</suffix>
+        <sys_class_name>sys_user_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-23 14:36:51</sys_created_on>
+        <sys_id>8cb4737c83234750c53aad30ceaad352</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>x_2023506_german_1.caseworker</sys_name>
+        <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
+        <sys_update_name>sys_user_role_8cb4737c83234750c53aad30ceaad352</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-23 14:40:04</sys_updated_on>
+    </sys_user_role>
+</record_update>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="a46d7d6c5c6245b0a86d1007acfe45cc" label="Retention Check-In" name="x_2023506_german_1_ret_chkin" type="collection">
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" display="true" label="Check-in Number" max_length="40" name="number" type="string"/>
+        <element choice="1" default="scheduled" label="Status" max_length="40" name="u_status" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Sent" sequence="2" value="sent"/>
+                <element inactive_on_update="false" label="Overdue" sequence="4" value="overdue"/>
+                <element inactive_on_update="false" label="Completed" sequence="3" value="completed"/>
+                <element inactive_on_update="false" label="Scheduled" sequence="1" value="scheduled"/>
+            </choice>
+        </element>
+        <element label="Settling Feedback" max_length="1000" name="u_settling_feedback" type="string"/>
+        <element label="Needs Intervention" name="u_needs_intervention" type="boolean"/>
+        <element label="Retention Case" mandatory="true" max_length="32" name="u_retention_case" reference="x_2023506_german_1_ret_case" type="reference"/>
+        <element choice="1" label="Milestone" max_length="40" name="u_milestone" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Day 90" sequence="3" value="90_days"/>
+                <element inactive_on_update="false" label="Day 150" sequence="4" value="150_days"/>
+                <element inactive_on_update="false" label="Day 30" sequence="1" value="30_days"/>
+                <element inactive_on_update="false" label="Day 60" sequence="2" value="60_days"/>
+            </choice>
+        </element>
+        <element label="Completed At" name="u_completed_at" type="glide_date_time"/>
+        <element label="Sentiment Score (1-5)" max_length="40" name="u_sentiment_score" type="integer"/>
+        <element label="Due Date" max_length="40" name="u_due_date" type="glide_date"/>
+        <index name="index">
+            <element name="u_retention_case"/>
+        </index>
+    </element>
+</database>

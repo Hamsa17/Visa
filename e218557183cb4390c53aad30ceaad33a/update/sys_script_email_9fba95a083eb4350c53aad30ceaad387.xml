@@ -3,30 +3,43 @@
         <name>attach_poa_pdf</name>
         <new_lines_to_html>false</new_lines_to_html>
         <script><![CDATA[(function runMailScript(current, template, email, email_action, event) {
+    var caseSysId = current.getUniqueValue();
+    var instanceUrl = gs.getProperty('glide.servlet.uri');
+
+    // 1. Search for the generated Vollmacht PDF on this case
     var grAtt = new GlideRecord('sys_attachment');
-    grAtt.addQuery('table_name', current.getTableName());
-    grAtt.addQuery('table_sys_id', current.getUniqueValue());
-    grAtt.addQuery('file_name', 'CONTAINS', 'Vollmacht');
+    grAtt.addQuery('table_sys_id', caseSysId);
+    grAtt.addQuery('file_name', 'STARTSWITH', 'Vollmacht');
     grAtt.orderByDesc('sys_created_on');
-    grAtt.setLimit(1);
     grAtt.query();
 
     if (grAtt.next()) {
-        var sa = new GlideSysAttachment();
-        sa.copy(current.getTableName(), current.getUniqueValue(), 'sys_email', email.sys_id);
+        var attSysId = grAtt.getUniqueValue();
+        var fileName = grAtt.getValue('file_name');
+        var downloadUrl = instanceUrl + 'sys_attachment.do?sys_id=' + attSysId;
+
+        // 2. Print an action button/link directly into the email body
+        template.print('<div style="margin: 16px 0;">');
+        template.print('  <a href="' + downloadUrl + '" target="_blank" style="background-color: #005f73; color: #ffffff; padding: 10px 18px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block; font-size: 13px;">');
+        template.print('    ]]>📄<![CDATA[ Download ' + fileName);
+        template.print('  </a>');
+        template.print('</div>');
+    } else {
+        // Fallback text if the file is not yet attached to the previewed record
+        template.print('<p style="color: #64748b; font-style: italic;">[Power of Attorney PDF will be linked here upon generation]</p>');
     }
 })(current, template, email, email_action, event);]]></script>
         <sys_class_name>sys_script_email</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-09-22 08:47:02</sys_created_on>
         <sys_id>9fba95a083eb4350c53aad30ceaad387</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>attach_poa_pdf</sys_name>
         <sys_package display_value="Germany Visa Fast-Track" source="x_2023506_german_1">e218557183cb4390c53aad30ceaad33a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Germany Visa Fast-Track">e218557183cb4390c53aad30ceaad33a</sys_scope>
         <sys_update_name>sys_script_email_9fba95a083eb4350c53aad30ceaad387</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-09-22 09:52:17</sys_updated_on>
+        <sys_updated_on>2026-09-23 12:25:05</sys_updated_on>
     </sys_script_email>
 </record_update>
